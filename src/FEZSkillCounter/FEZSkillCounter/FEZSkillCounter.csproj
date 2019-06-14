@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B29592B6-EC38-41CD-B220-DD10AB755BD4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FEZSkillCounter</RootNamespace>
+    <AssemblyName>FEZSkillCounter</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\LinqExtensionMethods.cs" />
+    <Compile Include="Extension\SkillDictionary.cs" />
+    <Compile Include="SkillCountAlgorithm.cs" />
+    <Compile Include="SkillOcr.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extension\BitmapExtension.cs" />
+    <Compile Include="FEZScreenShooter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_アースバインド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_アースバインド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_インテンスファイ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_インテンスファイ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_エナジースフィア.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_エナジースフィア_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_エンダーレイド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_エンダーレイド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ゲイザースマッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ゲイザースマッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_サイクロンディザスター.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_サイクロンディザスター_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_シャットアウト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_シャットアウト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ショックウェイブ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ショックウェイブ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ソリッドストライク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ソリッドストライク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_タワードミネーション.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_タワードミネーション_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ドレインクロー.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ドレインクロー_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ノックインパクト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ノックインパクト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ハードレインフォース.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ハードレインフォース_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ハームアクティベイト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ハームアクティベイト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ホーネットスティング.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_ホーネットスティング_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_通常攻撃.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Cestus_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_アクセラレーション.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_アクセラレーション_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_イレイスマジック.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_イレイスマジック_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ヴィガーエイド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ヴィガーエイド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_エリアルフォール.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_エリアルフォール_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_オブティンプロテクト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_オブティンプロテクト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_シャイニングクロス.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_シャイニングクロス_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ストライクダウン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ストライクダウン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_デュアルストライク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_デュアルストライク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_テンペストピアス.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_テンペストピアス_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_フィニッシュスラスト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_フィニッシュスラスト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_フラッシュスティンガー.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_フラッシュスティンガー_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ペネトレイトスラスト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ペネトレイトスラスト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ラピッドファンデヴ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_ラピッドファンデヴ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_リバースキック.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_リバースキック_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_通常攻撃.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Fencer_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_アームブレイク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_アームブレイク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_アローレイン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_アローレイン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_イーグルショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_イーグルショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ヴァイパーバイト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ヴァイパーバイト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ヴォイドダークネス.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ヴォイドダークネス_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_エアレイド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_エアレイド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ガードブレイク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ガードブレイク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_クイックビート.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_クイックビート_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_クラッシュショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_クラッシュショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_コメットキャノン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_コメットキャノン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_スウィープキャノン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_スウィープキャノン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_スパイダーウェブ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_スパイダーウェブ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ダガーストライク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ダガーストライク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_トゥルーショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_トゥルーショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ドッジシュート.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ドッジシュート_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_バーストキャノン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_バーストキャノン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ハイド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ハイド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パニッシングストライク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パニッシングストライク_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パニッシングストライク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パワーシュート.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パワーシュート_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パワーブレイク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_パワーブレイク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ピアッシングシュート.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ピアッシングシュート_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ファストショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ファストショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_フリックショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_フリックショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ブレイズショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ブレイズショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ポイズンショット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ポイズンショット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ポイズンブロウ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ポイズンブロウ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ホワイトバレット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ホワイトバレット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ラッシュバレット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_ラッシュバレット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_レッグブレイク.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_レッグブレイク_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_通常攻撃.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Scout_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスジャベリン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスジャベリン_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスジャベリン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスターゲット.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスターゲット_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスターゲット_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスボルト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_アイスボルト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_エレキドライブ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_エレキドライブ_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_エレキドライブ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_グラビティキャプチャー.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_グラビティキャプチャー_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_グラビティキャプチャー_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_サンダーボルト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_サンダーボルト_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_サンダーボルト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ジャッジメントレイ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ジャッジメントレイ_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ジャッジメントレイ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_スパークフレア.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_スパークフレア_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_スパークフレア_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ファイア.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ファイア_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ファイアランス.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ファイアランス_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ファイアランス_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フリージングウェイブ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フリージングウェイブ_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フリージングウェイブ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ブリザードカレス.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ブリザードカレス_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ブリザードカレス_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フレイムサークル.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フレイムサークル_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_フレイムサークル_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ヘルファイア.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ヘルファイア_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ヘルファイア_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_メテオインパクト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_メテオインパクト_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_メテオインパクト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ライトニング.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ライトニング_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ライトニングスピア.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ライトニングスピア_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_ライトニングスピア_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_レーザーブラスト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_レーザーブラスト_D.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_レーザーブラスト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_詠唱.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_詠唱_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_通常攻撃.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Sorcerer_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アークスタンプ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アークスタンプ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アサルトエッジ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アサルトエッジ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アタックレインフォース.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_アタックレインフォース_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_エクステンブレイド.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_エクステンブレイド_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_エンダーペイン.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_エンダーペイン_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ガードレインフォース.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ガードレインフォース_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_クラックバング.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_クラックバング_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_クランブルストーム.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_クランブルストーム_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_シールドバッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_シールドバッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ストライクスマッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ストライクスマッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_スマッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_スマッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_スラムアタック.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_スラムアタック_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソードランページ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソードランページ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソニックブーム.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソニックブーム_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソリッドウォール.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ソリッドウォール_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ドラゴンテイル.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ドラゴンテイル_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_フォースインパクト.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_フォースインパクト_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ブレイズスラッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ブレイズスラッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ヘビースマッシュ.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ヘビースマッシュ_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ベヒモステイル.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_ベヒモステイル_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_通常攻撃.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\SkillBitmap\Warrior_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

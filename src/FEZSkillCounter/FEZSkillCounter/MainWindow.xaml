@@ -1,0 +1,28 @@
+﻿<Window x:Class="FEZSkillCounter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FEZSkillCounter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Topmost="True">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Skill" />
+            <TextBlock Name="SkillText"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Pow" />
+            <TextBlock Name="PowText"/>
+        </StackPanel>
+    </Grid>
+</Window>
