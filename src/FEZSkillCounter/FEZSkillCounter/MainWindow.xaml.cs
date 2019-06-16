@@ -20,10 +20,15 @@ namespace FEZSkillCounter
         {
             InitializeComponent();
 
-            Loaded += (_, __) => Task.Run(() => Proc());
+            Loaded += (_, __) => Task.Run(async () => await ProcAsync());
             SkillUpdated += MainWindow_SkillUpdated;
             SkillCountIncremented += MainWindow_SkillCountIncremented;
             PowUpdated += MainWindow_MpUpdated;
+
+            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
+            {
+
+            };
         }
 
         private void MainWindow_MpUpdated(object sender, int pow)
@@ -75,7 +80,6 @@ namespace FEZSkillCounter
             })));
         }
 
-
         public class SkillCount
         {
             public Skill Skill { get; }
@@ -108,6 +112,7 @@ namespace FEZSkillCounter
         private SkillOcr _skillOcr = new SkillOcr();
         private FEZScreenShooter _screenShooter = new FEZScreenShooter();
         private Stopwatch _stopwatch = Stopwatch.StartNew();
+        private SkillCountAlgorithm skillCountAlgorithm = new SkillCountAlgorithm();
 
         private Status _status = Status.Waiting;
         private int _currentPow = int.MaxValue;
@@ -145,7 +150,10 @@ namespace FEZSkillCounter
             }
         }
 
-        private void Proc()
+        long processTotalTime  = 0;
+        long processTotalCount = 0;
+
+        private async Task ProcAsync()
         {
             while (true)
             {
@@ -155,39 +163,55 @@ namespace FEZSkillCounter
 
                 var start = _stopwatch.ElapsedMilliseconds;
 
-                using (var bitmap = _screenShooter.Shoot())
+                using (var screenShot = _screenShooter.Shoot())
                 {
                     // 解析可能か確認
-                    if (!CanAnalyze(bitmap))
+                    if (!CanAnalyze(screenShot.Image))
                     {
                         continue;
                     }
 
-                    // TODO: Pow取得とスキル取得を並列化
+                    var previousPow       = _currentPow;
+                    var previousSkills    = _currentSkills;
+                    PowDebuff[] powDebuff = null;
+
                     // 現在のPowを取得
-                    var previousPow = _currentPow;
-                    _currentPow = GetPow(bitmap);
+                    _currentPow = GetPow(screenShot.Image);
 
-                    if (_currentPow == int.MaxValue)
+                    // スキル取得
+                    _currentSkills = GetSkills(screenShot.Image);
+
+                    // デバフ取得
+                    powDebuff = GetPowDebuffs(screenShot.Image);
+
+                    //await Task.WhenAll(
+                    //    Task.Run(() =>
+                    //    {
+                    //        // 現在のPowを取得
+                    //        _currentPow = GetPow(screenShot.Image);
+                    //    }),
+                    //    Task.Run(() =>
+                    //    {
+                    //        // スキル取得
+                    //        _currentSkills = GetSkills(screenShot.Image);
+                    //    }),
+                    //    Task.Run(() =>
+                    //    {
+                    //        // デバフ取得
+                    //        powDebuff = GetPowDebuffs(screenShot.Image);
+                    //    }));
+
+                    // 取得失敗していれば終了
+                    if (_currentPow == int.MaxValue ||
+                        _currentSkills == null ||
+                        powDebuff == null)
                     {
-                        // 取得失敗していれば終了
                         continue;
                     }
 
-
-
-                    // 前回のPowとの差分取得
-                    var powDiff = 0;
+                    // Powが更新されていれば通知
                     if (previousPow != int.MaxValue)
                     {
-                        powDiff = _currentPow - previousPow;
-
-                        // TODO: 回復とデバフを考慮
-
-                        // 考慮外
-                        //   回復中(Powゲージが増加中)の
-
-
                         PowUpdated?.BeginInvoke(
                             this,
                             _currentPow,
@@ -195,13 +219,9 @@ namespace FEZSkillCounter
                             null);
                     }
 
-                    // スキル取得
-                    var previousSkills = _currentSkills;
-                    _currentSkills = GetSkills(bitmap);
-
                     // スキルが更新されていれば通知
                     if (previousSkills == null ||
-                        _currentSkills.SequenceEqual(previousSkills, x => x.Name))
+                        !_currentSkills.SequenceEqual(previousSkills, x => x.Name))
                     {
                         SkillUpdated?.BeginInvoke(
                             this,
@@ -213,13 +233,15 @@ namespace FEZSkillCounter
                     // 選択中スキルを取得
                     var activeSkill = _currentSkills.FirstOrDefault(x => x.IsActive);
 
-                    if (powDiff != 0)
-                    {
-                        Debug.WriteLine(powDiff);
-                    }
+                    // スキルを使ったかどうかチェック
+                    var isSkillUsed = skillCountAlgorithm.IsSkillUsed(
+                            screenShot.TimeStamp,
+                            _currentPow,
+                            activeSkill,
+                            powDebuff);
 
-                    // Powの差分が選択中のスキルと一致していれば更新通知
-                    if (activeSkill.Pow.Any(x => -x == powDiff))
+                    // スキルを使っていれば更新通知
+                    if (isSkillUsed)
                     {
                         SkillCountIncremented?.BeginInvoke(
                             this,
@@ -230,6 +252,17 @@ namespace FEZSkillCounter
                 }
 
                 var end = _stopwatch.ElapsedMilliseconds;
+
+                processTotalTime += (end - start);
+                processTotalCount++;
+
+                if (processTotalCount % 30 == 0)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        ProcessAvgTimeText.Text = (processTotalTime / processTotalCount).ToString();
+                    });
+                }
             }
         }
 
@@ -250,6 +283,11 @@ namespace FEZSkillCounter
 
         private bool CanAnalyze(Bitmap bitmap)
         {
+            if (bitmap == null)
+            {
+                return false;
+            }
+
             var w = bitmap.Width;
             var h = bitmap.Height;
 
@@ -289,8 +327,6 @@ namespace FEZSkillCounter
                     pow = houndreds * 100 + tens * 10 + ones;
                 }
             }
-
-            //Debug.WriteLine("Pow:" + pow);
 
             return pow;
         }
@@ -384,47 +420,43 @@ namespace FEZSkillCounter
             return skills;
         }
 
-        //private List<PowBuff> GetActivePowBuff()
-        //{
-        //    // 現在のPowに影響を与えるバフ一覧を取得
+        /// <summary>
+        /// 右下アイコンの最大個数
+        /// </summary>
+        /// <remarks>
+        /// 最大個数は未調査
+        /// </remarks>
+        private const int MaxPowerDebuffCount = 10;
 
-        //    return new List<PowBuff>();
-        //}
+        // パワーブレイクかどうか判定する色
+        private readonly int PowerBreakCmpColor1 = Color.FromArgb(30, 125, 183).ToArgb();
+        private readonly int PowerBreakCmpColor2 = Color.FromArgb(49, 134, 187).ToArgb();
 
-        private List<PowDebuff> GetActivePowDebuff()
+        // パワーブレイク
+        //   Lv1-3で減少Powが異なる
+        private readonly PowDebuff PowerBreak = 
+            new PowDebuff("パワーブレイク", new int[]{ -15, -20, -25 }, 8, TimeSpan.FromSeconds(3));
+
+        private PowDebuff[] GetPowDebuffs(Bitmap bitmap)
         {
-            // TODO: 現在のPowに影響を与えるデバフ一覧を取得
-            var powDebufs = new List<PowDebuff>();
+            for (int i = 0; i < MaxPowerDebuffCount; i++)
+            {
+                var x1 = bitmap.Width  - 28 - (32 * i);
+                var x2 = bitmap.Width  - 34 - (32 * i);
+                var y  = bitmap.Height - 20;
 
+                if (bitmap.GetPixel(x1, y).ToArgb() == PowerBreakCmpColor1 &&
+                    bitmap.GetPixel(x2, y).ToArgb() == PowerBreakCmpColor2)
+                {
+                    return new PowDebuff[]
+                    {
+                        PowerBreak
+                    };
+                }
+            }
 
-
-
-            return new List<PowDebuff>();
+            return new PowDebuff[0];
         }
-
-        //private List<PowBuff> PowBuffList = new List<PowBuff>()
-        //{
-        //    // PW回復
-        //    //    5: ライトパワーポッド系
-        //    //   10: パワーポッド系
-        //    //   15: ハイパワーポッド系
-        //    new PowBuff("Pow回復", new int[]{ 5, 10, 15 }, TimeSpan.FromSeconds(4)),
-
-        //    // ヴィガーエイド
-        //    new PowBuff("ヴィガーエイド", new int[]{ 5 }, TimeSpan.FromSeconds(1)),
-
-        //    // HP/Pow回復アイテムではPow6回復のアイテム(ラバーズメディスン/ミクカラージュース)があるが、
-        //    // イベントアイテムでほぼ使われることが無いため一覧からは除外する
-        //    // (間違えたスキル使用判定を避けるため)
-        //    //new PowBuff("HP/Pow回復", new int[] { 6 }, TimeSpan.FromSeconds(4)),
-        //};
-
-        private List<PowDebuff> PowDebuffList = new List<PowDebuff>()
-        {
-            // パワーブレイク
-            //   Lv1-3で減少Powが異なる
-            new PowDebuff("パワーブレイク", new int[]{ -15, -20, -25 }, 8, TimeSpan.FromSeconds(3)),
-        };
     }
 
     public class Skill
@@ -459,23 +491,6 @@ namespace FEZSkillCounter
             return new Skill(name, pow, isActive);
         }
     }
-
-    //public class PowBuff
-    //{
-    //    public string Name { get; }
-    //    public int[] Pow { get; }
-    //    public TimeSpan EffectTimeSpan { get; }
-
-    //    // 回復は上書き可能で回数判定ができないため使用しない
-    //    //public int EffectCount { get; set; }
-
-    //    public PowBuff(string name, int[] pow, TimeSpan effectTimeSpan)
-    //    {
-    //        Name           = name;
-    //        Pow            = pow;
-    //        EffectTimeSpan = effectTimeSpan;
-    //    }
-    //}
 
     public class PowDebuff
     {

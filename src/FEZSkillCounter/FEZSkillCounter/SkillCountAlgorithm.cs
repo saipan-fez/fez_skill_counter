@@ -17,18 +17,25 @@ namespace FEZSkillCounter
         /// </remarks>
         private const int PowRegenerateThreashold = 5;
 
-        private class DebuffData
+        public class DebuffData
         {
             public int DebuffId { get; set; }
             public long TimeStamp { get; set; }
             public int[] Pow { get; set; }
         }
 
-        private long _previousTimeStamp        = long.MinValue;
-        private int _previousPow               = int.MinValue;
-        private PowDebuff[] _previousPowDebuff = null;
+        private long _previousTimeStamp;
+        private int _previousPow;
+        private PowDebuff[] _previousPowDebuff;
 
         private List<DebuffData> _debuffList = new List<DebuffData>();
+        public IReadOnlyList<DebuffData> DebuffList
+        {
+            get
+            {
+                return _debuffList;
+            }
+        }
 
         public SkillCountAlgorithm()
         {
@@ -124,7 +131,7 @@ namespace FEZSkillCounter
             var powDiff = _previousPow - pow;
 
             // 今回のPow減少デバフの候補一覧を取得
-            var list = _debuffList.Where(x => timeStamp > x.TimeStamp);
+            var list = _debuffList.Where(x => timeStamp > x.TimeStamp).ToArray();
             if (list.Any())
             {
                 // 今回のデバフによる消費Powとして考えうるもの一覧
@@ -155,12 +162,15 @@ namespace FEZSkillCounter
                     // 回復しうる閾値以下であればスキル使用によるPow消費と判断する。
                     isSkillUsed = true;
                 }
+                else
+                {
+
+                }
             }
 
     CheckLeaveDebuff:
             // 今回消失したもの(前回と今回の差集合)を取得し、
             // 消失されているものの一覧に該当デバフがあれば削除する。
-            //
             // 通常のPow減少などでは常にfalseとなるが、
             // パワブレ状態でデッドしてしまうとデバフが削除されるが、
             // 一覧には残り続けるため、そのための対応としてチェック→削除する。

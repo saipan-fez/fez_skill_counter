@@ -23,6 +23,8 @@
         <StackPanel Grid.Column="1">
             <TextBlock Text="Pow" />
             <TextBlock Name="PowText"/>
+            <TextBlock Text="ProcessAvgTime" />
+            <TextBlock Name="ProcessAvgTimeText"/>
         </StackPanel>
     </Grid>
 </Window>
