@@ -44,13 +44,17 @@ namespace FEZSkillCounter
                     return new FEZScreenShot(null, tick);
                 }
 
-                Size size  = new Size(rect.Right - rect.Left, rect.Bottom - rect.Top);
-                Bitmap bmp = new Bitmap(size.Width, size.Height, PixelFormat.Format32bppArgb);
+                var size = new Size(rect.Right - rect.Left, rect.Bottom - rect.Top);
+                var bmp  = new Bitmap(size.Width, size.Height, PixelFormat.Format32bppArgb);
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    g.CopyFromScreen(rect.Left, rect.Top, 0, 0, size, CopyPixelOperation.SourceCopy);
+                    var hdc = NativeMethods.GetDC(p.MainWindowHandle);
+
+                    NativeMethods.BitBlt(g.GetHdc(), 0, 0, size.Width, size.Height, hdc, 0, 0, NativeMethods.TernaryRasterOperations.SRCCOPY);
+
+                    NativeMethods.ReleaseDC(p.MainWindowHandle, hdc);
                 }
-                
+
                 return new FEZScreenShot(bmp, tick);
             }
         }

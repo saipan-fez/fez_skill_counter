@@ -10,7 +10,7 @@ namespace FEZSkillCounter
         {
             var hash = bitmap.SHA1Hash();
 
-            return SkillDictionary.List.ContainsKey(hash) ? SkillDictionary.List[hash] : null;
+            return SkillStorage.Table.ContainsKey(hash) ? SkillStorage.Table[hash] : Skill.Empty;
         }
     }
 }

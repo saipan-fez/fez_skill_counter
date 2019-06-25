@@ -1,13 +1,18 @@
-﻿using FEZSkillCounter.Extension;
+﻿using Colourful;
+using Colourful.Conversion;
+using Colourful.Difference;
+using FEZSkillCounter.Extension;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FEZSkillCounter
 {
@@ -20,15 +25,31 @@ namespace FEZSkillCounter
         {
             InitializeComponent();
 
-            Loaded += (_, __) => Task.Run(async () => await ProcAsync());
+            Loaded += (_, __) => Task.Run(() => Run());
             SkillUpdated += MainWindow_SkillUpdated;
             SkillCountIncremented += MainWindow_SkillCountIncremented;
+            PowDebuffUpdated += MainWindow_PowDebuffUpdated;
             PowUpdated += MainWindow_MpUpdated;
+
+            MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {
-
+                Logger.WriteLine(e.Exception.ToString());
             };
+
+            UpdateSkillText();
+            Logger.WriteLine("起動");
+        }
+
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState != MouseButtonState.Pressed)
+            {
+                return;
+            }
+  
+            DragMove(); 
         }
 
         private void MainWindow_MpUpdated(object sender, int pow)
@@ -39,12 +60,20 @@ namespace FEZSkillCounter
             })));
         }
 
+        private void MainWindow_PowDebuffUpdated(object sender, PowDebuff[] e)
+        {
+            Dispatcher.BeginInvoke(((Action)(() =>
+            {
+                DebuffText.Text = string.Join("\r\n", e.Select(x => x.Name));
+            })));
+        }
+
         private List<SkillCount> _skillList = new List<SkillCount>();
 
         private void MainWindow_SkillUpdated(object sender, Skill[] skills)
         {
             bool requireUpdate = false;
-            foreach (var s in skills)
+            foreach (var s in skills.Where(x => !x.IsEmpty()))
             {
                 if (!_skillList.Any(x => x.Skill.Name == s.Name))
                 {
@@ -72,11 +101,16 @@ namespace FEZSkillCounter
 
         private void UpdateSkillText()
         {
-            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.Skill.Name + ":" + x.Count));
+            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.Skill.Name + "：" + x.Count));
 
             Dispatcher.BeginInvoke(((Action)(() =>
             {
                 SkillText.Text = text;
+
+                using (var sw = new StreamWriter("skillcount.txt", false, Encoding.UTF8))
+                {
+                    sw.WriteLine(text);
+                }
             })));
         }
 
@@ -97,6 +131,27 @@ namespace FEZSkillCounter
             }
         }
 
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            foreach(var b in list.Select((i, x) => new { obj = i, idx = x }))
+            {
+                b.obj.Save($"{b.idx.ToString()}.bmp");
+            }
+        }
+
+        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            lock(list)
+            {
+                list.Clear();
+            }
+
+            _skillList.Clear();
+            UpdateSkillText();
+        }
+
+        private List<Bitmap> list = new List<Bitmap>();
+
         // ------------------------------------------------------------
         // ------------------------------------------------------------
         // ------------------------------------------------------------
@@ -111,159 +166,167 @@ namespace FEZSkillCounter
 
         private SkillOcr _skillOcr = new SkillOcr();
         private FEZScreenShooter _screenShooter = new FEZScreenShooter();
-        private Stopwatch _stopwatch = Stopwatch.StartNew();
-        private SkillCountAlgorithm skillCountAlgorithm = new SkillCountAlgorithm();
+        private SkillUseAlgorithm _skillCountAlgorithm = new SkillUseAlgorithm();
 
         private Status _status = Status.Waiting;
-        private int _currentPow = int.MaxValue;
-        private Skill[] _currentSkills;
+
+        private int _previousPow = int.MaxValue;
+        private Skill[] _previousSkills = null;
+        private PowDebuff[] _previousPowDebuff = null;
+
+        private Stopwatch _stopwatch = Stopwatch.StartNew();
+        private long processTotalTime  = 0;
+        private long processTotalCount = 0;
 
         private event EventHandler<int> PowUpdated;
         private event EventHandler<Skill[]> SkillUpdated;
+        private event EventHandler<PowDebuff[]> PowDebuffUpdated;
         private event EventHandler<Skill> SkillCountIncremented;
 
-        public class Stack<T>
-        {
-            public T[] data;
-            int pos = 0;
-            int maxPos;
-
-            public Stack(int size)
-            {
-                data = new T[size];
-                maxPos = size - 1;
-            }
-
-            public void Add(T o)
-            {
-                if (pos < maxPos)
-                {
-                    pos++;
-                }
-
-                for (int i = 0; i < pos; i++)
-                {
-                    data[i] = data[i + 1];
-                }
-
-                data[pos] = o;
-            }
-        }
-
-        long processTotalTime  = 0;
-        long processTotalCount = 0;
-
-        private async Task ProcAsync()
+        private void Run()
         {
             while (true)
             {
-                //Thread.Sleep(0);
-
-                // TODO: 非戦争→戦争中に切り替わったら使用回数をクリア
-
                 var start = _stopwatch.ElapsedMilliseconds;
-
-                using (var screenShot = _screenShooter.Shoot())
+                var result = false;
+                try
                 {
-                    // 解析可能か確認
-                    if (!CanAnalyze(screenShot.Image))
-                    {
-                        continue;
-                    }
-
-                    var previousPow       = _currentPow;
-                    var previousSkills    = _currentSkills;
-                    PowDebuff[] powDebuff = null;
-
-                    // 現在のPowを取得
-                    _currentPow = GetPow(screenShot.Image);
-
-                    // スキル取得
-                    _currentSkills = GetSkills(screenShot.Image);
-
-                    // デバフ取得
-                    powDebuff = GetPowDebuffs(screenShot.Image);
-
-                    //await Task.WhenAll(
-                    //    Task.Run(() =>
-                    //    {
-                    //        // 現在のPowを取得
-                    //        _currentPow = GetPow(screenShot.Image);
-                    //    }),
-                    //    Task.Run(() =>
-                    //    {
-                    //        // スキル取得
-                    //        _currentSkills = GetSkills(screenShot.Image);
-                    //    }),
-                    //    Task.Run(() =>
-                    //    {
-                    //        // デバフ取得
-                    //        powDebuff = GetPowDebuffs(screenShot.Image);
-                    //    }));
-
-                    // 取得失敗していれば終了
-                    if (_currentPow == int.MaxValue ||
-                        _currentSkills == null ||
-                        powDebuff == null)
-                    {
-                        continue;
-                    }
-
-                    // Powが更新されていれば通知
-                    if (previousPow != int.MaxValue)
-                    {
-                        PowUpdated?.BeginInvoke(
-                            this,
-                            _currentPow,
-                            null,
-                            null);
-                    }
-
-                    // スキルが更新されていれば通知
-                    if (previousSkills == null ||
-                        !_currentSkills.SequenceEqual(previousSkills, x => x.Name))
-                    {
-                        SkillUpdated?.BeginInvoke(
-                            this,
-                            _currentSkills,
-                            null,
-                            null);
-                    }
-
-                    // 選択中スキルを取得
-                    var activeSkill = _currentSkills.FirstOrDefault(x => x.IsActive);
-
-                    // スキルを使ったかどうかチェック
-                    var isSkillUsed = skillCountAlgorithm.IsSkillUsed(
-                            screenShot.TimeStamp,
-                            _currentPow,
-                            activeSkill,
-                            powDebuff);
-
-                    // スキルを使っていれば更新通知
-                    if (isSkillUsed)
-                    {
-                        SkillCountIncremented?.BeginInvoke(
-                            this,
-                            activeSkill,
-                            null,
-                            null);
-                    }
+                    result = Analyze();
                 }
-
-                var end = _stopwatch.ElapsedMilliseconds;
-
-                processTotalTime += (end - start);
-                processTotalCount++;
-
-                if (processTotalCount % 30 == 0)
+                catch
                 {
-                    Dispatcher.Invoke(() =>
+                    // nop
+                }
+                finally
+                {
+                    var end = _stopwatch.ElapsedMilliseconds;
+
+                    if (result)
                     {
-                        ProcessAvgTimeText.Text = (processTotalTime / processTotalCount).ToString();
-                    });
+                        processTotalTime += (end - start);
+                        processTotalCount++;
+
+                        if (processTotalCount % 30 == 0)
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                ProcessAvgTimeText.Text = ((double)processTotalTime / processTotalCount).ToString("F1");
+                            });
+                        }
+                    }
+
+                    // 処理が失敗している場合は、即終了している。
+                    // ループによるCPU使用率を抑えるためにwait
+                    if (!result)
+                    {
+                        Thread.Sleep(30);
+                    }
                 }
             }
+        }
+
+        private bool Analyze()
+        {
+            // TODO: 非戦争→戦争中に切り替わったら使用回数をクリア
+
+            using (var screenShot = _screenShooter.Shoot())
+            {
+                // 解析可能か確認
+                if (!CanAnalyze(screenShot.Image))
+                {
+                    return false;
+                }
+
+                // Powを取得
+                var pow = GetPow(screenShot.Image);
+                if (pow != int.MaxValue)
+                {
+                    // 前回から更新されていれば通知
+                    if (_previousPow == int.MaxValue || _previousPow != pow)
+                    {
+                        PowUpdated?.BeginInvoke(this, pow, null, null);
+                        _previousPow = pow;
+                    }
+                }
+                else
+                {
+                    if (list.Count < 50)
+                    {
+                    lock (list)
+                    {
+                        list.Add(screenShot.Image.Clone(
+                            new Rectangle(0, 0, screenShot.Image.Width, screenShot.Image.Height),
+                            PixelFormat.Format32bppRgb));
+                        Logger.WriteLine("Pow detect errored. cnt:" + list.Count);
+                    }
+                    }
+
+                    // 失敗していれば前回の値をそのまま使う
+                    pow = _previousPow;
+                }
+
+                // スキル取得
+                var skills = GetSkills(screenShot.Image);
+                if (skills != null)
+                {
+                    // 前回から更新されていれば通知
+                    if (_previousSkills == null || !_previousSkills.SequenceEqual(skills, x => x.Name))
+                    {
+                        SkillUpdated?.BeginInvoke(this, skills, null, null);
+                        _previousSkills = skills;
+                    }
+                }
+                else
+                {
+                    // 失敗していれば前回の値をそのまま使う
+                    skills = _previousSkills;
+                }
+
+                // デバフ取得
+                var powDebuff = GetPowDebuffs(screenShot.Image);
+                if (powDebuff != null)
+                {
+                    // 前回から更新されていれば通知
+                    if (_previousPowDebuff == null || !_previousPowDebuff.SequenceEqual(powDebuff, x => x.Name))
+                    {
+                        PowDebuffUpdated?.BeginInvoke(this, powDebuff, null, null);
+                        _previousPowDebuff = powDebuff;
+                    }
+                }
+                else
+                {
+                    // 失敗していれば前回の値をそのまま使う
+                    powDebuff = _previousPowDebuff;
+                }
+
+                // 選択中スキルを取得
+                var activeSkill = skills.FirstOrDefault(x => x.IsActive);
+
+                // 取得失敗していれば終了
+                if (pow == int.MaxValue || skills == null || powDebuff == null || activeSkill == null)
+                {
+                    return false;
+                }
+
+                // スキルを使ったかどうかチェック
+                var isSkillUsed = _skillCountAlgorithm.IsSkillUsed(
+                                screenShot.TimeStamp,
+                                pow,
+                                activeSkill,
+                                powDebuff);
+
+                // スキルを使っていれば更新通知
+                if (isSkillUsed)
+                {
+                    SkillCountIncremented?.BeginInvoke(
+                        this,
+                        activeSkill,
+                        null,
+                        null);
+                }
+            }
+
+            return true;
         }
 
         private bool IsWarStarted(Bitmap bitmap)
@@ -326,6 +389,10 @@ namespace FEZSkillCounter
                 {
                     pow = houndreds * 100 + tens * 10 + ones;
                 }
+                else
+                {
+                    Logger.WriteLine($"Pow detect error. houndred:{houndreds} tens:{tens} ones:{ones}");
+                }
             }
 
             return pow;
@@ -333,56 +400,10 @@ namespace FEZSkillCounter
 
         private int GetPowNum(Bitmap bitmap)
         {
-            // 指定された位置の色から数値
-            var cmpColor1 = Color.FromArgb(221, 221, 221).ToArgb();
-            if (bitmap.GetPixel(3, 2).ToArgb() == cmpColor1)
+            var hash = bitmap.FillPaddingToZero().SHA1Hash();
+            if (PowStorage.Table.TryGetValue(hash, out int pow))
             {
-                return 0;
-            }
-            if (bitmap.GetPixel(3, 3).ToArgb() == cmpColor1)
-            {
-                return 1;
-            }
-            if (bitmap.GetPixel(1, 8).ToArgb() == cmpColor1)
-            {
-                return 2;
-            }
-            if (bitmap.GetPixel(4, 3).ToArgb() == cmpColor1)
-            {
-                return 4;
-            }
-            if (bitmap.GetPixel(1, 4).ToArgb() == cmpColor1)
-            {
-                return 5;
-            }
-            if (bitmap.GetPixel(2, 2).ToArgb() == cmpColor1)
-            {
-                return 6;
-            }
-            if (bitmap.GetPixel(6, 1).ToArgb() == cmpColor1)
-            {
-                return 7;
-            }
-            if (bitmap.GetPixel(6, 6).ToArgb() == cmpColor1)
-            {
-                return 8;
-            }
-            if (bitmap.GetPixel(1, 2).ToArgb() == cmpColor1)
-            {
-                return 9;
-            }
-
-            var cmpColor2 = Color.FromArgb(170, 170, 170).ToArgb();
-            if (bitmap.GetPixel(5, 5).ToArgb() == cmpColor2)
-            {
-                return 3;
-            }
-
-            // Pow=90での百の位など数字が無い画像だった場合
-            var cmpColor3 = Color.FromArgb(16, 10, 10).ToArgb();
-            if (bitmap.GetPixel(0, 0).ToArgb() == cmpColor3)
-            {
-                return 0;
+                return pow;
             }
 
             // 上記に当てはまらないものはエラーとする
@@ -429,8 +450,10 @@ namespace FEZSkillCounter
         private const int MaxPowerDebuffCount = 10;
 
         // パワーブレイクかどうか判定する色
-        private readonly int PowerBreakCmpColor1 = Color.FromArgb(30, 125, 183).ToArgb();
-        private readonly int PowerBreakCmpColor2 = Color.FromArgb(49, 134, 187).ToArgb();
+        private readonly RGBColor PowerBreakCmpColor1 = new RGBColor (Color.FromArgb(30, 125, 183));
+        private readonly RGBColor PowerBreakCmpColor2 = new RGBColor (Color.FromArgb(49, 134, 187));
+
+        private double ColorDiffThreashold = 10.0d;
 
         // パワーブレイク
         //   Lv1-3で減少Powが異なる
@@ -439,14 +462,25 @@ namespace FEZSkillCounter
 
         private PowDebuff[] GetPowDebuffs(Bitmap bitmap)
         {
+            var converter = new ColourfulConverter(){ WhitePoint = Illuminants.D65 };
+            var powerBreakCmpLabColor1 = converter.ToLab(PowerBreakCmpColor1);
+            var powerBreakCmpLabColor2 = converter.ToLab(PowerBreakCmpColor2);
+            var difference = new CIE76ColorDifference();
+
             for (int i = 0; i < MaxPowerDebuffCount; i++)
             {
                 var x1 = bitmap.Width  - 28 - (32 * i);
                 var x2 = bitmap.Width  - 34 - (32 * i);
                 var y  = bitmap.Height - 20;
 
-                if (bitmap.GetPixel(x1, y).ToArgb() == PowerBreakCmpColor1 &&
-                    bitmap.GetPixel(x2, y).ToArgb() == PowerBreakCmpColor2)
+                var c1 = converter.ToLab(new RGBColor(bitmap.GetPixel(x1, y)));
+                var c2 = converter.ToLab(new RGBColor(bitmap.GetPixel(x2, y)));
+
+                var diff1 = difference.ComputeDifference(powerBreakCmpLabColor1, c1);
+                var diff2 = difference.ComputeDifference(powerBreakCmpLabColor2, c2);
+
+                if (Math.Abs(diff1) < ColorDiffThreashold &&
+                    Math.Abs(diff2) < ColorDiffThreashold)
                 {
                     return new PowDebuff[]
                     {
@@ -461,6 +495,8 @@ namespace FEZSkillCounter
 
     public class Skill
     {
+        private const string UnknownSkillName = "Unknown";
+
         public string Name { get; }
         public int[] Pow { get; }
         public bool IsActive { get; }
@@ -489,6 +525,19 @@ namespace FEZSkillCounter
             var isActive = (resourceName.IndexOf("_S") != -1);
 
             return new Skill(name, pow, isActive);
+        }
+
+        public static Skill Empty
+        {
+            get
+            {
+                return new Skill("Unknown", new int[] { int.MaxValue }, false);
+            }
+        }
+
+        public bool IsEmpty()
+        {
+            return Name == UnknownSkillName;
         }
     }
 

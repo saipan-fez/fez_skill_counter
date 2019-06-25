@@ -5,13 +5,13 @@ using R = FEZSkillCounter.Properties.Resources;
 
 namespace FEZSkillCounter
 {
-    public class SkillDictionary
+    public class SkillStorage
     {
-        public static Dictionary<string, Skill> List;
+        public static Dictionary<string, Skill> Table;
 
         public static void Create()
         {
-            List = new Dictionary<string, Skill>()
+            Table = new Dictionary<string, Skill>()
             {
                 { R.Cestus_アースバインド.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Cestus_アースバインド), 42) },
                 { R.Cestus_アースバインド_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Cestus_アースバインド_S), 42) },

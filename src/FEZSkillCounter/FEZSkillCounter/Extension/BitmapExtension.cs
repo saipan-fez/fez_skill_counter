@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -12,14 +13,13 @@ namespace FEZSkillCounter.Extension
         public static string SHA1Hash(this Bitmap bitmap)
         {
             byte[] ret;
-
-            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-            int bsize = bitmapData.Stride * bitmap.Height;
-            byte[] array = new byte[bsize];
-            Marshal.Copy(bitmapData.Scan0, array, 0, bsize);
+            var bytesPerPixel = Image.GetPixelFormatSize(bitmap.PixelFormat) / 8;
+            var bitmapData    = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+            var pixels        = new byte[bitmapData.Width * bitmapData.Height * bytesPerPixel];
+            Marshal.Copy(bitmapData.Scan0, pixels, 0, pixels.Length);
             bitmap.UnlockBits(bitmapData);
 
-            ret = provider.ComputeHash(array);
+            ret = provider.ComputeHash(pixels);
 
             return string.Join(",", ret);
         }
@@ -74,6 +74,24 @@ namespace FEZSkillCounter.Extension
                     }
                 }
             }
+        }
+
+        public static Bitmap FillPaddingToZero(this Bitmap bitmap)
+        {
+            var bytesPerPixel = Image.GetPixelFormatSize(bitmap.PixelFormat) / 8;
+            var bitmapData    = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+            var pixels        = new byte[bitmapData.Width * bitmapData.Height * bytesPerPixel];
+
+            for (int row = 0; row < bitmapData.Height; row++)
+            {
+                var dataBeginPointer = IntPtr.Add(bitmapData.Scan0, row * bitmapData.Stride);
+                Marshal.Copy(dataBeginPointer, pixels, row * bitmapData.Width * bytesPerPixel, bitmapData.Width * bytesPerPixel);
+            }
+
+            Marshal.Copy(pixels, 0, bitmapData.Scan0, pixels.Length);
+            bitmap.UnlockBits(bitmapData);
+
+            return bitmap;
         }
     }
 }

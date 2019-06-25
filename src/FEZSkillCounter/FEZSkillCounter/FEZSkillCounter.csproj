@@ -37,6 +37,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Colourful, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Colourful.2.0.3\lib\net45\Colourful.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -59,8 +62,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\LinqExtensionMethods.cs" />
-    <Compile Include="Extension\SkillDictionary.cs" />
-    <Compile Include="SkillCountAlgorithm.cs" />
+    <Compile Include="Storage\SkillStorage.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Storage\PowStorage.cs" />
+    <Compile Include="SkillUseAlgorithm.cs" />
     <Compile Include="SkillOcr.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +101,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -763,6 +769,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource\SkillBitmap\Warrior_通常攻撃_S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_none.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\PowBitmap\pow_9.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

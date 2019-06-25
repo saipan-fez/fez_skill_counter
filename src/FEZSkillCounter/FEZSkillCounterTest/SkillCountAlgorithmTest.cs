@@ -7,7 +7,7 @@ namespace FEZSkillCounterTest
     [TestClass]
     public class SkillCountAlgorithmTest
     {
-        SkillCountAlgorithm algo;
+        SkillUseAlgorithm algo;
         
         private readonly Skill TestSkill = new Skill("Test", new int[]{ 10, 15, 20 }, true);
         private readonly PowDebuff[] EmptyPowDebuff = new PowDebuff[0];
@@ -19,7 +19,7 @@ namespace FEZSkillCounterTest
         [TestInitialize]
         public void Initialize()
         {
-            algo = new SkillCountAlgorithm();
+            algo = new SkillUseAlgorithm();
         }
 
         [TestMethod]

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace FEZSkillCounter
 {
-    public class SkillCountAlgorithm
+    public class SkillUseAlgorithm
     {
         /// <summary>
         /// フレーム毎に回復する可能性のある値の閾値
@@ -37,7 +38,7 @@ namespace FEZSkillCounter
             }
         }
 
-        public SkillCountAlgorithm()
+        public SkillUseAlgorithm()
         {
             Reset();
         }
@@ -54,7 +55,7 @@ namespace FEZSkillCounter
         {
             if (timeStamp < 0 || pow < 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"{nameof(timeStamp)}:{timeStamp} {nameof(pow)}:{pow}");
             }
 
             /* パワーブレイク判定アルゴリズムについて
@@ -147,6 +148,13 @@ namespace FEZSkillCounter
                 // TODO: その場合でも以降問題なく動作するようにする(現状ではおそらくバグる)
                 if (debuffPowSum.Any(x => (x - powDiff) < PowRegenerateThreashold))
                 {
+                    Logger.WriteLine($"-------------------------");
+                    Logger.WriteLine($"Detected to PowDebuff.");
+                    Logger.WriteLine($"[previous]");
+                    Logger.WriteLine($"     time:{_previousTimeStamp} pow:{_previousPow} debuff:{string.Join(",", _previousPowDebuff.Select(x => x.Name))}");
+                    Logger.WriteLine($"[current]");
+                    Logger.WriteLine($"     time:{timeStamp} pow:{pow} debuff:{string.Join(",", powDebuff.Select(x => x.Name))}");
+
                     // デバフによるPow消費があったため一覧から削除
                     foreach (var d in list)
                     {
@@ -158,13 +166,16 @@ namespace FEZSkillCounter
             {
                 if (activeSkill.Pow.Any(x => (x - powDiff) < PowRegenerateThreashold))
                 {
+                    Logger.WriteLine($"-------------------------");
+                    Logger.WriteLine($"Detected to use skill. skill:{activeSkill.Name}");
+                    Logger.WriteLine($"[previous]");
+                    Logger.WriteLine($"     time:{_previousTimeStamp} pow:{_previousPow} debuff:{string.Join(",", _previousPowDebuff.Select(x => x.Name))}");
+                    Logger.WriteLine($"[current]");
+                    Logger.WriteLine($"     time:{timeStamp} pow:{pow} debuff:{string.Join(",", powDebuff.Select(x => x.Name))}");
+
                     // Pow回復とスキル使用によるPow消費が同時に発生した際を考慮し、
                     // 回復しうる閾値以下であればスキル使用によるPow消費と判断する。
                     isSkillUsed = true;
-                }
-                else
-                {
-
                 }
             }
 
@@ -177,6 +188,13 @@ namespace FEZSkillCounter
             var leavePowDebuffs = _previousPowDebuff.Except(powDebuff, x => x.Id);
             if (leavePowDebuffs.Any())
             {
+                Logger.WriteLine($"-------------------------");
+                Logger.WriteLine($"leavePowDebuffs.Any() is true.");
+                Logger.WriteLine($"[previous]");
+                Logger.WriteLine($"    {string.Join(",", _previousPowDebuff.Select(x => x.Name))}");
+                Logger.WriteLine($"[current]");
+                Logger.WriteLine($"    {string.Join(",", powDebuff.Select(x => x.Name))}");
+
                 _debuffList.RemoveAll(x => leavePowDebuffs.Any(y => y.Id == x.DebuffId));
             }
 

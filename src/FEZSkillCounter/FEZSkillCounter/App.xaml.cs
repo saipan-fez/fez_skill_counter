@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace FEZSkillCounter
@@ -13,9 +8,18 @@ namespace FEZSkillCounter
     /// </summary>
     public partial class App : Application
     {
+        [DllImport("Kernel32.dll")]
+        public static extern bool AttachConsole(int processId);
+
+        static App()
+        {
+            AttachConsole(-1);
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            SkillDictionary.Create();
+            SkillStorage.Create();
+            PowStorage.Create();
         }
     }
 }

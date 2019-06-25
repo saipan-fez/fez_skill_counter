@@ -304,6 +304,36 @@
   <data name="Fencer_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resource\SkillBitmap\Fencer_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pow_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_6.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_7.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_none" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_none.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Scout_アローレイン" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resource\SkillBitmap\Scout_アローレイン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -777,5 +807,8 @@
   </data>
   <data name="Warrior_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resource\SkillBitmap\Warrior_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pow_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resource\PowBitmap\pow_9.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

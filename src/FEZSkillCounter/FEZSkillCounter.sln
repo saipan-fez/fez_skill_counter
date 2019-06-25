@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZSkillCounter", "FEZSkill
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZSkillCounterTest", "FEZSkillCounterTest\FEZSkillCounterTest.csproj", "{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowImageClipper", "PowImageClipper\PowImageClipper.csproj", "{3308A3A5-26C5-48E9-9518-6338238BD667}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,7 +22,9 @@ Global
 		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3308A3A5-26C5-48E9-9518-6338238BD667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3308A3A5-26C5-48E9-9518-6338238BD667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3308A3A5-26C5-48E9-9518-6338238BD667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
