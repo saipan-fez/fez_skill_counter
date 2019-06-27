@@ -119,696 +119,696 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Cestus_アースバインド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_アースバインド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_アースバインド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_アースバインド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_アースバインド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_アースバインド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_インテンスファイ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_インテンスファイ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_インテンスファイ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_インテンスファイ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_インテンスファイ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_インテンスファイ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_エナジースフィア" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_エナジースフィア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_エナジースフィア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_エナジースフィア_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_エナジースフィア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_エナジースフィア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_エンダーレイド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_エンダーレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_エンダーレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_エンダーレイド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_エンダーレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_エンダーレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ゲイザースマッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ゲイザースマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ゲイザースマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ゲイザースマッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ゲイザースマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ゲイザースマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_サイクロンディザスター" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_サイクロンディザスター.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_サイクロンディザスター.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_サイクロンディザスター_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_サイクロンディザスター_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_サイクロンディザスター_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_シャットアウト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_シャットアウト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_シャットアウト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_シャットアウト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_シャットアウト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_シャットアウト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ショックウェイブ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ショックウェイブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ショックウェイブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ショックウェイブ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ショックウェイブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ショックウェイブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ソリッドストライク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ソリッドストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ソリッドストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ソリッドストライク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ソリッドストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ソリッドストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_タワードミネーション" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_タワードミネーション.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_タワードミネーション.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_タワードミネーション_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_タワードミネーション_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_タワードミネーション_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ドレインクロー" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ドレインクロー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ドレインクロー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ドレインクロー_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ドレインクロー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ドレインクロー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ノックインパクト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ノックインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ノックインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ノックインパクト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ノックインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ノックインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ハードレインフォース" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ハードレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ハードレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ハードレインフォース_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ハードレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ハードレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ハームアクティベイト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ハームアクティベイト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ハームアクティベイト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ハームアクティベイト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ハームアクティベイト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ハームアクティベイト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ホーネットスティング" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ホーネットスティング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ホーネットスティング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_ホーネットスティング_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_ホーネットスティング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_ホーネットスティング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_通常攻撃" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cestus_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Cestus_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Cestus_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_アクセラレーション" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_アクセラレーション.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_アクセラレーション.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_アクセラレーション_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_アクセラレーション_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_アクセラレーション_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_イレイスマジック" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_イレイスマジック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_イレイスマジック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_イレイスマジック_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_イレイスマジック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_イレイスマジック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_エリアルフォール" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_エリアルフォール.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_エリアルフォール.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_エリアルフォール_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_エリアルフォール_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_エリアルフォール_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_オブティンプロテクト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_オブティンプロテクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_オブティンプロテクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_オブティンプロテクト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_オブティンプロテクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_オブティンプロテクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_シャイニングクロス" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_シャイニングクロス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_シャイニングクロス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_シャイニングクロス_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_シャイニングクロス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_シャイニングクロス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ストライクダウン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ストライクダウン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ストライクダウン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ストライクダウン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ストライクダウン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ストライクダウン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_テンペストピアス" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_テンペストピアス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_テンペストピアス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_テンペストピアス_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_テンペストピアス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_テンペストピアス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_デュアルストライク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_デュアルストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_デュアルストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_デュアルストライク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_デュアルストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_デュアルストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_フィニッシュスラスト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_フィニッシュスラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_フィニッシュスラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_フィニッシュスラスト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_フィニッシュスラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_フィニッシュスラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_フラッシュスティンガー" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_フラッシュスティンガー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_フラッシュスティンガー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_フラッシュスティンガー_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_フラッシュスティンガー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_フラッシュスティンガー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ペネトレイトスラスト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ペネトレイトスラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ペネトレイトスラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ペネトレイトスラスト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ペネトレイトスラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ペネトレイトスラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ラピッドファンデヴ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ラピッドファンデヴ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ラピッドファンデヴ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ラピッドファンデヴ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ラピッドファンデヴ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ラピッドファンデヴ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_リバースキック" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_リバースキック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_リバースキック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_リバースキック_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_リバースキック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_リバースキック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ヴィガーエイド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ヴィガーエイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ヴィガーエイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_ヴィガーエイド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_ヴィガーエイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_ヴィガーエイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_通常攻撃" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Fencer_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Fencer_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Fencer_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_6.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_6.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_7.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_7.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_none" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_none.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_none.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_アローレイン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_アローレイン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_アローレイン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_アローレイン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_アローレイン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_アローレイン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_アームブレイク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_アームブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_アームブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_アームブレイク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_アームブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_アームブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_イーグルショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_イーグルショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_イーグルショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_イーグルショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_イーグルショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_イーグルショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_エアレイド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_エアレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_エアレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_エアレイド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_エアレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_エアレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ガードブレイク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ガードブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ガードブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ガードブレイク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ガードブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ガードブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_クイックビート" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_クイックビート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_クイックビート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_クイックビート_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_クイックビート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_クイックビート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_クラッシュショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_クラッシュショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_クラッシュショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_クラッシュショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_クラッシュショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_クラッシュショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_コメットキャノン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_コメットキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_コメットキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_コメットキャノン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_コメットキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_コメットキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_スウィープキャノン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_スウィープキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_スウィープキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_スウィープキャノン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_スウィープキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_スウィープキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_スパイダーウェブ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_スパイダーウェブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_スパイダーウェブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_スパイダーウェブ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_スパイダーウェブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_スパイダーウェブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ダガーストライク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ダガーストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ダガーストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ダガーストライク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ダガーストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ダガーストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_トゥルーショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_トゥルーショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_トゥルーショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_トゥルーショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_トゥルーショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_トゥルーショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ドッジシュート" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ドッジシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ドッジシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ドッジシュート_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ドッジシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ドッジシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ハイド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ハイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ハイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ハイド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ハイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ハイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_バーストキャノン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_バーストキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_バーストキャノン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_バーストキャノン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_バーストキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_バーストキャノン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パニッシングストライク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パニッシングストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パニッシングストライク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パニッシングストライク_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パニッシングストライク_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パニッシングストライク_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パニッシングストライク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パニッシングストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パニッシングストライク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パワーシュート" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パワーシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パワーシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パワーシュート_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パワーシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パワーシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パワーブレイク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パワーブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パワーブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_パワーブレイク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_パワーブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_パワーブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ピアッシングシュート" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ピアッシングシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ピアッシングシュート.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ピアッシングシュート_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ピアッシングシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ピアッシングシュート_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ファストショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ファストショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ファストショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ファストショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ファストショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ファストショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_フリックショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_フリックショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_フリックショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_フリックショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_フリックショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_フリックショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ブレイズショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ブレイズショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ブレイズショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ブレイズショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ブレイズショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ブレイズショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ホワイトバレット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ホワイトバレット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ホワイトバレット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ホワイトバレット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ホワイトバレット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ホワイトバレット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ポイズンショット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ポイズンショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ポイズンショット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ポイズンショット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ポイズンショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ポイズンショット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ポイズンブロウ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ポイズンブロウ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ポイズンブロウ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ポイズンブロウ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ポイズンブロウ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ポイズンブロウ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ラッシュバレット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ラッシュバレット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ラッシュバレット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ラッシュバレット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ラッシュバレット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ラッシュバレット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_レッグブレイク" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_レッグブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_レッグブレイク.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_レッグブレイク_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_レッグブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_レッグブレイク_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ヴァイパーバイト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ヴァイパーバイト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ヴァイパーバイト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ヴァイパーバイト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ヴァイパーバイト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ヴァイパーバイト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ヴォイドダークネス" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ヴォイドダークネス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ヴォイドダークネス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_ヴォイドダークネス_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_ヴォイドダークネス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_ヴォイドダークネス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_通常攻撃" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Scout_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Scout_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Scout_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスジャベリン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスジャベリン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスジャベリン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスジャベリン_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスジャベリン_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスジャベリン_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスジャベリン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスジャベリン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスジャベリン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスターゲット" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスターゲット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスターゲット.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスターゲット_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスターゲット_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスターゲット_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスターゲット_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスターゲット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスターゲット_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスボルト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスボルト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスボルト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_アイスボルト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_アイスボルト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_アイスボルト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_エレキドライブ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_エレキドライブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_エレキドライブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_エレキドライブ_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_エレキドライブ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_エレキドライブ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_エレキドライブ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_エレキドライブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_エレキドライブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_グラビティキャプチャー" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_グラビティキャプチャー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_グラビティキャプチャー.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_グラビティキャプチャー_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_グラビティキャプチャー_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_グラビティキャプチャー_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_グラビティキャプチャー_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_グラビティキャプチャー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_グラビティキャプチャー_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_サンダーボルト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_サンダーボルト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_サンダーボルト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_サンダーボルト_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_サンダーボルト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_サンダーボルト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_サンダーボルト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_サンダーボルト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_サンダーボルト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ジャッジメントレイ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ジャッジメントレイ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ジャッジメントレイ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ジャッジメントレイ_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ジャッジメントレイ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ジャッジメントレイ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ジャッジメントレイ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ジャッジメントレイ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ジャッジメントレイ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_スパークフレア" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_スパークフレア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_スパークフレア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_スパークフレア_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_スパークフレア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_スパークフレア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_スパークフレア_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_スパークフレア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_スパークフレア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ファイア" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ファイア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ファイア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ファイア_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ファイア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ファイア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ファイアランス" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ファイアランス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ファイアランス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ファイアランス_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ファイアランス_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ファイアランス_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ファイアランス_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ファイアランス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ファイアランス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フリージングウェイブ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フリージングウェイブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フリージングウェイブ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フリージングウェイブ_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フリージングウェイブ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フリージングウェイブ_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フリージングウェイブ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フリージングウェイブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フリージングウェイブ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フレイムサークル" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フレイムサークル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フレイムサークル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フレイムサークル_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フレイムサークル_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フレイムサークル_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_フレイムサークル_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_フレイムサークル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_フレイムサークル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ブリザードカレス" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ブリザードカレス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ブリザードカレス.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ブリザードカレス_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ブリザードカレス_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ブリザードカレス_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ブリザードカレス_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ブリザードカレス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ブリザードカレス_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ヘルファイア" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ヘルファイア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ヘルファイア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ヘルファイア_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ヘルファイア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ヘルファイア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ヘルファイア_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ヘルファイア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ヘルファイア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_メテオインパクト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_メテオインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_メテオインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_メテオインパクト_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_メテオインパクト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_メテオインパクト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_メテオインパクト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_メテオインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_メテオインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ライトニング" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ライトニング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ライトニング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ライトニング_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ライトニング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ライトニング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ライトニングスピア" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ライトニングスピア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ライトニングスピア.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ライトニングスピア_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ライトニングスピア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ライトニングスピア_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_ライトニングスピア_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_ライトニングスピア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_ライトニングスピア_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_レーザーブラスト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_レーザーブラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_レーザーブラスト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_レーザーブラスト_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_レーザーブラスト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_レーザーブラスト_D.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_レーザーブラスト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_レーザーブラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_レーザーブラスト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_詠唱" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_詠唱.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_詠唱.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_詠唱_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_詠唱_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_詠唱_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_通常攻撃" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sorcerer_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Sorcerer_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Sorcerer_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アサルトエッジ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アサルトエッジ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アサルトエッジ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アサルトエッジ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アサルトエッジ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アサルトエッジ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アタックレインフォース" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アタックレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アタックレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アタックレインフォース_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アタックレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アタックレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アークスタンプ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アークスタンプ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アークスタンプ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_アークスタンプ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_アークスタンプ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_アークスタンプ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_エクステンブレイド" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_エクステンブレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_エクステンブレイド.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_エクステンブレイド_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_エクステンブレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_エクステンブレイド_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_エンダーペイン" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_エンダーペイン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_エンダーペイン.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_エンダーペイン_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_エンダーペイン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_エンダーペイン_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ガードレインフォース" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ガードレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ガードレインフォース.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ガードレインフォース_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ガードレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ガードレインフォース_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_クラックバング" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_クラックバング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_クラックバング.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_クラックバング_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_クラックバング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_クラックバング_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_クランブルストーム" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_クランブルストーム.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_クランブルストーム.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_クランブルストーム_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_クランブルストーム_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_クランブルストーム_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_シールドバッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_シールドバッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_シールドバッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_シールドバッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_シールドバッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_シールドバッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ストライクスマッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ストライクスマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ストライクスマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ストライクスマッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ストライクスマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ストライクスマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_スマッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_スマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_スマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_スマッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_スマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_スマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_スラムアタック" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_スラムアタック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_スラムアタック.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_スラムアタック_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_スラムアタック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_スラムアタック_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソニックブーム" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソニックブーム.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソニックブーム.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソニックブーム_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソニックブーム_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソニックブーム_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソリッドウォール" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソリッドウォール.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソリッドウォール.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソリッドウォール_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソリッドウォール_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソリッドウォール_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソードランページ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソードランページ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソードランページ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ソードランページ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ソードランページ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ソードランページ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ドラゴンテイル" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ドラゴンテイル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ドラゴンテイル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ドラゴンテイル_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ドラゴンテイル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ドラゴンテイル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_フォースインパクト" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_フォースインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_フォースインパクト.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_フォースインパクト_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_フォースインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_フォースインパクト_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ブレイズスラッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ブレイズスラッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ブレイズスラッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ブレイズスラッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ブレイズスラッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ブレイズスラッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ヘビースマッシュ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ヘビースマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ヘビースマッシュ.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ヘビースマッシュ_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ヘビースマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ヘビースマッシュ_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ベヒモステイル" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ベヒモステイル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ベヒモステイル.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_ベヒモステイル_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_ベヒモステイル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_ベヒモステイル_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_通常攻撃" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_通常攻撃.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warrior_通常攻撃_S" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\SkillBitmap\Warrior_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\SkillBitmap\Warrior_通常攻撃_S.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pow_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resource\PowBitmap\pow_9.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\assets\PowBitmap\pow_9.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

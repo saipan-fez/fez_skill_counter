@@ -1,5 +1,6 @@
 ﻿using System;
-using FEZSkillCounter;
+using FEZSkillCounter.Algorithm;
+using FEZSkillCounter.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FEZSkillCounterTest

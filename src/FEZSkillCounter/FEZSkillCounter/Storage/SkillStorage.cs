@@ -1,4 +1,5 @@
-﻿using FEZSkillCounter.Extension;
+﻿using FEZSkillCounter.Entity;
+using FEZSkillCounter.Extension;
 using System.Collections.Generic;
 
 using R = FEZSkillCounter.Properties.Resources;
