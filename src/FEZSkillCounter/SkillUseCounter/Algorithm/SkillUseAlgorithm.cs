@@ -1,10 +1,10 @@
-﻿using FEZSkillCounter.Entity;
-using FEZSkillCounter.Extension;
+﻿using FEZSkillUseCounter.Entity;
+using FEZSkillUseCounter.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FEZSkillCounter.Algorithm
+namespace FEZSkillUseCounter.Algorithm
 {
     public class SkillUseAlgorithm
     {

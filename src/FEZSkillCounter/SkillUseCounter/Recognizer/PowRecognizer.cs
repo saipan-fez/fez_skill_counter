@@ -1,9 +1,9 @@
-﻿using FEZSkillCounter.Extension;
+﻿using FEZSkillUseCounter.Extension;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace FEZSkillCounter.Recognizer
+namespace FEZSkillUseCounter.Recognizer
 {
     public class PowRecognizer : IResettableRecognizer<int>
     {

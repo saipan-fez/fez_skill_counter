@@ -1,4 +1,4 @@
-﻿using FEZSkillCounter.Recognizer;
+﻿using FEZSkillUseCounter.Recognizer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 

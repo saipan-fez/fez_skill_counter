@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     public static class Logger
     {

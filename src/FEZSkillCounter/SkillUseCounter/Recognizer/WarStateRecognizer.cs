@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace FEZSkillCounter.Recognizer
+namespace FEZSkillUseCounter.Recognizer
 {
     public enum WarState
     {

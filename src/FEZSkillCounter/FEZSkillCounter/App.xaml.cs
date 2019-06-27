@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     /// <summary>
     /// App.xaml の相互作用ロジック

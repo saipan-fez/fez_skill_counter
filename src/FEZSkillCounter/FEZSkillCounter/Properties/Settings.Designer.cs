@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FEZSkillCounter.Properties
+namespace SkillUseCounter.Properties
 {
 
 

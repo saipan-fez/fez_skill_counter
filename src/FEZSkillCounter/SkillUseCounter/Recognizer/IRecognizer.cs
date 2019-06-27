@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace FEZSkillCounter.Recognizer
+namespace FEZSkillUseCounter.Recognizer
 {
     public interface IRecognizer<T>
     {

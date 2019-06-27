@@ -58,15 +58,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FEZSkillCounter\FEZSkillCounter.csproj">
-      <Project>{B29592B6-EC38-41CD-B220-DD10AB755BD4}</Project>
-      <Name>FEZSkillCounter</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="TestImages\WarFinished.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkillUseCounter\SkillUseCounter.csproj">
+      <Project>{06ecaba1-59f0-42ac-b554-bc13525ab2b6}</Project>
+      <Name>SkillUseCounter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

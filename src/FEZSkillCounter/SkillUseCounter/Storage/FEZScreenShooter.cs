@@ -1,12 +1,12 @@
-﻿using FEZSkillCounter.Common;
-using FEZSkillCounter.Entity;
+﻿using FEZSkillUseCounter.Common;
+using FEZSkillUseCounter.Entity;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     public class FEZScreenShotStorage
     {

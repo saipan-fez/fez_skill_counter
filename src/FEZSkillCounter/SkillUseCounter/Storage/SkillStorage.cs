@@ -1,10 +1,10 @@
-﻿using FEZSkillCounter.Entity;
-using FEZSkillCounter.Extension;
+﻿using FEZSkillUseCounter.Entity;
+using FEZSkillUseCounter.Extension;
 using System.Collections.Generic;
 
-using R = FEZSkillCounter.Properties.Resources;
+using R = FEZSkillUseCounter.Properties.Resources;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     public class SkillStorage
     {

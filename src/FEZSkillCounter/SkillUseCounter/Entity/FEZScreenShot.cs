@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace FEZSkillCounter.Entity
+namespace FEZSkillUseCounter.Entity
 {
     public class FEZScreenShot : IDisposable
     {

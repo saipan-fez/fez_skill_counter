@@ -1,4 +1,4 @@
-﻿namespace FEZSkillCounter.Entity
+﻿namespace FEZSkillUseCounter.Entity
 {
     public class Skill
     {

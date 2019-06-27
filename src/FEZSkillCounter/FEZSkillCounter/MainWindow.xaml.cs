@@ -1,35 +1,35 @@
-﻿using FEZSkillCounter.Algorithm;
-using FEZSkillCounter.Entity;
-using FEZSkillCounter.Recognizer;
+﻿using FEZSkillCounter.Entity;
+using FEZSkillUseCounter.Entity;
+using SkillUseCounter;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
+        private SkillCountService _skillUseService = new SkillCountService();
+        private List<SkillCount>  _skillList       = new List<SkillCount>();
+
         public MainWindow()
         {
             InitializeComponent();
 
-            Loaded += (_, __) => Task.Run(() => Run());
-            SkillCountIncremented += MainWindow_SkillCountIncremented;
-            _skillArrayRecognizer.Updated += MainWindow_SkillUpdated;
-            _powDebuffArrayRecognizer.Updated += MainWindow_PowDebuffUpdated;
-            _powRecognizer.Updated += MainWindow_MpUpdated;
-
+            Loaded              += MainWindow_Loaded;
             MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
+
+            _skillUseService.SkillCountIncremented += _skillUseService_SkillCountIncremented; ;
+            _skillUseService.SkillsUpdated         += _skillUseService_SkillsUpdated;
+            _skillUseService.PowDebuffsUpdated     += _skillUseService_PowDebuffsUpdated;
+            _skillUseService.PowUpdated            += _skillUseService_PowUpdated;
+            _skillUseService.FpsUpdated            += _skillUseService_FpsUpdated;
 
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {
@@ -40,17 +40,30 @@ namespace FEZSkillCounter
             Logger.WriteLine("起動");
         }
 
+        private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _skillUseService.Start();
+        }
+
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState != MouseButtonState.Pressed)
             {
                 return;
             }
-  
-            DragMove(); 
+
+            DragMove();
         }
 
-        private void MainWindow_MpUpdated(object sender, int pow)
+        private void _skillUseService_FpsUpdated(object sender, double e)
+        {
+            Dispatcher.BeginInvoke(((Action)(() =>
+            {
+                ProcessAvgTimeText.Text = e.ToString("F1");
+            })));
+        }
+
+        private void _skillUseService_PowUpdated(object sender, int pow)
         {
             Dispatcher.BeginInvoke(((Action)(() =>
             {
@@ -58,7 +71,7 @@ namespace FEZSkillCounter
             })));
         }
 
-        private void MainWindow_PowDebuffUpdated(object sender, PowDebuff[] e)
+        private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuff[] e)
         {
             Dispatcher.BeginInvoke(((Action)(() =>
             {
@@ -66,9 +79,7 @@ namespace FEZSkillCounter
             })));
         }
 
-        private List<SkillCount> _skillList = new List<SkillCount>();
-
-        private void MainWindow_SkillUpdated(object sender, Skill[] skills)
+        private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
         {
             bool requireUpdate = false;
             foreach (var s in skills.Where(x => !x.IsEmpty()))
@@ -86,7 +97,7 @@ namespace FEZSkillCounter
             }
         }
 
-        private void MainWindow_SkillCountIncremented(object sender, Skill skill)
+        private void _skillUseService_SkillCountIncremented(object sender, Skill skill)
         {
             var skillCount = _skillList.FirstOrDefault(x => x.Skill.Name == skill.Name);
             if (skillCount != null)
@@ -110,155 +121,6 @@ namespace FEZSkillCounter
                     sw.WriteLine(text);
                 }
             })));
-        }
-
-        public class SkillCount
-        {
-            public Skill Skill { get; }
-            public int Count { get; private set; }
-
-            public SkillCount(Skill skill)
-            {
-                Skill = skill;
-                Count = 0;
-            }
-
-            public void Increment()
-            {
-                Count++;
-            }
-        }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            foreach(var b in list.Select((i, x) => new { obj = i, idx = x }))
-            {
-                b.obj.Save($"{b.idx.ToString()}.bmp");
-            }
-        }
-
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
-        {
-            lock(list)
-            {
-                list.Clear();
-            }
-
-            _skillList.Clear();
-            UpdateSkillText();
-        }
-
-        private List<Bitmap> list = new List<Bitmap>();
-
-        // ------------------------------------------------------------
-        // ------------------------------------------------------------
-        // ------------------------------------------------------------
-        // ------------------------------------------------------------
-        // ------------------------------------------------------------
-
-        private PreRecognizer            _preRecognizer            = new PreRecognizer();
-        private WarStateRecognizer       _warStateRecognizer       = new WarStateRecognizer();
-        private SkillArrayRecognizer     _skillArrayRecognizer     = new SkillArrayRecognizer();
-        private PowDebuffArrayRecognizer _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
-        private PowRecognizer            _powRecognizer            = new PowRecognizer();
-
-        private FEZScreenShotStorage _screenShotStorage = new FEZScreenShotStorage();
-        private SkillUseAlgorithm _skillCountAlgorithm  = new SkillUseAlgorithm();
-
-        private Stopwatch _stopwatch = Stopwatch.StartNew();
-        private long processTotalTime  = 0;
-        private long processTotalCount = 0;
-
-        private event EventHandler<Skill> SkillCountIncremented;
-
-        private void Run()
-        {
-            while (true)
-            {
-                var start = _stopwatch.ElapsedMilliseconds;
-                var result = false;
-                try
-                {
-                    result = Analyze();
-                }
-                catch
-                {
-                    // nop
-                }
-                finally
-                {
-                    var end = _stopwatch.ElapsedMilliseconds;
-
-                    if (result)
-                    {
-                        processTotalTime += (end - start);
-                        processTotalCount++;
-
-                        if (processTotalCount % 30 == 0)
-                        {
-                            Dispatcher.Invoke(() =>
-                            {
-                                ProcessAvgTimeText.Text = ((double)processTotalTime / processTotalCount).ToString("F1");
-                            });
-                        }
-                    }
-
-                    // 処理が失敗している場合は、即終了している。
-                    // ループによるCPU使用率を抑えるためにwait
-                    if (!result)
-                    {
-                        Thread.Sleep(30);
-                    }
-                }
-            }
-        }
-
-        private bool Analyze()
-        {
-            using (var screenShot = _screenShotStorage.Shoot())
-            {
-                // 解析可能か確認
-                if (!_preRecognizer.Recognize(screenShot.Image))
-                {
-                    return false;
-                }
-
-                // 現在のPow・スキル・デバフを取得
-                var pow        = _powRecognizer.Recognize(screenShot.Image);
-                var skills     = _skillArrayRecognizer.Recognize(screenShot.Image);
-                var powDebuffs = _powDebuffArrayRecognizer.Recognize(screenShot.Image);
-
-                // 選択中スキルを取得
-                var activeSkill = skills.FirstOrDefault(x => x.IsActive);
-
-                // 取得失敗していれば終了
-                if (pow         == PowRecognizer.InvalidPow ||
-                    skills      == SkillArrayRecognizer.InvalidSkills ||
-                    powDebuffs  == PowDebuffArrayRecognizer.InvalidPowDebuffs ||
-                    activeSkill == default(Skill))
-                {
-                    return false;
-                }
-
-                // スキルを使ったかどうかチェック
-                var isSkillUsed = _skillCountAlgorithm.IsSkillUsed(
-                    screenShot.TimeStamp,
-                    pow,
-                    activeSkill,
-                    powDebuffs);
-
-                // スキルを使っていれば更新通知
-                if (isSkillUsed)
-                {
-                    SkillCountIncremented?.BeginInvoke(
-                        this,
-                        activeSkill,
-                        null,
-                        null);
-                }
-            }
-
-            return true;
         }
     }
 }

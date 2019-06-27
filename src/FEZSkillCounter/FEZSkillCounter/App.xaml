@@ -1,7 +1,7 @@
-﻿<Application x:Class="FEZSkillCounter.App"
+﻿<Application x:Class="FEZSkillUseCounter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FEZSkillCounter"
+             xmlns:local="clr-namespace:FEZSkillUseCounter"
              StartupUri="MainWindow.xaml"
              Startup="Application_Startup">
     <Application.Resources>

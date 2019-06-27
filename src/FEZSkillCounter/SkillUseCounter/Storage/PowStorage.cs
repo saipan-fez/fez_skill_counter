@@ -1,9 +1,9 @@
-﻿using FEZSkillCounter.Extension;
+﻿using FEZSkillUseCounter.Extension;
 using System.Collections.Generic;
 
-using R = FEZSkillCounter.Properties.Resources;
+using R = FEZSkillUseCounter.Properties.Resources;
 
-namespace FEZSkillCounter
+namespace FEZSkillUseCounter
 {
     public class PowStorage
     {
