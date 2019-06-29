@@ -1,10 +1,11 @@
-﻿using FEZSkillUseCounter.Entity;
-using FEZSkillUseCounter.Extension;
+﻿using SkillUseCounter.Entity;
+using SkillUseCounter.Extension;
+using SkillUseCounter.Storage;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
     internal class SkillArrayRecognizer : IResettableRecognizer<Skill[]>
     {

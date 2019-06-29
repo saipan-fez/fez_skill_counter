@@ -1,7 +1,7 @@
-﻿using FEZSkillUseCounter;
-using FEZSkillUseCounter.Algorithm;
-using FEZSkillUseCounter.Entity;
-using FEZSkillUseCounter.Recognizer;
+﻿using SkillUseCounter.Algorithm;
+using SkillUseCounter.Entity;
+using SkillUseCounter.Recognizer;
+using SkillUseCounter.Storage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,13 +42,13 @@ namespace SkillUseCounter
         public event EventHandler<Skill>       SkillUsed;
 
         private PreRecognizer            _preRecognizer            = new PreRecognizer();
-        private WarStateRecognizer       _warStateRecognizer       = new WarStateRecognizer();
+        private WarStateRecognizer       _warStateRecognizer       = new WarStateRecognizer(new MapRecognizer());
         private SkillArrayRecognizer     _skillArrayRecognizer     = new SkillArrayRecognizer();
         private PowDebuffArrayRecognizer _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
         private PowRecognizer            _powRecognizer            = new PowRecognizer();
 
-        private FEZScreenShotStorage _screenShotStorage   = new FEZScreenShotStorage();
-        private SkillUseAlgorithm    _skillCountAlgorithm = new SkillUseAlgorithm();
+        private FEZScreenShotStorage     _screenShotStorage        = new FEZScreenShotStorage();
+        private SkillUseAlgorithm        _skillCountAlgorithm      = new SkillUseAlgorithm();
 
         private CancellationTokenSource _cts  = null;
         private Task                    _task = null;
@@ -60,6 +60,7 @@ namespace SkillUseCounter
         {
             SkillStorage.Create();
             PowStorage.Create();
+            MapStorage.Create();
 
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {

@@ -1,4 +1,4 @@
-﻿using FEZSkillUseCounter.Entity;
+﻿using SkillUseCounter.Entity;
 
 namespace FEZSkillCounter.Entity
 {
@@ -16,6 +16,11 @@ namespace FEZSkillCounter.Entity
         public void Increment()
         {
             Count++;
+        }
+
+        public void Reset()
+        {
+            Count = 0;
         }
     }
 }

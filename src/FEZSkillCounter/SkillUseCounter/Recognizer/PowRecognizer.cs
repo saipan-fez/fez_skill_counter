@@ -1,9 +1,10 @@
-﻿using FEZSkillUseCounter.Extension;
+﻿using SkillUseCounter.Extension;
+using SkillUseCounter.Storage;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
     internal class PowRecognizer : IResettableRecognizer<int>
     {

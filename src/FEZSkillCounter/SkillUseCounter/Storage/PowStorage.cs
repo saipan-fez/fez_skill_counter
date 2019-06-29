@@ -1,13 +1,13 @@
-﻿using FEZSkillUseCounter.Extension;
+﻿using SkillUseCounter.Extension;
 using System.Collections.Generic;
 
-using R = FEZSkillUseCounter.Properties.Resources;
+using R = SkillUseCounter.Properties.Resource;
 
-namespace FEZSkillUseCounter
+namespace SkillUseCounter.Storage
 {
     internal class PowStorage
     {
-        public static Dictionary<string, int> Table;
+        public static IReadOnlyDictionary<string, int> Table;
 
         public static void Create()
         {

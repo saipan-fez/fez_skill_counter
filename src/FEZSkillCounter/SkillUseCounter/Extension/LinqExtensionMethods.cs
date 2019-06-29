@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FEZSkillUseCounter.Extension
+namespace SkillUseCounter.Extension
 {
     internal static class LinqExtensionMethods
     {

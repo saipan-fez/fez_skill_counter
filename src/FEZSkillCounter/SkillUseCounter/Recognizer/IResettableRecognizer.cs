@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
     internal interface IResettableRecognizer<T> : IRecognizer<T>
     {

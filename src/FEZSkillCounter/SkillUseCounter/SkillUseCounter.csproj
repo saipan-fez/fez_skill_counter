@@ -52,12 +52,19 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Entity\FEZScreenShot.cs" />
+    <Compile Include="Entity\Map.cs" />
     <Compile Include="Entity\PowDebuff.cs" />
     <Compile Include="Entity\Skill.cs" />
     <Compile Include="Extension\BitmapExtension.cs" />
     <Compile Include="Extension\LinqExtensionMethods.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Recognizer\IRecognizer.cs" />
     <Compile Include="Recognizer\IResettableRecognizer.cs" />
+    <Compile Include="Recognizer\MapRecognizer.cs" />
     <Compile Include="Recognizer\PowDebuffArrayRecognizer.cs" />
     <Compile Include="Recognizer\PowRecognizer.cs" />
     <Compile Include="Recognizer\PreRecognizer.cs" />
@@ -66,20 +73,66 @@
     <Compile Include="SkillUseCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\FEZScreenShooter.cs" />
+    <Compile Include="Storage\MapStorage.cs" />
     <Compile Include="Storage\PowStorage.cs" />
     <Compile Include="Storage\SkillStorage.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\MapBitmap\アシロマ山麓.bmp" />
+    <Content Include="assets\MapBitmap\アベル渓谷.bmp" />
+    <Content Include="assets\MapBitmap\アンバーステップ平原.bmp" />
+    <Content Include="assets\MapBitmap\アークトゥルス隕石跡.bmp" />
+    <Content Include="assets\MapBitmap\インベイ高地.bmp" />
+    <Content Include="assets\MapBitmap\ウィネッシュ渓谷.bmp" />
+    <Content Include="assets\MapBitmap\ウェンズデイ古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\ウォーロック古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\エルギル高原.bmp" />
+    <Content Include="assets\MapBitmap\オブシディアン荒地.bmp" />
+    <Content Include="assets\MapBitmap\オリオン廃街.bmp" />
+    <Content Include="assets\MapBitmap\カペラ隕石跡.bmp" />
+    <Content Include="assets\MapBitmap\キンカッシュ古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\クダン丘陵.bmp" />
+    <Content Include="assets\MapBitmap\クノーラ雪原.bmp" />
+    <Content Include="assets\MapBitmap\クラウス山脈.bmp" />
+    <Content Include="assets\MapBitmap\クローディア水源.bmp" />
+    <Content Include="assets\MapBitmap\グランフォーク河口.bmp" />
+    <Content Include="assets\MapBitmap\ゴブリンフォーク.bmp" />
+    <Content Include="assets\MapBitmap\ザーク古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\シディット水域.bmp" />
+    <Content Include="assets\MapBitmap\シバーグ遺跡.bmp" />
+    <Content Include="assets\MapBitmap\シュア島古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\ジャコル丘陵.bmp" />
+    <Content Include="assets\MapBitmap\スピカ隕石跡.bmp" />
+    <Content Include="assets\MapBitmap\セノビア荒地.bmp" />
+    <Content Include="assets\MapBitmap\セルベーン高地.bmp" />
+    <Content Include="assets\MapBitmap\セントウォーク高地.bmp" />
+    <Content Include="assets\MapBitmap\ソーン平原.bmp" />
+    <Content Include="assets\MapBitmap\タマライア水源.bmp" />
+    <Content Include="assets\MapBitmap\ダガー島.bmp" />
+    <Content Include="assets\MapBitmap\デスパイア山麓.bmp" />
+    <Content Include="assets\MapBitmap\ドランゴラ荒地.bmp" />
+    <Content Include="assets\MapBitmap\ニコナ街道.bmp" />
+    <Content Include="assets\MapBitmap\ネフタル雪原.bmp" />
+    <Content Include="assets\MapBitmap\ノイム草原.bmp" />
+    <Content Include="assets\MapBitmap\フェブェ雪原.bmp" />
+    <Content Include="assets\MapBitmap\ブリザール湿原.bmp" />
+    <Content Include="assets\MapBitmap\ブローデン古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\ヘイムダル荒地.bmp" />
+    <Content Include="assets\MapBitmap\ベルタ平原.bmp" />
+    <Content Include="assets\MapBitmap\ホークウィンド高地.bmp" />
+    <Content Include="assets\MapBitmap\マスクス水源.bmp" />
+    <Content Include="assets\MapBitmap\ラインレイ渓谷.bmp" />
+    <Content Include="assets\MapBitmap\ラナス城跡.bmp" />
+    <Content Include="assets\MapBitmap\ルダン雪原.bmp" />
+    <Content Include="assets\MapBitmap\ルード雪原.bmp" />
+    <Content Include="assets\MapBitmap\レイクパス荒地.bmp" />
+    <Content Include="assets\MapBitmap\ログマール古戦場跡.bmp" />
+    <Content Include="assets\MapBitmap\ロザリオ高地.bmp" />
+    <Content Include="assets\MapBitmap\ロッシ雪原.bmp" />
+    <Content Include="assets\MapBitmap\ローグローブ台地.bmp" />
+    <Content Include="assets\MapBitmap\ワーグノスの地.bmp" />
+    <Content Include="assets\MapBitmap\ワードノール平原.bmp" />
+    <Content Include="assets\MapBitmap\始まりの大地.bmp" />
     <Content Include="assets\PowBitmap\pow_0.bmp" />
     <Content Include="assets\PowBitmap\pow_1.bmp" />
     <Content Include="assets\PowBitmap\pow_2.bmp" />
@@ -314,6 +367,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

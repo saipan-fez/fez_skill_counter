@@ -1,7 +1,7 @@
 ﻿using System;
-using FEZSkillUseCounter.Algorithm;
-using FEZSkillUseCounter.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SkillUseCounter.Algorithm;
+using SkillUseCounter.Entity;
 
 namespace SkillUseCounterTest
 {

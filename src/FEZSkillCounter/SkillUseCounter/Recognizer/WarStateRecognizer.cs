@@ -1,44 +1,70 @@
-﻿using System;
+﻿using SkillUseCounter.Entity;
+using System;
 using System.Drawing;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
-    public enum WarState
+    internal class WarStateRecognizer
     {
-        /// <summary>
-        /// 戦争中
-        /// </summary>
-        AtWar,
-        /// <summary>
-        /// 待機中(戦争中ではない)
-        /// </summary>
-        Waiting,
-    }
-
-    internal class WarStateRecognizer : IRecognizer<WarState>
-    {
-        /// <summary>
-        /// 現在の状態
-        /// </summary>
-        public WarState State { get; private set; } = WarState.Waiting;
-
-        public WarState Recognize(Bitmap bitmap)
+        private enum WarState
         {
-            switch (State)
+            Waiting,
+            Waring,
+        }
+
+        private IRecognizer<Map> _mapRecognizer;
+
+        private Map      _previousValidMap = Map.Empty;
+        private WarState _previousState    = WarState.Waiting;
+
+        // 戦争開始
+        public event EventHandler<Map> WarStarted;
+
+        // 戦争中断
+        //   FOして別の戦場に入った場合、WarStartedの前に呼ばれる
+        //   FOや回線落ちで戦場に復帰した場合は呼ばれない
+        public event EventHandler<Map> WarCanceled;
+
+        // 戦争終了
+        public event EventHandler<Map> WarFinished;
+
+        public WarStateRecognizer(IRecognizer<Map> mapRecognizer)
+        {
+            _mapRecognizer = mapRecognizer ?? throw new ArgumentNullException(nameof(mapRecognizer));
+        }
+
+        public void Report(Bitmap bitmap)
+        {
+            var state = _previousState;
+
+            // Map取得
+            var map = GetMap(bitmap);
+
+            switch (_previousState)
             {
-                // 戦争中なら、戦争が終了したかどうかチェックする
-                case WarState.AtWar:
-                    if (IsWarFinished(bitmap))
+                case WarState.Waiting:
+                    // 戦争待機中なら、戦争が開始したかどうかチェックする
+                    if (IsDisplayCost(bitmap) && !map.IsEmpty())
                     {
-                        State = WarState.Waiting;
+                        state = WarState.Waring;
+                        WarStarted(this, map);
                     }
                     break;
 
-                // 戦争待機中なら、戦争が開始したかどうかチェックする
-                case WarState.Waiting:
-                    if (IsWarStarted(bitmap))
+                case WarState.Waring:
+                    // 戦争中なら、戦争が終了したかどうかチェックする
+                    // 考慮事項：FO・死んだときやMAP名上にマウスカーソル
+                    if (IsDisplayWarResult(bitmap) && !map.IsEmpty())
                     {
-                        State = WarState.AtWar;
+                        state = WarState.Waiting;
+                        WarFinished(this, map);
+                    }
+                    // FOして別の戦場を入りなおしたとき、状態はAtWarのままのため、
+                    // 一度Waitingに状態変更通知を投げて、即座に戦争状態に戻す
+                    if (map != _previousValidMap)
+                    {
+                        WarCanceled(this, map);
+                        WarStarted(this, map);
                     }
                     break;
 
@@ -46,10 +72,21 @@ namespace FEZSkillUseCounter.Recognizer
                     throw new Exception("invalid state");
             }
 
-            return State;
+            // 状態更新
+            _previousState = state;
+
+            if (!map.IsEmpty())
+            {
+                _previousValidMap   = map;
+            }
         }
 
-        private bool IsWarStarted(Bitmap bitmap)
+        private Map GetMap(Bitmap bitmap)
+        {
+            return _mapRecognizer.Recognize(bitmap);
+        }
+
+        private bool IsDisplayCost(Bitmap bitmap)
         {
             if (bitmap == null)
             {
@@ -63,18 +100,14 @@ namespace FEZSkillUseCounter.Recognizer
 
             var center = new Point(bitmap.Size.Width / 2, bitmap.Size.Height / 2);
 
-            // TODO: 確認する座標と色
-            // 「戦闘開始」が画面に表示されているかどうかで判定する
-            // ※途中参戦であっても参戦直後に表示される
-            ret &= bitmap.GetPixel(center.X - 262 +  20, center.Y - 353 + 200) == Color.FromArgb( 50,  50,  50);
-            ret &= bitmap.GetPixel(center.X - 262 +  50, center.Y - 353 + 200) == Color.FromArgb(167, 155, 145);
-            ret &= bitmap.GetPixel(center.X - 262 + 730, center.Y - 353 + 335) == Color.FromArgb( 50,  50,  50);
-            ret &= bitmap.GetPixel(center.X - 262 + 730, center.Y - 353 + 550) == Color.FromArgb( 61,  47,  43);
+            // [Cost 130 / 130] の"C"と"/"の部分で判別する
+            ret &= bitmap.GetPixel(w - 441, h - 120) == Color.FromArgb(123, 123, 123);  // "C"
+            ret &= bitmap.GetPixel(w - 375, h - 112) == Color.FromArgb(156, 156, 156);  // "/"
 
             return ret;
         }
 
-        private bool IsWarFinished(Bitmap bitmap)
+        private bool IsDisplayWarResult(Bitmap bitmap)
         {
             if (bitmap == null)
             {

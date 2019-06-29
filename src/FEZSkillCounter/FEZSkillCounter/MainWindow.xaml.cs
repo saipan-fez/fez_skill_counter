@@ -1,11 +1,12 @@
 ﻿using FEZSkillCounter.Entity;
-using FEZSkillUseCounter.Entity;
 using SkillUseCounter;
+using SkillUseCounter.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FEZSkillUseCounter
@@ -13,7 +14,7 @@ namespace FEZSkillUseCounter
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
         private SkillCountService _skillUseService = new SkillCountService();
         private List<SkillCount>  _skillList       = new List<SkillCount>();
@@ -25,16 +26,16 @@ namespace FEZSkillUseCounter
             Loaded              += MainWindow_Loaded;
             MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
-            _skillUseService.SkillUsed += _skillUseService_SkillCountIncremented; ;
-            _skillUseService.SkillsUpdated         += _skillUseService_SkillsUpdated;
-            _skillUseService.PowDebuffsUpdated     += _skillUseService_PowDebuffsUpdated;
-            _skillUseService.PowUpdated            += _skillUseService_PowUpdated;
-            _skillUseService.ProcessTimeUpdated            += _skillUseService_FpsUpdated;
+            _skillUseService.SkillUsed          += _skillUseService_SkillCountIncremented;
+            _skillUseService.SkillsUpdated      += _skillUseService_SkillsUpdated;
+            _skillUseService.PowDebuffsUpdated  += _skillUseService_PowDebuffsUpdated;
+            _skillUseService.PowUpdated         += _skillUseService_PowUpdated;
+            _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
 
             UpdateSkillText();
         }
 
-        private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _skillUseService.Start();
         }
@@ -115,6 +116,12 @@ namespace FEZSkillUseCounter
                     sw.WriteLine(text);
                 }
             })));
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            foreach (var s in _skillList) s.Reset();
+            UpdateSkillText();
         }
     }
 }

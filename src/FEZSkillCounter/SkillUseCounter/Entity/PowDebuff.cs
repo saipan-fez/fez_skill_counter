@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FEZSkillUseCounter.Entity
+namespace SkillUseCounter.Entity
 {
     public class PowDebuff
     {

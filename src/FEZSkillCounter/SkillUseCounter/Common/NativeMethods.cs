@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace FEZSkillUseCounter.Common
+namespace SkillUseCounter.Common
 {
     [StructLayout(LayoutKind.Sequential)]
     internal struct RECT

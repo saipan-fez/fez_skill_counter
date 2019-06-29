@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
-namespace FEZSkillUseCounter.Extension
+namespace SkillUseCounter.Extension
 {
     internal static class BitmapExtension
     {

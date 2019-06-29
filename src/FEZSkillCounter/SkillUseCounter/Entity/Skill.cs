@@ -1,24 +1,28 @@
-﻿namespace FEZSkillUseCounter.Entity
+﻿namespace SkillUseCounter.Entity
 {
     public class Skill
     {
         private const string UnknownSkillName = "Unknown";
 
+        public static Skill Empty => new Skill(UnknownSkillName, UnknownSkillName, new int[] { int.MaxValue }, false);
+
         public string Name { get; }
+        public string ShortName { get; }
         public int[] Pow { get; }
         public bool IsActive { get; }
 
         public Skill()
         { }
 
-        public Skill(string name, int[] pow, bool isActive)
+        public Skill(string name, string shortName, int[] pow, bool isActive)
         {
-            Name = name;
-            Pow = pow;
-            IsActive = isActive;
+            Name      = name;
+            ShortName = shortName;
+            Pow       = pow;
+            IsActive  = isActive;
         }
 
-        public static Skill CreateFromResourceFileName(string resourceName, params int[] pow)
+        public static Skill Create(string resourceName, string shortName, params int[] pow)
         {
             var name = resourceName
                 .Replace("Cestus_", "")
@@ -31,15 +35,7 @@
 
             var isActive = (resourceName.IndexOf("_S") != -1);
 
-            return new Skill(name, pow, isActive);
-        }
-
-        public static Skill Empty
-        {
-            get
-            {
-                return new Skill("Unknown", new int[] { int.MaxValue }, false);
-            }
+            return new Skill(name, shortName, pow, isActive);
         }
 
         public bool IsEmpty()

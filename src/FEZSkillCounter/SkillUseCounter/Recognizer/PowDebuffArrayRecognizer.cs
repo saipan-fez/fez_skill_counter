@@ -1,13 +1,13 @@
 ﻿using Colourful;
 using Colourful.Conversion;
 using Colourful.Difference;
-using FEZSkillUseCounter.Entity;
-using FEZSkillUseCounter.Extension;
+using SkillUseCounter.Extension;
+using SkillUseCounter.Entity;
 using System;
 using System.Drawing;
 using System.Linq;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
     internal class PowDebuffArrayRecognizer : IResettableRecognizer<PowDebuff[]>
     {

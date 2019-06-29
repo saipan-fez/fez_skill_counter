@@ -20,12 +20,12 @@
     </Window.Resources>
     <Grid Margin="10">
         <StackPanel>
-            <Button Content="Clear" Height="30" />
+            <Button Content="Clear" Height="30" Click="Button_Click" />
             <TextBlock Text="Pow" Style="{StaticResource Header}" />
             <TextBlock Name="PowText" />
             <TextBlock Text="Debuff" Style="{StaticResource Header}" />
             <TextBlock Name="DebuffText" />
-            <TextBlock Text="ProcessAvgTime" Style="{StaticResource Header}" />
+            <TextBlock Text="Process Aerage Time" Style="{StaticResource Header}" />
             <TextBlock Name="ProcessAvgTimeText"/>
             <TextBlock Text="Skill" Style="{StaticResource Header}" />
             <TextBlock Name="SkillText"/>

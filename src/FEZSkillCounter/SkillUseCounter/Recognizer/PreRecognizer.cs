@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace FEZSkillUseCounter.Recognizer
+namespace SkillUseCounter.Recognizer
 {
     /// <summary>
     /// 他の解析前に解析可能かチェックするクラス
