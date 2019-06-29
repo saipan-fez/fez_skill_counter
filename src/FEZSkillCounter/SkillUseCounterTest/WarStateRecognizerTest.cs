@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 
-namespace FEZSkillCounterTest
+namespace SkillUseCounterTest
 {
     [TestClass]
     public class WarStateRecognizerTest

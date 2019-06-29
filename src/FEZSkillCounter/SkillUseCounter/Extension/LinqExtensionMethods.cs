@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FEZSkillUseCounter.Extension
 {
-    public static class LinqExtensionMethods
+    internal static class LinqExtensionMethods
     {
         private class CompareSelector<T, TKey> : IEqualityComparer<T>
         {

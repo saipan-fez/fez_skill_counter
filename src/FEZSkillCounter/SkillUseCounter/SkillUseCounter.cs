@@ -12,10 +12,35 @@ using System.Threading.Tasks;
 namespace SkillUseCounter
 {
     /// <summary>
-    /// スキル使用をカウント
+    /// スキル使用を通知するサービス
     /// </summary>
     public class SkillCountService
     {
+        /// <summary>
+        /// 処理速度(直近100回)を通知
+        /// </summary>
+        public event EventHandler<double>      ProcessTimeUpdated;
+
+        /// <summary>
+        /// スキル一覧の更新通知
+        /// </summary>
+        public event EventHandler<Skill[]>     SkillsUpdated;
+
+        /// <summary>
+        /// Powの更新通知
+        /// </summary>
+        public event EventHandler<int>         PowUpdated;
+
+        /// <summary>
+        /// Powのデバフ(パワブレなど)更新通知
+        /// </summary>
+        public event EventHandler<PowDebuff[]> PowDebuffsUpdated;
+
+        /// <summary>
+        /// スキル使用を通知
+        /// </summary>
+        public event EventHandler<Skill>       SkillUsed;
+
         private PreRecognizer            _preRecognizer            = new PreRecognizer();
         private WarStateRecognizer       _warStateRecognizer       = new WarStateRecognizer();
         private SkillArrayRecognizer     _skillArrayRecognizer     = new SkillArrayRecognizer();
@@ -28,17 +53,24 @@ namespace SkillUseCounter
         private CancellationTokenSource _cts  = null;
         private Task                    _task = null;
 
-        public event EventHandler<double>      FpsUpdated;
-        public event EventHandler<Skill[]>     SkillsUpdated;
-        public event EventHandler<int>         PowUpdated;
-        public event EventHandler<PowDebuff[]> PowDebuffsUpdated;
-        public event EventHandler<Skill>       SkillCountIncremented;
-
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public SkillCountService()
         {
+            SkillStorage.Create();
+            PowStorage.Create();
+
+            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
+            {
+                Logger.WriteLine(e.Exception.ToString());
+            };
+
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, e);
             _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, e);
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, e);
+
+            Logger.WriteLine("起動");
         }
 
         /// <summary>
@@ -111,15 +143,16 @@ namespace SkillUseCounter
                     processTimes.Add(end - start);
                     if (processTimes.Count > 100)
                     {
-                        FpsUpdated?.Invoke(this, processTimes.Average());
+                        ProcessTimeUpdated?.Invoke(this, processTimes.Average());
                         processTimes.Clear();
                     }
 
                     // 処理が失敗している場合は大抵即終了している。
                     // ループによるCPU使用率を抑えるためにwait
-                    if (!result)
+                    var waitTime = 30 - (int)(end - start);
+                    if (!result && waitTime > 0)
                     {
-                        Thread.Sleep(30);
+                        Thread.Sleep(waitTime);
                     }
                 }
                 catch (OperationCanceledException)
@@ -169,7 +202,7 @@ namespace SkillUseCounter
                 // スキルを使っていれば更新通知
                 if (isSkillUsed)
                 {
-                    SkillCountIncremented?.BeginInvoke(
+                    SkillUsed?.BeginInvoke(
                         this,
                         activeSkill,
                         null,

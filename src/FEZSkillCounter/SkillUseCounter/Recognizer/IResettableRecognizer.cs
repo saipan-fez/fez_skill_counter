@@ -2,7 +2,7 @@
 
 namespace FEZSkillUseCounter.Recognizer
 {
-    interface IResettableRecognizer<T> : IRecognizer<T>
+    internal interface IResettableRecognizer<T> : IRecognizer<T>
     {
         event EventHandler<T> Updated;
 

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FEZSkillUseCounter.Recognizer
 {
-    public class PowDebuffArrayRecognizer : IResettableRecognizer<PowDebuff[]>
+    internal class PowDebuffArrayRecognizer : IResettableRecognizer<PowDebuff[]>
     {
         public const PowDebuff[] InvalidPowDebuffs = null;
 

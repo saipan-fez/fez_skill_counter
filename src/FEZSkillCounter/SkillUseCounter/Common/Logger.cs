@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FEZSkillUseCounter
 {
-    public static class Logger
+    internal static class Logger
     {
         public static void WriteLine(string msg)
         {

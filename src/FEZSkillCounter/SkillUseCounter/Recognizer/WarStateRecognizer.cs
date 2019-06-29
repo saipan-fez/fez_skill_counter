@@ -15,7 +15,7 @@ namespace FEZSkillUseCounter.Recognizer
         Waiting,
     }
 
-    public class WarStateRecognizer : IRecognizer<WarState>
+    internal class WarStateRecognizer : IRecognizer<WarState>
     {
         /// <summary>
         /// 現在の状態

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FEZSkillUseCounter.Algorithm
 {
-    public class SkillUseAlgorithm
+    internal class SkillUseAlgorithm
     {
         /// <summary>
         /// フレーム毎に回復する可能性のある値の閾値

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace FEZSkillUseCounter.Extension
 {
-    public static class BitmapExtension
+    internal static class BitmapExtension
     {
         private static HashAlgorithm provider = SHA1.Create();
 

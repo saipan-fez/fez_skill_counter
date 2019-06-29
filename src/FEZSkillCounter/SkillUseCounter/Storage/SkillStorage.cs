@@ -6,7 +6,7 @@ using R = FEZSkillUseCounter.Properties.Resources;
 
 namespace FEZSkillUseCounter
 {
-    public class SkillStorage
+    internal class SkillStorage
     {
         public static Dictionary<string, Skill> Table;
 

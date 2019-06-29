@@ -5,7 +5,7 @@ using R = FEZSkillUseCounter.Properties.Resources;
 
 namespace FEZSkillUseCounter
 {
-    public class PowStorage
+    internal class PowStorage
     {
         public static Dictionary<string, int> Table;
 

@@ -5,7 +5,7 @@ namespace FEZSkillUseCounter.Recognizer
     /// <summary>
     /// 他の解析前に解析可能かチェックするクラス
     /// </summary>
-    public class PreRecognizer : IRecognizer<bool>
+    internal class PreRecognizer : IRecognizer<bool>
     {
         public bool Recognize(Bitmap bitmap)
         {

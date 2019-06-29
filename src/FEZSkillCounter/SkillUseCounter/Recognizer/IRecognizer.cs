@@ -2,7 +2,7 @@
 
 namespace FEZSkillUseCounter.Recognizer
 {
-    public interface IRecognizer<T>
+    internal interface IRecognizer<T>
     {
         T Recognize(Bitmap bitmap);
     }

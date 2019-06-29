@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 
 namespace FEZSkillUseCounter.Recognizer
 {
-    public class PowRecognizer : IResettableRecognizer<int>
+    internal class PowRecognizer : IResettableRecognizer<int>
     {
         public const int InvalidPow = int.MaxValue;
 

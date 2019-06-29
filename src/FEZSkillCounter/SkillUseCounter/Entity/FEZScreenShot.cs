@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace FEZSkillUseCounter.Entity
 {
-    public class FEZScreenShot : IDisposable
+    internal class FEZScreenShot : IDisposable
     {
         public Bitmap Image { get; }
         public long TimeStamp { get; }

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace FEZSkillUseCounter.Common
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct RECT
+    internal struct RECT
     {
         public int Left;
         public int Top;
@@ -12,7 +12,7 @@ namespace FEZSkillUseCounter.Common
         public int Bottom;
     }
 
-    public static class NativeMethods
+    internal static class NativeMethods
     {
         public enum TernaryRasterOperations : uint
         {

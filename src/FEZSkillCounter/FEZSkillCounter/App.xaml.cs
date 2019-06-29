@@ -18,8 +18,6 @@ namespace FEZSkillUseCounter
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            SkillStorage.Create();
-            PowStorage.Create();
         }
     }
 }

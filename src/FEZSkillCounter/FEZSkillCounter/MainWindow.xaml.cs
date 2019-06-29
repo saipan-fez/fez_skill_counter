@@ -25,19 +25,13 @@ namespace FEZSkillUseCounter
             Loaded              += MainWindow_Loaded;
             MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
-            _skillUseService.SkillCountIncremented += _skillUseService_SkillCountIncremented; ;
+            _skillUseService.SkillUsed += _skillUseService_SkillCountIncremented; ;
             _skillUseService.SkillsUpdated         += _skillUseService_SkillsUpdated;
             _skillUseService.PowDebuffsUpdated     += _skillUseService_PowDebuffsUpdated;
             _skillUseService.PowUpdated            += _skillUseService_PowUpdated;
-            _skillUseService.FpsUpdated            += _skillUseService_FpsUpdated;
-
-            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
-            {
-                Logger.WriteLine(e.Exception.ToString());
-            };
+            _skillUseService.ProcessTimeUpdated            += _skillUseService_FpsUpdated;
 
             UpdateSkillText();
-            Logger.WriteLine("起動");
         }
 
         private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)

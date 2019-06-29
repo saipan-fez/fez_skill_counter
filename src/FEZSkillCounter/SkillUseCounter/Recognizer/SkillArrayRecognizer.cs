@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 
 namespace FEZSkillUseCounter.Recognizer
 {
-    public class SkillArrayRecognizer : IResettableRecognizer<Skill[]>
+    internal class SkillArrayRecognizer : IResettableRecognizer<Skill[]>
     {
         public const Skill[] InvalidSkills = null;
 

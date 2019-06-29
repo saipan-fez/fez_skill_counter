@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FEZSkillUseCounter
 {
-    public class FEZScreenShotStorage
+    internal class FEZScreenShotStorage
     {
         public FEZScreenShot Shoot()
         {

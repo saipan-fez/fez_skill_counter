@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}</ProjectGuid>
+    <ProjectGuid>{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FEZSkillCounterTest</RootNamespace>
-    <AssemblyName>FEZSkillCounterTest</AssemblyName>
+    <RootNamespace>SkillUseCounterTest</RootNamespace>
+    <AssemblyName>SkillUseCounterTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,16 +50,23 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SkillCountAlgorithmTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WarStateRecognizerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FEZSkillCounter\FEZSkillCounter.csproj">
-      <Project>{b29592b6-ec38-41cd-b220-dd10ab755bd4}</Project>
-      <Name>FEZSkillCounter</Name>
+    <ProjectReference Include="..\SkillUseCounter\SkillUseCounter.csproj">
+      <Project>{06ecaba1-59f0-42ac-b554-bc13525ab2b6}</Project>
+      <Name>SkillUseCounter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestImages\WarFinished.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

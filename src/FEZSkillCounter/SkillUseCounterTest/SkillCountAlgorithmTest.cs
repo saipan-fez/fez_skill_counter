@@ -3,7 +3,7 @@ using FEZSkillUseCounter.Algorithm;
 using FEZSkillUseCounter.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FEZSkillCounterTest
+namespace SkillUseCounterTest
 {
     [TestClass]
     public class SkillCountAlgorithmTest
