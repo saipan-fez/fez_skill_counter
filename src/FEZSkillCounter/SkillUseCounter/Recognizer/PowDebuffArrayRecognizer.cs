@@ -61,6 +61,7 @@ namespace SkillUseCounter.Recognizer
         public void Reset()
         {
             _previousPowDebuffs = InvalidPowDebuffs;
+            Updated?.Invoke(this, _previousPowDebuffs);
         }
 
         private PowDebuff[] GetPowDebuffs(Bitmap bitmap)

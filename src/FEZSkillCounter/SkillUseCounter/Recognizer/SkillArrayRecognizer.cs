@@ -53,11 +53,12 @@ namespace SkillUseCounter.Recognizer
         public void Reset()
         {
             _previousSkill = InvalidSkills;
+            Updated?.Invoke(this, _previousSkill);
         }
 
         private Skill[] GetSkills(Bitmap bitmap)
         {
-            Skill[] skills = new Skill[SkillRectTable.Length];
+            var skills = new Skill[SkillRectTable.Length];
 
             for (int i = 0; i < SkillRectTable.Length; i++)
             {

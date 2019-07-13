@@ -39,6 +39,7 @@ namespace SkillUseCounter.Recognizer
         public void Reset()
         {
             _previousPow = InvalidPow;
+            Updated?.Invoke(this, _previousPow);
         }
 
         private int GetPow(Bitmap bitmap)

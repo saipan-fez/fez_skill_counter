@@ -70,7 +70,7 @@
     <Compile Include="Recognizer\PreRecognizer.cs" />
     <Compile Include="Recognizer\SkillArrayRecognizer.cs" />
     <Compile Include="Recognizer\WarStateRecognizer.cs" />
-    <Compile Include="SkillUseCounter.cs" />
+    <Compile Include="SkillCountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\FEZScreenShooter.cs" />
     <Compile Include="Storage\MapStorage.cs" />
@@ -326,8 +326,8 @@
     <Content Include="assets\SkillBitmap\Warrior_アサルトエッジ_S.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_アタックレインフォース.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_アタックレインフォース_S.bmp" />
-    <Content Include="assets\SkillBitmap\Warrior_アークスタンプ.bmp" />
-    <Content Include="assets\SkillBitmap\Warrior_アークスタンプ_S.bmp" />
+    <Content Include="assets\SkillBitmap\Warrior_アーススタンプ.bmp" />
+    <Content Include="assets\SkillBitmap\Warrior_アーススタンプ_S.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_エクステンブレイド.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_エクステンブレイド_S.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_エンダーペイン.bmp" />
@@ -371,6 +371,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

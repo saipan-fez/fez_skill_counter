@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
-namespace FEZSkillUseCounter
+namespace FEZSkillCounter
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
@@ -26,6 +26,9 @@ namespace FEZSkillUseCounter
             Loaded              += MainWindow_Loaded;
             MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
+            _skillUseService.WarStarted         += _skillUseService_WarStarted;
+            _skillUseService.WarCanceled        += _skillUseService_WarCanceled;
+            _skillUseService.WarFinished        += _skillUseService_WarFinished;
             _skillUseService.SkillUsed          += _skillUseService_SkillCountIncremented;
             _skillUseService.SkillsUpdated      += _skillUseService_SkillsUpdated;
             _skillUseService.PowDebuffsUpdated  += _skillUseService_PowDebuffsUpdated;
@@ -50,11 +53,38 @@ namespace FEZSkillUseCounter
             DragMove();
         }
 
+        private void _skillUseService_WarStarted(object sender, Map e)
+        {
+            Dispatcher.BeginInvoke(((Action)(() =>
+            {
+                StatusText.Text = "戦争中";
+                MapText.Text    = e.IsEmpty() ? "unknown" : e.Name;
+            })));
+        }
+
+        private void _skillUseService_WarCanceled(object sender, Map e)
+        {
+            Dispatcher.BeginInvoke(((Action)(() =>
+            {
+                StatusText.Text = "戦争キャンセル";
+                MapText.Text    = e.IsEmpty() ? "unknown" : e.Name;
+            })));
+        }
+
+        private void _skillUseService_WarFinished(object sender, Map e)
+        {
+            Dispatcher.BeginInvoke(((Action)(() =>
+            {
+                StatusText.Text = "戦争終了";
+                MapText.Text    = e.IsEmpty() ? "unknown" : e.Name;
+            })));
+        }
+
         private void _skillUseService_FpsUpdated(object sender, double e)
         {
             Dispatcher.BeginInvoke(((Action)(() =>
             {
-                ProcessAvgTimeText.Text = e.ToString("F1");
+                ProcessAvgTimeText.Text = e.ToString("F1") + "ms";
             })));
         }
 
@@ -70,20 +100,28 @@ namespace FEZSkillUseCounter
         {
             Dispatcher.BeginInvoke(((Action)(() =>
             {
-                DebuffText.Text = string.Join("\r\n", e.Select(x => x.Name));
+                DebuffText.Text = e != null ? string.Join("\r\n", e.Select(x => x.Name)) : "";
             })));
         }
 
         private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
         {
             bool requireUpdate = false;
-            foreach (var s in skills.Where(x => !x.IsEmpty()))
+            if (skills != null)
             {
-                if (!_skillList.Any(x => x.Skill.Name == s.Name))
+                foreach (var s in skills.Where(x => !x.IsEmpty()))
                 {
-                    _skillList.Add(new SkillCount(s));
-                    requireUpdate = true;
+                    if (!_skillList.Any(x => x.Skill.Name == s.Name))
+                    {
+                        _skillList.Add(new SkillCount(s));
+                        requireUpdate = true;
+                    }
                 }
+            }
+            else
+            {
+                _skillList.Clear();
+                requireUpdate = true;
             }
 
             if (requireUpdate)
@@ -105,7 +143,7 @@ namespace FEZSkillUseCounter
 
         private void UpdateSkillText()
         {
-            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.Skill.Name + "：" + x.Count));
+            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.Skill.ShortName + "：" + x.Count));
 
             Dispatcher.BeginInvoke(((Action)(() =>
             {
@@ -118,9 +156,13 @@ namespace FEZSkillUseCounter
             })));
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var s in _skillList) s.Reset();
+            foreach (var s in _skillList)
+            {
+                s.Reset();
+            }
+
             UpdateSkillText();
         }
     }

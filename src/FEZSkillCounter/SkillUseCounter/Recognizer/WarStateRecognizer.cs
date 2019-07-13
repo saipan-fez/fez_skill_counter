@@ -61,7 +61,7 @@ namespace SkillUseCounter.Recognizer
                     }
                     // FOして別の戦場を入りなおしたとき、状態はAtWarのままのため、
                     // 一度Waitingに状態変更通知を投げて、即座に戦争状態に戻す
-                    if (map != _previousValidMap)
+                    if (!map.IsEmpty() && map != _previousValidMap)
                     {
                         WarCanceled(this, map);
                         WarStarted(this, map);

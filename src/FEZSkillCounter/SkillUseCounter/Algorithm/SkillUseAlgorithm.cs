@@ -47,7 +47,7 @@ namespace SkillUseCounter.Algorithm
         public void Reset()
         {
             _previousTimeStamp = long.MinValue;
-            _previousPow = int.MinValue;
+            _previousPow       = int.MinValue;
             _previousPowDebuff = null;
             _debuffList.Clear();
         }

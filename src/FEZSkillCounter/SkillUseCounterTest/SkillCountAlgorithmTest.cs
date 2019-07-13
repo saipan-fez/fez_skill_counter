@@ -9,8 +9,8 @@ namespace SkillUseCounterTest
     public class SkillCountAlgorithmTest
     {
         SkillUseAlgorithm algo;
-        
-        private readonly Skill TestSkill = new Skill("Test", new int[]{ 10, 15, 20 }, true);
+
+        private readonly Skill TestSkill = new Skill("Name", "ShorName", new int[]{ 10, 15, 20 }, true);
         private readonly PowDebuff[] EmptyPowDebuff = new PowDebuff[0];
         private readonly PowDebuff[] PowerBreak = new PowDebuff[]
         {

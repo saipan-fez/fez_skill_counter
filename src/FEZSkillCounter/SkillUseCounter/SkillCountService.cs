@@ -16,20 +16,21 @@ namespace SkillUseCounter
     /// </summary>
     public class SkillCountService
     {
+        #region Event
         /// <summary>
         /// 処理速度(直近100回)を通知
         /// </summary>
-        public event EventHandler<double>      ProcessTimeUpdated;
+        public event EventHandler<double> ProcessTimeUpdated;
 
         /// <summary>
         /// スキル一覧の更新通知
         /// </summary>
-        public event EventHandler<Skill[]>     SkillsUpdated;
+        public event EventHandler<Skill[]> SkillsUpdated;
 
         /// <summary>
         /// Powの更新通知
         /// </summary>
-        public event EventHandler<int>         PowUpdated;
+        public event EventHandler<int> PowUpdated;
 
         /// <summary>
         /// Powのデバフ(パワブレなど)更新通知
@@ -39,16 +40,36 @@ namespace SkillUseCounter
         /// <summary>
         /// スキル使用を通知
         /// </summary>
-        public event EventHandler<Skill>       SkillUsed;
+        public event EventHandler<Skill> SkillUsed;
 
-        private PreRecognizer            _preRecognizer            = new PreRecognizer();
-        private WarStateRecognizer       _warStateRecognizer       = new WarStateRecognizer(new MapRecognizer());
-        private SkillArrayRecognizer     _skillArrayRecognizer     = new SkillArrayRecognizer();
-        private PowDebuffArrayRecognizer _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
-        private PowRecognizer            _powRecognizer            = new PowRecognizer();
+        /// <summary>
+        /// 戦争開始を通知
+        /// </summary>
+        public event EventHandler<Map> WarStarted;
 
-        private FEZScreenShotStorage     _screenShotStorage        = new FEZScreenShotStorage();
-        private SkillUseAlgorithm        _skillCountAlgorithm      = new SkillUseAlgorithm();
+        /// <summary>
+        /// 戦争中断を通知
+        /// </summary>
+        /// <remarks>
+        /// FOや回線落ちした後、別の戦場に入った場合<see cref="WarStarted"/>>の前に呼ばれる。
+        //  なお、戦場に復帰した場合は呼ばれない。
+        /// </remarks>
+        public event EventHandler<Map> WarCanceled;
+
+        /// <summary>
+        /// 戦争終了を通知
+        /// </summary>
+        public event EventHandler<Map> WarFinished;
+        #endregion
+
+        private PreRecognizer                      _preRecognizer            = new PreRecognizer();
+        private WarStateRecognizer                 _warStateRecognizer       = new WarStateRecognizer(new MapRecognizer());
+        private IResettableRecognizer<Skill[]>     _skillArrayRecognizer     = new SkillArrayRecognizer();
+        private IResettableRecognizer<PowDebuff[]> _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
+        private IResettableRecognizer<int>         _powRecognizer            = new PowRecognizer();
+
+        private FEZScreenShotStorage               _screenShotStorage        = new FEZScreenShotStorage();
+        private SkillUseAlgorithm                  _skillCountAlgorithm      = new SkillUseAlgorithm();
 
         private CancellationTokenSource _cts  = null;
         private Task                    _task = null;
@@ -70,6 +91,24 @@ namespace SkillUseCounter
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, e);
             _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, e);
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, e);
+            _warStateRecognizer.WarStarted    += (_, e) =>
+            {
+                Logger.WriteLine("戦争開始");
+
+                // 開始時に各種数値をリセットする
+                Reset();
+                WarStarted?.Invoke(this, e);
+            };
+            _warStateRecognizer.WarCanceled += (_, e) =>
+            {
+                Logger.WriteLine("戦争キャンセル");
+                WarCanceled?.Invoke(this, e);
+            };
+            _warStateRecognizer.WarFinished += (_, e) =>
+            {
+                Logger.WriteLine("戦争終了");
+                WarFinished?.Invoke(this, e);
+            };
 
             Logger.WriteLine("起動");
         }
@@ -126,6 +165,18 @@ namespace SkillUseCounter
             }
         }
 
+        /// <summary>
+        /// スキル使用の監視状況をリセット
+        /// </summary>
+        private void Reset()
+        {
+            Logger.WriteLine("リセット");
+
+            _skillArrayRecognizer.Reset();
+            _powDebuffArrayRecognizer.Reset();
+            _powRecognizer.Reset();
+        }
+
         private void Run(CancellationToken token)
         {
             var stopwatch    = Stopwatch.StartNew();
@@ -150,8 +201,8 @@ namespace SkillUseCounter
 
                     // 処理が失敗している場合は大抵即終了している。
                     // ループによるCPU使用率を抑えるためにwait
-                    var waitTime = 30 - (int)(end - start);
-                    if (!result && waitTime > 0)
+                    var waitTime = 33 - (int)(end - start);
+                    if (waitTime > 0)
                     {
                         Thread.Sleep(waitTime);
                     }
@@ -175,6 +226,9 @@ namespace SkillUseCounter
                 {
                     return false;
                 }
+
+                // 戦争の状況を登録
+                _warStateRecognizer.Report(screenShot.Image);
 
                 // 現在のPow・スキル・デバフを取得
                 var pow        = _powRecognizer.Recognize(screenShot.Image);

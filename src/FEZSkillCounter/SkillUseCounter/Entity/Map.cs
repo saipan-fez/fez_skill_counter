@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace SkillUseCounter.Entity
+﻿namespace SkillUseCounter.Entity
 {
-    internal class Map
+    public class Map
     {
         private const string UnknownMapName = "Unknown";
 
