@@ -29,6 +29,8 @@ namespace SkillUseCounter.Algorithm
         private long _previousTimeStamp;
         private int _previousPow;
         private PowDebuff[] _previousPowDebuff;
+        private Skill _previousActiveSkill;     // 1フレーム前に選択していたスキル
+        private Skill _previousSelectedSkill;   // 1つ前に選択していたスキル
 
         private List<DebuffData> _debuffList = new List<DebuffData>();
         public IReadOnlyList<DebuffData> DebuffList
@@ -46,13 +48,15 @@ namespace SkillUseCounter.Algorithm
 
         public void Reset()
         {
-            _previousTimeStamp = long.MinValue;
-            _previousPow       = int.MinValue;
-            _previousPowDebuff = null;
+            _previousTimeStamp     = long.MinValue;
+            _previousPow           = int.MinValue;
+            _previousPowDebuff     = null;
+            _previousActiveSkill   = null;
+            _previousSelectedSkill = null;
             _debuffList.Clear();
         }
 
-        public bool IsSkillUsed(long timeStamp, int pow, Skill activeSkill, PowDebuff[] powDebuff)
+        public Skill RecognizeUsedSkill(long timeStamp, int pow, Skill[] skills, PowDebuff[] powDebuff)
         {
             if (timeStamp < 0 || pow < 0)
             {
@@ -90,10 +94,13 @@ namespace SkillUseCounter.Algorithm
              *  以降はその最短タイミングを超えていないかチェックし、
              *  超えていればその時点でのPow減少がパワブレによるものと判定する。
              */
-            var isSkillUsed = false;
+            Skill usedSkill = null;
+
+            // 選択中のスキル取得
+            var activeSkill = skills.FirstOrDefault(x => x.IsActive);
 
             // 初回実行時は判定しようがないので終了
-            if (_previousPowDebuff == null || _previousPow == int.MinValue)
+            if (_previousPowDebuff == null || _previousPow == int.MinValue || _previousActiveSkill == null)
             {
                 goto Finish;
             }
@@ -147,7 +154,7 @@ namespace SkillUseCounter.Algorithm
                 // なお、上記にさらにスキル使用によるPow消費が同時に発生しうるが、
                 // こちらは滅多にないため考慮しない。
                 // TODO: その場合でも以降問題なく動作するようにする(現状ではおそらくバグる)
-                if (debuffPowSum.Any(x => (x - powDiff) < PowRegenerateThreashold))
+                if (debuffPowSum.Any(x => Math.Abs(x - powDiff) < PowRegenerateThreashold))
                 {
                     Logger.WriteLine($"-------------------------");
                     Logger.WriteLine($"Detected to PowDebuff.");
@@ -165,10 +172,19 @@ namespace SkillUseCounter.Algorithm
             }
             else
             {
-                if (activeSkill.Pow.Any(x => (x - powDiff) < PowRegenerateThreashold))
+                var tmpActiveSkill = activeSkill;
+                // パニはスキル発動と同時に1つ上のスキルが選択状態となる
+                // そのため特殊ケースとして1つ前に選択状態だったスキルを確認して判定する
+                if (_previousSelectedSkill.Name == "パニッシングストライク" &&
+                    tmpActiveSkill.Name != "パニッシングストライク")
+                {
+                    tmpActiveSkill = _previousSelectedSkill;
+                }
+
+                if (tmpActiveSkill.Pow.Any(x => Math.Abs(x - powDiff) < PowRegenerateThreashold))
                 {
                     Logger.WriteLine($"-------------------------");
-                    Logger.WriteLine($"Detected to use skill. skill:{activeSkill.Name}");
+                    Logger.WriteLine($"Detected to use skill. skill:{tmpActiveSkill.Name}");
                     Logger.WriteLine($"[previous]");
                     Logger.WriteLine($"     time:{_previousTimeStamp} pow:{_previousPow} debuff:{string.Join(",", _previousPowDebuff.Select(x => x.Name))}");
                     Logger.WriteLine($"[current]");
@@ -176,7 +192,7 @@ namespace SkillUseCounter.Algorithm
 
                     // Pow回復とスキル使用によるPow消費が同時に発生した際を考慮し、
                     // 回復しうる閾値以下であればスキル使用によるPow消費と判断する。
-                    isSkillUsed = true;
+                    usedSkill = tmpActiveSkill;
                 }
             }
 
@@ -201,11 +217,21 @@ namespace SkillUseCounter.Algorithm
 
     Finish:
             // 今回の値を保持
-            _previousTimeStamp = timeStamp;
-            _previousPow       = pow;
-            _previousPowDebuff = powDebuff;
+            if (_previousActiveSkill != null &&
+                _previousActiveSkill.Name != activeSkill.Name)
+            {
+                var n = _previousSelectedSkill == null ? "": _previousSelectedSkill.Name;
+                Logger.WriteLine($"-------------------------");
+                Logger.WriteLine($"_previousSelectedSkill changed:" + n + "->" + _previousActiveSkill.Name);
+                Logger.WriteLine($"-------------------------");
+                _previousSelectedSkill = _previousActiveSkill;
+            }
+            _previousTimeStamp   = timeStamp;
+            _previousPow         = pow;
+            _previousPowDebuff   = powDebuff;
+            _previousActiveSkill = activeSkill;
 
-            return isSkillUsed;
+            return usedSkill;
         }
     }
 }

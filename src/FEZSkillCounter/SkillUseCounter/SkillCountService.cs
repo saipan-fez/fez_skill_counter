@@ -248,18 +248,18 @@ namespace SkillUseCounter
                 }
 
                 // スキルを使ったかどうかチェック
-                var isSkillUsed = _skillCountAlgorithm.IsSkillUsed(
+                var usedSkill = _skillCountAlgorithm.RecognizeUsedSkill(
                     screenShot.TimeStamp,
                     pow,
-                    activeSkill,
+                    skills,
                     powDebuffs);
 
                 // スキルを使っていれば更新通知
-                if (isSkillUsed)
+                if (usedSkill != null)
                 {
                     SkillUsed?.BeginInvoke(
                         this,
-                        activeSkill,
+                        usedSkill,
                         null,
                         null);
                 }

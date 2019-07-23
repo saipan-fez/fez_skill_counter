@@ -1,8 +1,9 @@
 ﻿using FEZSkillCounter.Entity;
+using MahApps.Metro.Controls;
 using SkillUseCounter;
 using SkillUseCounter.Entity;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,16 @@ using System.Windows.Input;
 
 namespace FEZSkillCounter
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
-        private SkillCountService _skillUseService = new SkillCountService();
-        private List<SkillCount>  _skillList       = new List<SkillCount>();
+        private SkillCountService                 _skillUseService = new SkillCountService();
+        private ObservableCollection<SkillCount>  _skillList       = new ObservableCollection<SkillCount>();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            SkillCountDataGrid.ItemsSource = _skillList;
 
             Loaded              += MainWindow_Loaded;
             MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
@@ -106,54 +106,57 @@ namespace FEZSkillCounter
 
         private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
         {
-            bool requireUpdate = false;
-            if (skills != null)
+            Dispatcher.BeginInvoke(((Action)(() =>
             {
-                foreach (var s in skills.Where(x => !x.IsEmpty()))
+                bool requireUpdate = false;
+                if (skills != null)
                 {
-                    if (!_skillList.Any(x => x.Skill.Name == s.Name))
+                    foreach (var s in skills.Where(x => !x.IsEmpty()))
                     {
-                        _skillList.Add(new SkillCount(s));
-                        requireUpdate = true;
+                        if (!_skillList.Any(x => x.Name == s.Name))
+                        {
+                            _skillList.Add(new SkillCount(s));
+                            requireUpdate = true;
+                        }
                     }
                 }
-            }
-            else
-            {
-                _skillList.Clear();
-                requireUpdate = true;
-            }
+                else
+                {
+                    _skillList.Clear();
+                    requireUpdate = true;
+                }
 
-            if (requireUpdate)
-            {
-                UpdateSkillText();
-            }
+                if (requireUpdate)
+                {
+                    UpdateSkillText();
+                }
+            })));
         }
 
         private void _skillUseService_SkillCountIncremented(object sender, Skill skill)
         {
-            var skillCount = _skillList.FirstOrDefault(x => x.Skill.Name == skill.Name);
-            if (skillCount != null)
+            Dispatcher.BeginInvoke(((Action)(() =>
             {
-                skillCount.Increment();
+                var skillCount = _skillList.FirstOrDefault(x => x.Name == skill.Name);
+                if (skillCount != null)
+                {
+                    skillCount.Increment();
 
-                UpdateSkillText();
-            }
+                    UpdateSkillText();
+                }
+            })));
         }
 
         private void UpdateSkillText()
         {
-            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.Skill.ShortName + "：" + x.Count));
+            var text = string.Join(Environment.NewLine, _skillList.Select(x => x.ShortName + "：" + x.Count));
 
-            Dispatcher.BeginInvoke(((Action)(() =>
+            SkillText.Text = text;
+
+            using (var sw = new StreamWriter("skillcount.txt", false, Encoding.UTF8))
             {
-                SkillText.Text = text;
-
-                using (var sw = new StreamWriter("skillcount.txt", false, Encoding.UTF8))
-                {
-                    sw.WriteLine(text);
-                }
-            })));
+                sw.WriteLine(text);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

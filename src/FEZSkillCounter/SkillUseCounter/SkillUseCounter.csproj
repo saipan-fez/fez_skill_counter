@@ -72,7 +72,7 @@
     <Compile Include="Recognizer\WarStateRecognizer.cs" />
     <Compile Include="SkillCountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\FEZScreenShooter.cs" />
+    <Compile Include="Storage\FEZScreenShotStorage.cs" />
     <Compile Include="Storage\MapStorage.cs" />
     <Compile Include="Storage\PowStorage.cs" />
     <Compile Include="Storage\SkillStorage.cs" />
