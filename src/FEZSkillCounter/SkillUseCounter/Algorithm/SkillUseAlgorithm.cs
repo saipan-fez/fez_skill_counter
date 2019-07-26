@@ -175,7 +175,8 @@ namespace SkillUseCounter.Algorithm
                 var tmpActiveSkill = activeSkill;
                 // パニはスキル発動と同時に1つ上のスキルが選択状態となる
                 // そのため特殊ケースとして1つ前に選択状態だったスキルを確認して判定する
-                if (_previousSelectedSkill.Name == "パニッシングストライク" &&
+                if (_previousSelectedSkill != null &&
+                    _previousSelectedSkill.Name == "パニッシングストライク" &&
                     tmpActiveSkill.Name != "パニッシングストライク")
                 {
                     tmpActiveSkill = _previousSelectedSkill;
@@ -217,13 +218,10 @@ namespace SkillUseCounter.Algorithm
 
     Finish:
             // 今回の値を保持
+            //   _previousSelectedSkillのみ選択中のスキルが変更した場合のみ更新
             if (_previousActiveSkill != null &&
                 _previousActiveSkill.Name != activeSkill.Name)
             {
-                var n = _previousSelectedSkill == null ? "": _previousSelectedSkill.Name;
-                Logger.WriteLine($"-------------------------");
-                Logger.WriteLine($"_previousSelectedSkill changed:" + n + "->" + _previousActiveSkill.Name);
-                Logger.WriteLine($"-------------------------");
                 _previousSelectedSkill = _previousActiveSkill;
             }
             _previousTimeStamp   = timeStamp;
