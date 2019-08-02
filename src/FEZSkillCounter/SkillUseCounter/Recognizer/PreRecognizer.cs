@@ -17,6 +17,12 @@ namespace SkillUseCounter.Recognizer
             var w = bitmap.Width;
             var h = bitmap.Height;
 
+            // サイズが小さすぎるときは対象外
+            if (w < 1024 || h < 768)
+            {
+                return false;
+            }
+
             bool ret = true;
 
             // 画面右上のスキル枠があるかどうか

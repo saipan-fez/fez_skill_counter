@@ -98,8 +98,6 @@ namespace SkillUseCounter.Recognizer
             var w = bitmap.Width;
             var h = bitmap.Height;
 
-            var center = new Point(bitmap.Size.Width / 2, bitmap.Size.Height / 2);
-
             // [Cost 130 / 130] の"C"と"/"の部分で判別する
             ret &= bitmap.GetPixel(w - 441, h - 120) == Color.FromArgb(123, 123, 123);  // "C"
             ret &= bitmap.GetPixel(w - 375, h - 112) == Color.FromArgb(156, 156, 156);  // "/"
@@ -115,9 +113,6 @@ namespace SkillUseCounter.Recognizer
             }
 
             bool ret = true;
-
-            var w = bitmap.Width;
-            var h = bitmap.Height;
 
             var center = new Point(bitmap.Size.Width / 2, bitmap.Size.Height / 2);
 

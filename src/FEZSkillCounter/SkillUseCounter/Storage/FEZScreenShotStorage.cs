@@ -12,32 +12,32 @@ namespace SkillUseCounter
     {
         public FEZScreenShot Shoot()
         {
-            var tick = DateTime.Now.Ticks;
+            var timestamp = DateTime.Now.Ticks;
 
-            using (var p = Process.GetProcessesByName("FEzero_Client").FirstOrDefault())
+            using (var process = Process.GetProcessesByName("FEzero_Client").FirstOrDefault())
             {
-                if (p == null)
+                if (process == null)
                 {
-                    return new FEZScreenShot(null, tick);
+                    return new FEZScreenShot(null, timestamp);
                 }
 
-                if (!NativeMethods.GetWindowRect(p.MainWindowHandle, out RECT rect))
+                if (!NativeMethods.GetWindowRect(process.MainWindowHandle, out RECT rect))
                 {
-                    return new FEZScreenShot(null, tick);
+                    return new FEZScreenShot(null, timestamp);
                 }
 
                 var size = new Size(rect.Right - rect.Left, rect.Bottom - rect.Top);
                 var bmp  = new Bitmap(size.Width, size.Height, PixelFormat.Format32bppArgb);
-                using (Graphics g = Graphics.FromImage(bmp))
+                using (var graphics = Graphics.FromImage(bmp))
                 {
-                    var hdc = NativeMethods.GetDC(p.MainWindowHandle);
+                    var hdc = NativeMethods.GetDC(process.MainWindowHandle);
 
-                    NativeMethods.BitBlt(g.GetHdc(), 0, 0, size.Width, size.Height, hdc, 0, 0, NativeMethods.TernaryRasterOperations.SRCCOPY);
+                    NativeMethods.BitBlt(graphics.GetHdc(), 0, 0, size.Width, size.Height, hdc, 0, 0, NativeMethods.TernaryRasterOperations.SRCCOPY);
 
-                    NativeMethods.ReleaseDC(p.MainWindowHandle, hdc);
+                    NativeMethods.ReleaseDC(process.MainWindowHandle, hdc);
                 }
 
-                return new FEZScreenShot(bmp, tick);
+                return new FEZScreenShot(bmp, timestamp);
             }
         }
     }

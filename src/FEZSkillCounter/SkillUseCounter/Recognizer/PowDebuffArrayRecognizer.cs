@@ -21,6 +21,10 @@ namespace SkillUseCounter.Recognizer
         /// この数までバフが増えないだろうという想定での個数。
         /// </remarks>
         private const int MaxPowerDebuffCount = 10;
+
+        /// <summary>
+        /// L*a*b色空間上での色差の閾値
+        /// </summary>
         private const double ColorDiffThreashold = 10.0d;
 
         // パワーブレイクかどうか判定する色
