@@ -21,10 +21,15 @@ namespace FEZSkillCounter
         {
             InitializeComponent();
 
+            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
+            {
+                Logger.WriteException(e.Exception);
+            };
+
             SkillCountDataGrid.ItemsSource = _skillList;
 
             Loaded              += MainWindow_Loaded;
-            MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
+            //MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
             _skillUseService.WarCanceled        += _skillUseService_WarCanceled;
@@ -36,6 +41,8 @@ namespace FEZSkillCounter
             _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
 
             UpdateSkillText();
+
+            Logger.WriteLine("FEZSkillCounter started.");
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -43,15 +50,25 @@ namespace FEZSkillCounter
             _skillUseService.Start();
         }
 
-        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (e.ButtonState != MouseButtonState.Pressed)
+            foreach (var s in _skillList)
             {
-                return;
+                s.Reset();
             }
 
-            DragMove();
+            UpdateSkillText();
         }
+
+        //private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (e.ButtonState != MouseButtonState.Pressed)
+        //    {
+        //        return;
+        //    }
+
+        //    DragMove();
+        //}
 
         private void _skillUseService_WarStarted(object sender, Map e)
         {
@@ -157,16 +174,6 @@ namespace FEZSkillCounter
             {
                 sw.WriteLine(text);
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var s in _skillList)
-            {
-                s.Reset();
-            }
-
-            UpdateSkillText();
         }
     }
 }

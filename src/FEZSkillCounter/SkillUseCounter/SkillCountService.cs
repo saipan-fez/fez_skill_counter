@@ -85,7 +85,7 @@ namespace SkillUseCounter
 
             AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
             {
-                Logger.WriteLine(e.Exception.ToString());
+                Logger.WriteException(e.Exception);
             };
 
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, e);
@@ -93,7 +93,7 @@ namespace SkillUseCounter
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, e);
             _warStateRecognizer.WarStarted    += (_, e) =>
             {
-                Logger.WriteLine("戦争開始");
+                Logger.WriteLine("War started.");
 
                 // 開始時に各種数値をリセットする
                 Reset();
@@ -101,16 +101,14 @@ namespace SkillUseCounter
             };
             _warStateRecognizer.WarCanceled += (_, e) =>
             {
-                Logger.WriteLine("戦争キャンセル");
+                Logger.WriteLine("War canceled.");
                 WarCanceled?.Invoke(this, e);
             };
             _warStateRecognizer.WarFinished += (_, e) =>
             {
-                Logger.WriteLine("戦争終了");
+                Logger.WriteLine("War finished.");
                 WarFinished?.Invoke(this, e);
             };
-
-            Logger.WriteLine("起動");
         }
 
         /// <summary>
@@ -128,10 +126,11 @@ namespace SkillUseCounter
                 _cts = new CancellationTokenSource();
                 var token = _cts.Token;
                 _task = Task.Run(() => { Run(token); }, token);
+
+                Logger.WriteLine("SkillCountService started.");
             }
             catch
             {
-                // TODO: errorハンドリング
                 Stop();
                 throw;
             }
@@ -149,12 +148,13 @@ namespace SkillUseCounter
 
             try
             {
+                Logger.WriteLine("SkillCountService stopped.");
+
                 _cts.Cancel(false);
                 _task.Wait();
             }
             catch
             {
-                // TODO: errorハンドリング
                 throw;
             }
             finally
@@ -170,7 +170,7 @@ namespace SkillUseCounter
         /// </summary>
         private void Reset()
         {
-            Logger.WriteLine("リセット");
+            Logger.WriteLine("SkillCountService reset.");
 
             _skillArrayRecognizer.Reset();
             _powDebuffArrayRecognizer.Reset();
@@ -211,8 +211,9 @@ namespace SkillUseCounter
                 { }
                 catch
                 {
-                    // TODO: errorハンドリング
-                    throw;
+                    // 毎回出るエラーだった場合、エラーが出続けることになるため
+                    // エラー発生時は終了する。
+                    break;
                 }
             }
         }
