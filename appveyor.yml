@@ -5,10 +5,10 @@ configuration: Release
 platform: Any CPU
 before_build:
 - cmd: >-
-    cd src/FEZSkillCounter
+    cd src\FEZSkillCounter
     nuget restore
 build:
-  project: src/FEZSkillCounter/FEZSkillCounter.sln
+  project: src\FEZSkillCounter\FEZSkillCounter.sln
   verbosity: minimal
 artifacts:
 - path: src\FEZSkillCounter\FEZSkillCounter\bin\$(configuration)

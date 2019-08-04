@@ -10,7 +10,10 @@ namespace SkillUseCounterTest
     {
         SkillUseAlgorithm algo;
 
-        private readonly Skill TestSkill = new Skill("Name", "ShorName", new int[]{ 10, 15, 20 }, true);
+        private readonly Skill[] TestSkill = new Skill[]
+        {
+            new Skill("Name", "ShorName", new int[]{ 10, 15, 20 }, true)
+        };
         private readonly PowDebuff[] EmptyPowDebuff = new PowDebuff[0];
         private readonly PowDebuff[] PowerBreak = new PowDebuff[]
         {
@@ -26,7 +29,7 @@ namespace SkillUseCounterTest
         [TestMethod]
         public void Pow減少なし()
         {
-            Assert.IsFalse(algo.IsSkillUsed(0, 100, TestSkill, EmptyPowDebuff));
+            Assert.IsNull(algo.RecognizeUsedSkill(0, 100, TestSkill, EmptyPowDebuff));
             Assert.IsFalse(algo.IsSkillUsed(20, 100, TestSkill, EmptyPowDebuff));
             Assert.IsFalse(algo.IsSkillUsed(40, 100, TestSkill, EmptyPowDebuff));
         }
