@@ -6,6 +6,7 @@ platform: Any CPU
 before_build:
 - cmd: >-
     cd src\FEZSkillCounter
+
     nuget restore
 build:
   project: src\FEZSkillCounter\FEZSkillCounter.sln
