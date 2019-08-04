@@ -1,0 +1,15 @@
+version: 0.1.{build}
+skip_non_tags: true
+image: Visual Studio 2019
+configuration: Release
+platform: Any CPU
+before_build:
+- cmd: >-
+    cd src/FEZSkillCounter
+    nuget restore
+build:
+  project: src/FEZSkillCounter/FEZSkillCounter.sln
+  verbosity: minimal
+artifacts:
+- path: src\FEZSkillCounter\FEZSkillCounter\bin\$(configuration)
+  name: fez_skill_counter
