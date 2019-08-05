@@ -197,8 +197,8 @@ namespace SkillUseCounter.Storage
                 //{ R.Sorcerer_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Sorcerer_通常攻撃), "通常", 0) },
                 //{ R.Sorcerer_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Sorcerer_通常攻撃_S), "通常", 0) },
 
-                { R.Warrior_アサルトエッジ.SHA1Hash(), Skill.Create(nameof(R.Warrior_アサルトエッジ), "アサルト", 42) },
-                { R.Warrior_アサルトエッジ_S.SHA1Hash(), Skill.Create(nameof(R.Warrior_アサルトエッジ_S), "アサルト", 42) },
+                { R.Warrior_アサルトエッジ.SHA1Hash(), Skill.Create(nameof(R.Warrior_アサルトエッジ), "アサルト", 48) },
+                { R.Warrior_アサルトエッジ_S.SHA1Hash(), Skill.Create(nameof(R.Warrior_アサルトエッジ_S), "アサルト", 48) },
                 { R.Warrior_アタックレインフォース.SHA1Hash(), Skill.Create(nameof(R.Warrior_アタックレインフォース), "アタレ", 40) },
                 { R.Warrior_アタックレインフォース_S.SHA1Hash(), Skill.Create(nameof(R.Warrior_アタックレインフォース_S), "アタレ", 40) },
                 { R.Warrior_アーススタンプ.SHA1Hash(), Skill.Create(nameof(R.Warrior_アーススタンプ), "スタンプ", 36) },
