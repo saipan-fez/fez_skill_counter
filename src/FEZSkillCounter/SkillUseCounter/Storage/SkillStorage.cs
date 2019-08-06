@@ -14,6 +14,8 @@ namespace SkillUseCounter.Storage
         {
             Table = new Dictionary<string, Skill>()
             {
+                { R.Cestus_バックハンドブロウ.SHA1Hash(), Skill.Create(nameof(R.Cestus_バックハンドブロウ), "バインド", 16) },
+                { R.Cestus_バックハンドブロウ_S.SHA1Hash(), Skill.Create(nameof(R.Cestus_バックハンドブロウ_S), "バインド", 16) },
                 { R.Cestus_アースバインド.SHA1Hash(), Skill.Create(nameof(R.Cestus_アースバインド), "バインド", 42) },
                 { R.Cestus_アースバインド_S.SHA1Hash(), Skill.Create(nameof(R.Cestus_アースバインド_S),"バインド", 42) },
                 { R.Cestus_インテンスファイ.SHA1Hash(), Skill.Create(nameof(R.Cestus_インテンスファイ), "ファイ", 30) },

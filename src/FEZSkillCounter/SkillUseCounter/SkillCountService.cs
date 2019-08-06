@@ -220,8 +220,11 @@ namespace SkillUseCounter
 
         private bool Analyze()
         {
-            using (var screenShot = _screenShotStorage.Shoot())
+            //using (var screenShot = _screenShotStorage.Shoot())
+            using (var bitmap = System.Drawing.Bitmap.FromFile(@"C:\Users\usr\Desktop\スキル認識されない.png"))
             {
+                var screenShot = new FEZScreenShot((System.Drawing.Bitmap)bitmap, DateTime.Now.Ticks);
+
                 // 解析可能か確認
                 if (!_preRecognizer.Recognize(screenShot.Image))
                 {

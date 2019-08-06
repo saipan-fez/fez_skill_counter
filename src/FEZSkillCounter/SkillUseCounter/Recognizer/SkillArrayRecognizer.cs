@@ -68,6 +68,7 @@ namespace SkillUseCounter.Recognizer
                 using (var b = bitmap.Clone(r, PixelFormat.Format24bppRgb))
                 {
                     var hash = b.SHA1Hash();
+                    b.Save(i + ".bmp");
 
                     skills[i] = SkillStorage.Table.ContainsKey(hash) ?
                         SkillStorage.Table[hash] :
