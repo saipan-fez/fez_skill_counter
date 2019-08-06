@@ -222,8 +222,6 @@ namespace SkillUseCounter
         {
             using (var screenShot = _screenShotStorage.Shoot())
             {
-                var screenShot = new FEZScreenShot((System.Drawing.Bitmap)bitmap, DateTime.Now.Ticks);
-
                 // 解析可能か確認
                 if (!_preRecognizer.Recognize(screenShot.Image))
                 {
