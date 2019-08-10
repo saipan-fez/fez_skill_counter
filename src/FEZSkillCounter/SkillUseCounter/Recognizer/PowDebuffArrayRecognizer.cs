@@ -28,8 +28,8 @@ namespace SkillUseCounter.Recognizer
         private const double ColorDiffThreashold = 10.0d;
 
         // パワーブレイクかどうか判定する色
-        private readonly RGBColor PowerBreakCmpColor1 = new RGBColor (Color.FromArgb(30, 125, 183));
-        private readonly RGBColor PowerBreakCmpColor2 = new RGBColor (Color.FromArgb(49, 134, 187));
+        private readonly RGBColor PowerBreakCmpColor1 = new RGBColor(Color.FromArgb(30, 125, 183));
+        private readonly RGBColor PowerBreakCmpColor2 = new RGBColor(Color.FromArgb(49, 134, 187));
 
         // パワーブレイク
         //   Lv1-3で減少Powが異なる

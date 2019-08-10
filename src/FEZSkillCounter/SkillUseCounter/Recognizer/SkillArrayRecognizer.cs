@@ -4,12 +4,15 @@ using SkillUseCounter.Storage;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace SkillUseCounter.Recognizer
 {
     internal class SkillArrayRecognizer : IResettableRecognizer<Skill[]>
     {
         public const Skill[] InvalidSkills = null;
+
+        private const int Threshold = 3;
 
         // 各スキルが描かれている位置 (x座標のみ画像右側からの相対座標)
         private readonly Rectangle[] SkillRectTable = new Rectangle[]
@@ -23,6 +26,8 @@ namespace SkillUseCounter.Recognizer
             new Rectangle(-30, 214, 12, 12),
             new Rectangle(-30, 246, 12, 12),
         };
+
+        private object _obj = new object();
 
         private Skill[] _previousSkill = InvalidSkills;
 
@@ -60,23 +65,54 @@ namespace SkillUseCounter.Recognizer
         {
             var skills = new Skill[SkillRectTable.Length];
 
-            for (int i = 0; i < SkillRectTable.Length; i++)
+            Parallel.For(0, SkillRectTable.Length, i =>
             {
-                var r = SkillRectTable[i];
-                r.X = bitmap.Width + r.X;
-
-                using (var b = bitmap.Clone(r, PixelFormat.Format24bppRgb))
+                Bitmap b;
+                lock (_obj)
                 {
-                    var hash = b.SHA1Hash();
-                    b.Save(i + ".bmp");
+                    var r = SkillRectTable[i];
+                    r.X = bitmap.Width + r.X;
+                    b = bitmap.Clone(r, PixelFormat.Format24bppRgb);
+                }
 
-                    skills[i] = SkillStorage.Table.ContainsKey(hash) ?
-                        SkillStorage.Table[hash] :
-                        Skill.Empty;
+                skills[i] = Skill.Empty;
+
+                var barray = b.ConvertToByteArray();
+
+                foreach (var skill in SkillStorage.Table)
+                {
+                    if (Compare(barray, skill.Value.Data))
+                    {
+                        skills[i] = skill.Value;
+                        break;
+                    }
+                }
+
+                b.Dispose();
+            });
+
+            return skills;
+        }
+
+        private bool Compare(byte[] b1, byte[] b2)
+        {
+            if (b1.Length != b2.Length)
+            {
+                return false;
+            }
+
+            // 環境によって何故か微妙に色が異なることがあるため、
+            // 完全一致ではなく閾値以内であれば一致とする。
+            // なおL*a*b色空間では誤認識が多かったため、あえてRGB色空間で色差をみる。
+            for (int i = 0; i < b1.Length; i++)
+            {
+                if (Math.Abs(b1[i] - b2[i]) > Threshold)
+                {
+                    return false;
                 }
             }
 
-            return skills;
+            return true;
         }
     }
 }

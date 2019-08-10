@@ -1,4 +1,7 @@
-﻿namespace SkillUseCounter.Entity
+﻿using System.Drawing;
+using SkillUseCounter.Extension;
+
+namespace SkillUseCounter.Entity
 {
     public class Skill
     {
@@ -6,23 +9,25 @@
 
         public static Skill Empty => new Skill(UnknownSkillName, UnknownSkillName, new int[] { int.MaxValue }, false);
 
-        public string Name { get; }
+        public string Name      { get; }
         public string ShortName { get; }
-        public int[] Pow { get; }
-        public bool IsActive { get; }
+        public int[]  Pow       { get; }
+        public bool   IsActive  { get; }
+        public byte[] Data      { get; }
 
         public Skill()
         { }
 
-        public Skill(string name, string shortName, int[] pow, bool isActive)
+        public Skill(string name, string shortName, int[] pow, bool isActive, byte[] data = null)
         {
             Name      = name;
             ShortName = shortName;
             Pow       = pow;
             IsActive  = isActive;
+            Data      = data;
         }
 
-        public static Skill Create(string resourceName, string shortName, params int[] pow)
+        public static Skill CreateFromResource(string resourceName, Bitmap bitmap, string shortName, params int[] pow)
         {
             var name = resourceName
                 .Replace("Cestus_", "")
@@ -35,7 +40,7 @@
 
             var isActive = (resourceName.IndexOf("_S") != -1);
 
-            return new Skill(name, shortName, pow, isActive);
+            return new Skill(name, shortName, pow, isActive, bitmap.ConvertToByteArray());
         }
 
         public bool IsEmpty()

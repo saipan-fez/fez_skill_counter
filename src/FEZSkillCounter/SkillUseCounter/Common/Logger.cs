@@ -20,29 +20,37 @@ namespace SkillUseCounter
                 return;
             }
 
+#if DEBUG
             if (_errorLogWriter == null)
             {
                 _errorLogWriter = CreateErrorLogWriter();
             }
+#endif
 
             var msg = GenerateLogMessage(ex.ToString());
 
+#if DEBUG
             _errorLogWriter.WriteLine(msg);
             _errorLogWriter.Flush();
+#endif
             Debug.WriteLine(msg);
         }
 
         public static void WriteLine(string message, [CallerMemberName] string memberName = "")
         {
+#if DEBUG
             if (_logWriter == null)
             {
                 _logWriter = CreateLogWriter();
             }
+#endif
 
             var msg = GenerateLogMessage($"{message} ({memberName})");
 
+#if DEBUG
             _logWriter.WriteLine(msg);
             _logWriter.Flush();
+#endif
             Debug.WriteLine(msg);
         }
 

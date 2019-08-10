@@ -172,6 +172,8 @@
     <Content Include="assets\SkillBitmap\Cestus_ハードレインフォース_S.bmp" />
     <Content Include="assets\SkillBitmap\Cestus_ハームアクティベイト.bmp" />
     <Content Include="assets\SkillBitmap\Cestus_ハームアクティベイト_S.bmp" />
+    <Content Include="assets\SkillBitmap\Cestus_バックハンドブロウ.bmp" />
+    <Content Include="assets\SkillBitmap\Cestus_バックハンドブロウ_S.bmp" />
     <Content Include="assets\SkillBitmap\Cestus_ホーネットスティング.bmp" />
     <Content Include="assets\SkillBitmap\Cestus_ホーネットスティング_S.bmp" />
     <Content Include="assets\SkillBitmap\Cestus_通常攻撃.bmp" />
