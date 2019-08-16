@@ -29,8 +29,8 @@ namespace SkillUseCounter.Algorithm
         private long _previousTimeStamp;
         private int _previousPow;
         private PowDebuff[] _previousPowDebuff;
-        private Skill _previousActiveSkill;     // 1フレーム前に選択していたスキル
-        private Skill _previousSelectedSkill;   // 1つ前に選択していたスキル
+        private Skill _previousActiveSkill;     // 1フレーム以上前に選択していたスキル(必ずIsEmpty()=falseになる)
+        private Skill _previousSelectedSkill;   // 1つ前に選択していたスキル(必ずIsEmpty()=falseになる)
 
         private List<DebuffData> _debuffList = new List<DebuffData>();
         public IReadOnlyList<DebuffData> DebuffList
@@ -98,9 +98,13 @@ namespace SkillUseCounter.Algorithm
 
             // 選択中のスキル取得
             var activeSkill = skills.FirstOrDefault(x => x.IsActive);
+            if (activeSkill == null)
+            {
+                activeSkill = Skill.Empty;
+            }
 
             // 初回実行時は判定しようがないので終了
-            if (_previousPowDebuff == null || _previousPow == int.MinValue || _previousActiveSkill == null)
+            if (_previousPowDebuff == null || _previousPow == int.MinValue)
             {
                 goto Finish;
             }
@@ -127,6 +131,10 @@ namespace SkillUseCounter.Algorithm
                 // タイムスタンプの昇順でソート(＝ 直近のもの)
                 _debuffList = _debuffList.OrderBy(x => x.TimeStamp).ToList();
             }
+
+            //var ask = activeSkill != null ? activeSkill.Name : "null";
+            //Logger.WriteLine($"now:{pow} prev:{_previousPow}");
+            //Logger.WriteLine($"activeSkill:{ ask }");
 
             if (pow >= _previousPow)
             {
@@ -175,14 +183,22 @@ namespace SkillUseCounter.Algorithm
                 var tmpActiveSkill = activeSkill;
                 // パニはスキル発動と同時に1つ上のスキルが選択状態となる
                 // そのため特殊ケースとして1つ前に選択状態だったスキルを確認して判定する
-                if (_previousSelectedSkill != null &&
+                if (tmpActiveSkill != null && _previousSelectedSkill != null &&
                     _previousSelectedSkill.Name == "パニッシングストライク" &&
                     tmpActiveSkill.Name != "パニッシングストライク")
                 {
                     tmpActiveSkill = _previousSelectedSkill;
                 }
 
-                if (tmpActiveSkill.Pow.Any(x => Math.Abs(x - powDiff) < PowRegenerateThreashold))
+                // 現在選択中のスキルが不明な場合、解析できていた以前のスキル情報を使用する
+                // (ゲイザーはスキル発動と同時にスキルアイコンが特殊なものに変化するため)
+                if (tmpActiveSkill == null || tmpActiveSkill.IsEmpty())
+                {
+                    tmpActiveSkill = _previousActiveSkill;
+                }
+
+                if (tmpActiveSkill != null &&
+                    tmpActiveSkill.Pow.Any(x => Math.Abs(x - powDiff) < PowRegenerateThreashold))
                 {
                     Logger.WriteLine($"-------------------------");
                     Logger.WriteLine($"Detected to use skill. skill:{tmpActiveSkill.Name}");
@@ -219,15 +235,26 @@ namespace SkillUseCounter.Algorithm
     Finish:
             // 今回の値を保持
             //   _previousSelectedSkillのみ選択中のスキルが変更した場合のみ更新
-            if (_previousActiveSkill != null &&
+            if (_previousActiveSkill != null && activeSkill != null &&
+                !_previousActiveSkill.IsEmpty() && !activeSkill.IsEmpty() &&
                 _previousActiveSkill.Name != activeSkill.Name)
             {
                 _previousSelectedSkill = _previousActiveSkill;
             }
+            if (activeSkill != null && !activeSkill.IsEmpty())
+            {
+                _previousActiveSkill = activeSkill;
+            }
             _previousTimeStamp   = timeStamp;
             _previousPow         = pow;
             _previousPowDebuff   = powDebuff;
-            _previousActiveSkill = activeSkill;
+
+            //var pas = _previousActiveSkill != null ? _previousActiveSkill.Name : "null";
+            //var pss = _previousSelectedSkill != null ? _previousSelectedSkill.Name : "null";
+
+            //Logger.WriteLine($"_previousActiveSkill  :{pas}");
+            //Logger.WriteLine($"_previousSelectedSkill:{pss}");
+            //Logger.WriteLine($"-------------------------");
 
             return usedSkill;
         }

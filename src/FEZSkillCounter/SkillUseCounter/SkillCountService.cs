@@ -236,14 +236,10 @@ namespace SkillUseCounter
                 var skills     = _skillArrayRecognizer.Recognize(screenShot.Image);
                 var powDebuffs = _powDebuffArrayRecognizer.Recognize(screenShot.Image);
 
-                // 選択中スキルを取得
-                var activeSkill = skills.FirstOrDefault(x => x.IsActive);
-
                 // 取得失敗していれば終了
                 if (pow         == PowRecognizer.InvalidPow ||
-                    skills      == SkillArrayRecognizer.InvalidSkills ||
-                    powDebuffs  == PowDebuffArrayRecognizer.InvalidPowDebuffs ||
-                    activeSkill == default(Skill))
+                    //skills      == SkillArrayRecognizer.InvalidSkills ||
+                    powDebuffs  == PowDebuffArrayRecognizer.InvalidPowDebuffs)
                 {
                     return false;
                 }

@@ -46,8 +46,8 @@ namespace SkillUseCounter.Storage
                 { R.Cestus_ハームアクティベイト_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Cestus_ハームアクティベイト_S), R.Cestus_ハームアクティベイト_S, "ハーム", 24) },
                 { R.Cestus_ホーネットスティング.SHA1Hash(), Skill.CreateFromResource(nameof(R.Cestus_ホーネットスティング), R.Cestus_ホーネットスティング, "ホネ", 25) },
                 { R.Cestus_ホーネットスティング_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Cestus_ホーネットスティング_S), R.Cestus_ホーネットスティング_S, "ホネ", 25) },
-                //{ R.Cestus_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Cestus_通常攻撃), R.Cestus_通常攻撃, "通常", 0) },
-                //{ R.Cestus_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Cestus_通常攻撃_S), R.Cestus_通常攻撃_S, "通常", 0) },
+                { R.Cestus_通常攻撃.SHA1Hash(), Skill.CreateFromResource(nameof(R.Cestus_通常攻撃), R.Cestus_通常攻撃, "通常", int.MaxValue) },
+                { R.Cestus_通常攻撃_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Cestus_通常攻撃_S), R.Cestus_通常攻撃_S, "通常", int.MaxValue) },
 
                 { R.Fencer_アクセラレーション.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_アクセラレーション), R.Fencer_アクセラレーション, "アクセラレーション", 25, 28) },
                 { R.Fencer_アクセラレーション_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_アクセラレーション_S), R.Fencer_アクセラレーション_S, "アクセラレーション", 25, 28) },
@@ -77,8 +77,8 @@ namespace SkillUseCounter.Storage
                 { R.Fencer_リバースキック_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_リバースキック_S), R.Fencer_リバースキック_S, "リバキ", 16) },
                 { R.Fencer_ヴィガーエイド.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_ヴィガーエイド), R.Fencer_ヴィガーエイド, "ヴィガー", 25, 28) },
                 { R.Fencer_ヴィガーエイド_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_ヴィガーエイド_S), R.Fencer_ヴィガーエイド_S, "ヴィガー", 25, 28) },
-                //{ R.Fencer_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Fencer_通常攻撃), R.Fencer_通常攻撃, "通常", 0) },
-                //{ R.Fencer_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Fencer_通常攻撃_S), R.Fencer_通常攻撃_S, "通常", 0) },
+                { R.Fencer_通常攻撃.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_通常攻撃), R.Fencer_通常攻撃, "通常", int.MaxValue) },
+                { R.Fencer_通常攻撃_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Fencer_通常攻撃_S), R.Fencer_通常攻撃_S, "通常", int.MaxValue) },
                 
                 { R.Scout_アローレイン.SHA1Hash(), Skill.CreateFromResource(nameof(R.Scout_アローレイン), R.Scout_アローレイン, "レイン", 36) },
                 { R.Scout_アローレイン_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Scout_アローレイン_S), R.Scout_アローレイン_S, "レイン", 36) },
@@ -140,8 +140,8 @@ namespace SkillUseCounter.Storage
                 //{ R.Scout_ホワイトバレット_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Scout_ホワイトバレット_S), R.Scout_ホワイトバレット_S, "ホワイトバレット", 30) },
                 //{ R.Scout_ラッシュバレット.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Scout_ラッシュバレット), R.Scout_ラッシュバレット, "ラッシュバレット", 32) },
                 //{ R.Scout_ラッシュバレット_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Scout_ラッシュバレット_S), R.Scout_ラッシュバレット_S, "ラッシュバレット", 32) },
-                //{ R.Scout_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Scout_通常攻撃), R.Scout_通常攻撃, "通常", 0) },
-                //{ R.Scout_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Scout_通常攻撃_S), R.Scout_通常攻撃_S, "通常", 0) },
+                { R.Scout_通常攻撃.SHA1Hash(), Skill.CreateFromResource(nameof(R.Scout_通常攻撃), R.Scout_通常攻撃, "通常", int.MaxValue) },
+                { R.Scout_通常攻撃_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Scout_通常攻撃_S), R.Scout_通常攻撃_S, "通常", int.MaxValue) },
 
                 { R.Sorcerer_アイスジャベリン.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_アイスジャベリン), R.Sorcerer_アイスジャベリン, "ジャベ", 30) },
                 { R.Sorcerer_アイスジャベリン_D.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_アイスジャベリン_D), R.Sorcerer_アイスジャベリン_D, "ジャベ", 30) },
@@ -196,8 +196,8 @@ namespace SkillUseCounter.Storage
                 { R.Sorcerer_レーザーブラスト_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_レーザーブラスト_S), R.Sorcerer_レーザーブラスト_S, "レーザー", 68) },
                 { R.Sorcerer_詠唱.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_詠唱), R.Sorcerer_詠唱, "詠唱", 20) },
                 { R.Sorcerer_詠唱_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_詠唱_S), R.Sorcerer_詠唱_S, "詠唱", 20) },
-                //{ R.Sorcerer_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Sorcerer_通常攻撃), R.Sorcerer_通常攻撃, "通常", 0) },
-                //{ R.Sorcerer_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Sorcerer_通常攻撃_S), R.Sorcerer_通常攻撃_S, "通常", 0) },
+                { R.Sorcerer_通常攻撃.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_通常攻撃), R.Sorcerer_通常攻撃, "通常", int.MaxValue) },
+                { R.Sorcerer_通常攻撃_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_通常攻撃_S), R.Sorcerer_通常攻撃_S, "通常", int.MaxValue) },
 
                 { R.Warrior_アサルトエッジ.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_アサルトエッジ), R.Warrior_アサルトエッジ, "アサルト", 48) },
                 { R.Warrior_アサルトエッジ_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_アサルトエッジ_S), R.Warrior_アサルトエッジ_S, "アサルト", 48) },
@@ -239,8 +239,8 @@ namespace SkillUseCounter.Storage
                 { R.Warrior_ヘビースマッシュ_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_ヘビースマッシュ_S), R.Warrior_ヘビースマッシュ_S, "ヘビスマ", 34) },
                 { R.Warrior_ベヒモステイル.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_ベヒモステイル), R.Warrior_ベヒモステイル, "ベヒ", 32) },
                 { R.Warrior_ベヒモステイル_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_ベヒモステイル_S), R.Warrior_ベヒモステイル_S, "ベヒ", 32) },
-                //{ R.Warrior_通常攻撃.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Warrior_通常攻撃), R.Warrior_通常攻撃, 0) },
-                //{ R.Warrior_通常攻撃_S.SHA1Hash(), Skill.CreateFromResourceFileName(nameof(R.Warrior_通常攻撃_S), R.Warrior_通常攻撃_S, 0) },
+                { R.Warrior_通常攻撃.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_通常攻撃), R.Warrior_通常攻撃, "通常", int.MaxValue) },
+                { R.Warrior_通常攻撃_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Warrior_通常攻撃_S), R.Warrior_通常攻撃_S, "通常", int.MaxValue) },
             };
         }
     }
