@@ -85,7 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SkillCountStorage.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,6 +128,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RepositoryService\RepositoryService.csproj">
+      <Project>{2eeb37b9-d902-4b6a-b6fc-26e0e4773083}</Project>
+      <Name>RepositoryService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SkillUseCounter\SkillUseCounter.csproj">
       <Project>{06ecaba1-59f0-42ac-b554-bc13525ab2b6}</Project>
       <Name>SkillUseCounter</Name>

@@ -1,5 +1,6 @@
 ﻿using FEZSkillCounter.Entity;
 using MahApps.Metro.Controls;
+using RepositoryService;
 using SkillUseCounter;
 using SkillUseCounter.Entity;
 using System;
@@ -16,6 +17,7 @@ namespace FEZSkillCounter
     {
         private SkillCountService                 _skillUseService = new SkillCountService();
         private ObservableCollection<SkillCount>  _skillList       = new ObservableCollection<SkillCount>();
+        private SkillCountRepository _skillCountRepository;
 
         public MainWindow()
         {
@@ -48,6 +50,9 @@ namespace FEZSkillCounter
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _skillUseService.Start();
+
+            // TODO: ファイルパス
+            _skillCountRepository = SkillCountRepository.Create("");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
