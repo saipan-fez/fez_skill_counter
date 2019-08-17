@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using RepositoryService.Entity;
+using FEZSkillCounter.Model.Entity;
 using System.IO;
 
-namespace RepositoryService
+namespace FEZSkillCounter.Model.Repository
 {
     public class SkillCountDbContext : DbContext
     {
@@ -11,6 +11,10 @@ namespace RepositoryService
 
         public DbSet<SkillCountEntity> SkillCountDbSet { get; protected set; }
         public string DbFilePath { get; private set; }
+
+        public SkillCountDbContext() : this(null)
+        {
+        }
 
         public SkillCountDbContext(string dbFilePath)
         {
@@ -20,7 +24,7 @@ namespace RepositoryService
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var filePath = DbFilePath;
-            if (!File.Exists(filePath))
+            if (string.IsNullOrEmpty(filePath) && !File.Exists(filePath))
             {
                 filePath = GetDefaultDbFilePath();
             }

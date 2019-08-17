@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="FEZSkillCounter.MainWindow"
+﻿<Controls:MetroWindow x:Class="FEZSkillCounter.View.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -64,7 +64,6 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="スキル使用回数" Style="{StaticResource HeaderTextBlock}" />
                     <TextBlock Grid.Row="0" Name="MapText" HorizontalAlignment="Right" Style="{StaticResource ValueTextBlock}" />
-                    <TextBlock Grid.Row="1" Name="SkillText" Visibility="Collapsed" FontSize="20" MinHeight="290" Style="{StaticResource MaterialDesignBody2TextBlock}" />
                     <DataGrid Grid.Row="1" Name="SkillCountDataGrid" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding Name}" Width="*" />

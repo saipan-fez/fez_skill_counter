@@ -1,24 +1,21 @@
-﻿using FEZSkillCounter.Entity;
+﻿using FEZSkillCounter.Model.Entity;
+using FEZSkillCounter.Model.Repository;
 using MahApps.Metro.Controls;
-using RepositoryService;
 using SkillUseCounter;
 using SkillUseCounter.Entity;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
-using System.Windows.Input;
 
-namespace FEZSkillCounter
+namespace FEZSkillCounter.View
 {
     public partial class MainWindow : MetroWindow
     {
-        private SkillCountService                 _skillUseService = new SkillCountService();
-        private ObservableCollection<SkillCount>  _skillList       = new ObservableCollection<SkillCount>();
-        private SkillCountRepository _skillCountRepository;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -28,11 +25,11 @@ namespace FEZSkillCounter
                 Logger.WriteException(e.Exception);
             };
 
-            SkillCountDataGrid.ItemsSource = _skillList;
+            _currentSkillCount     = new SkillCountEntity();
+            _skillCountHistoryList = new ObservableCollection<SkillCountEntity>();
+            SkillCountDataGrid.ItemsSource = _currentSkillCount.Details;
 
-            Loaded              += MainWindow_Loaded;
-            //MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
-
+            Loaded                              += MainWindow_Loaded;
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
             _skillUseService.WarCanceled        += _skillUseService_WarCanceled;
             _skillUseService.WarFinished        += _skillUseService_WarFinished;
@@ -49,31 +46,20 @@ namespace FEZSkillCounter
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            _skillUseService = new SkillCountService();
             _skillUseService.Start();
-
-            // TODO: ファイルパス
-            _skillCountRepository = SkillCountRepository.Create("");
+            _skillCountRepository = SkillCountRepository.Create(DbFilePath);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var s in _skillList)
+            foreach (var d in _currentSkillCount.Details)
             {
-                s.Reset();
+                d.Count = 0;
             }
 
             UpdateSkillText();
         }
-
-        //private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (e.ButtonState != MouseButtonState.Pressed)
-        //    {
-        //        return;
-        //    }
-
-        //    DragMove();
-        //}
 
         private void _skillUseService_WarStarted(object sender, Map e)
         {
@@ -99,6 +85,8 @@ namespace FEZSkillCounter
             {
                 StatusText.Text = "戦争終了";
                 MapText.Text    = e.IsEmpty() ? "unknown" : e.Name;
+
+                SaveSkillCount();
             })));
         }
 
@@ -178,7 +166,25 @@ namespace FEZSkillCounter
             using (var sw = new StreamWriter("skillcount.txt", false, Encoding.UTF8))
             {
                 sw.WriteLine(text);
+                sw.Flush();
             }
+        }
+
+        private void SaveSkillCount(string mapName, IEnumerable<SkillCount> skillCounts)
+        {
+            if (!skillCounts.Any())
+            {
+                return;
+            }
+
+            var entity = new SkillCountEntity()
+            {
+                RecordDate = DateTime.Now,
+                MapName    = mapName,
+                WorkName   = skillCounts.First(x => x.s).
+            };
+
+            _skillCountRepository.Add(
         }
     }
 }

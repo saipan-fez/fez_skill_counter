@@ -58,7 +58,7 @@ namespace SkillUseCounter.Recognizer
         public void Reset()
         {
             _previousSkill = InvalidSkills;
-            Updated?.Invoke(this, _previousSkill);
+            Updated?.Invoke(this, InvalidSkills);
         }
 
         private Skill[] GetSkills(Bitmap bitmap)

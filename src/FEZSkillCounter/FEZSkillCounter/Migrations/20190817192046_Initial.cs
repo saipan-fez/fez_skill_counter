@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RepositoryService.Migrations
+namespace FEZSkillCounter.Migrations
 {
     public partial class Initial : Migration
     {

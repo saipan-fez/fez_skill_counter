@@ -6,11 +6,13 @@ namespace SkillUseCounter.Entity
     public class Skill
     {
         private const string UnknownSkillName = "Unknown";
+        private const string UnknownWorkName = "Unknown";
 
-        public static Skill Empty => new Skill(UnknownSkillName, UnknownSkillName, new int[] { int.MaxValue }, false);
+        public static Skill Empty => new Skill(UnknownSkillName, UnknownSkillName, UnknownWorkName, new int[] { int.MaxValue }, false);
 
         public string Name      { get; }
         public string ShortName { get; }
+        public string WorkName  { get; }
         public int[]  Pow       { get; }
         public bool   IsActive  { get; }
         public byte[] Data      { get; }
@@ -18,10 +20,11 @@ namespace SkillUseCounter.Entity
         public Skill()
         { }
 
-        public Skill(string name, string shortName, int[] pow, bool isActive, byte[] data = null)
+        public Skill(string name, string shortName, string workName, int[] pow, bool isActive, byte[] data = null)
         {
             Name      = name;
             ShortName = shortName;
+            WorkName  = workName;
             Pow       = pow;
             IsActive  = isActive;
             Data      = data;
@@ -38,9 +41,36 @@ namespace SkillUseCounter.Entity
                 .Replace("_S", "")
                 .Replace("_D", "");
 
+            var workName = UnknownWorkName;
+            {
+                var idx = resourceName.IndexOf("_");
+                if (idx != -1)
+                {
+                    var w = resourceName.Substring(0, idx + 1);
+                    switch (w)
+                    {
+                        case "Cestus":
+                            workName = "セスタス";
+                            break;
+                        case "Fencer":
+                            workName = "フェンサー";
+                            break;
+                        case "Scout":
+                            workName = "スカウト";
+                            break;
+                        case "Sorcerer":
+                            workName = "ソーサラー";
+                            break;
+                        case "Warrior":
+                            workName = "ウォーリアー";
+                            break;
+                    }
+                }
+            }
+
             var isActive = (resourceName.IndexOf("_S") != -1);
 
-            return new Skill(name, shortName, pow, isActive, bitmap.ConvertToByteArray());
+            return new Skill(name, shortName, workName, pow, isActive, bitmap.ConvertToByteArray());
         }
 
         public bool IsEmpty()
