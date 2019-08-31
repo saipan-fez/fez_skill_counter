@@ -1,6 +1,6 @@
 ﻿using FEZSkillCounter.Model.Common;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FEZSkillCounter.Model.Entity
@@ -20,6 +20,6 @@ namespace FEZSkillCounter.Model.Entity
         public string WorkName { get { return _workName; } set { SetProperty(ref _workName, value); } }
         private string _workName = "Unknown";
 
-        public ObservableCollection<SkillCountDetailEntity> Details { get; set; } = new ObservableCollection<SkillCountDetailEntity>();
+        public List<SkillCountDetailEntity> Details { get; set; } = new List<SkillCountDetailEntity>();
     }
 }

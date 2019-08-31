@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using FEZSkillCounter;
-using FEZSkillCounter.Entity;
+using System.Threading.Tasks;
+using FEZSkillCounter.Model.Entity;
+using FEZSkillCounter.Model.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FEZSkillCounterTest
@@ -10,41 +11,106 @@ namespace FEZSkillCounterTest
     public class SkillCountRepositoryTest
     {
         [TestMethod]
-        public void Test()
+        public async Task Test()
         {
-            var entity        = new SkillCountEntity();
-            entity.RecordDate = DateTime.Now;
-            entity.MapName    = "test";
-            entity.WorkName   = "worrier";
-            entity.Details    = new List<SkillCountDetailEntity>()
+            var entity1        = new SkillCountEntity();
+            entity1.RecordDate = DateTime.Now;
+            entity1.MapName    = "test1";
+            entity1.WorkName   = "Worrier";
+            entity1.Details    = new List<SkillCountDetailEntity>()
             {
                 new SkillCountDetailEntity()
                 {
-                    //SkillCountDetailId = 1,
-                    SkillName = "SkillName1",
+                    SkillName      = "SkillName1",
                     SkillShortName = "SkillShortName1",
-                    Count = 10
+                    Count          = 10,
+                    WorkName       = "Worrier",
+                    Parent         = entity1
                 },
                 new SkillCountDetailEntity()
                 {
-                    //SkillCountDetailId = 2,
-                    SkillName = "SkillName2",
+                    SkillName      = "SkillName2",
                     SkillShortName = "SkillShortName2",
-                    Count = 20
+                    Count          = 20,
+                    WorkName       = "Worrier",
+                    Parent         = entity1
                 },
                 new SkillCountDetailEntity()
                 {
-                    //SkillCountDetailId = 3,
-                    SkillName = "SkillName3",
+                    SkillName      = "SkillName3",
                     SkillShortName = "SkillShortName3",
-                    Count = 30
+                    Count          = 30,
+                    WorkName       = "Worrier",
+                    Parent         = entity1
+                },
+            };
+            var entity2        = new SkillCountEntity();
+            entity2.RecordDate = DateTime.Now;
+            entity2.MapName    = "test2";
+            entity2.WorkName   = "Worrier";
+            entity2.Details    = new List<SkillCountDetailEntity>()
+            {
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName4",
+                    SkillShortName = "SkillShortName4",
+                    Count          = 40,
+                    WorkName       = "Worrier",
+                    Parent         = entity2
+                },
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName5",
+                    SkillShortName = "SkillShortName5",
+                    Count          = 50,
+                    WorkName       = "Worrier",
+                    Parent         = entity2
+                },
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName6",
+                    SkillShortName = "SkillShortName6",
+                    Count          = 60,
+                    WorkName       = "Worrier",
+                    Parent         = entity2
+                },
+            };
+            var entity3        = new SkillCountEntity();
+            entity3.RecordDate = DateTime.Now;
+            entity3.MapName    = "test3";
+            entity3.WorkName   = "Worrier";
+            entity3.Details    = new List<SkillCountDetailEntity>()
+            {
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName7",
+                    SkillShortName = "SkillShortName7",
+                    Count          = 70,
+                    WorkName       = "Worrier",
+                    Parent         = entity3
+                },
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName8",
+                    SkillShortName = "SkillShortName8",
+                    Count          = 80,
+                    WorkName       = "Worrier",
+                    Parent         = entity3
+                },
+                new SkillCountDetailEntity()
+                {
+                    SkillName      = "SkillName9",
+                    SkillShortName = "SkillShortName9",
+                    Count          = 90,
+                    WorkName       = "Worrier",
+                    Parent         = entity3
                 },
             };
 
-            var repository = SkillCountRepository.Create(".\\skillcount.db");
-            repository.Add(entity);
-
-
+            var repository = await SkillCountRepository.CreateAsync(".\\skillcount.db");
+            await repository.AddAsync(entity1);
+            await repository.AddAsync(entity2);
+            await repository.AddAsync(entity3);
         }
     }
 }

@@ -123,9 +123,9 @@ namespace SkillUseCounter
 
             try
             {
-                _cts = new CancellationTokenSource();
+                _cts      = new CancellationTokenSource();
                 var token = _cts.Token;
-                _task = Task.Run(() => { Run(token); }, token);
+                _task     = Task.Run(() => { Run(token); }, token);
 
                 Logger.WriteLine("SkillCountService started.");
             }
@@ -168,10 +168,11 @@ namespace SkillUseCounter
         /// <summary>
         /// スキル使用の監視状況をリセット
         /// </summary>
-        private void Reset()
+        public void Reset()
         {
             Logger.WriteLine("SkillCountService reset.");
 
+            _warStateRecognizer.Reset();
             _skillArrayRecognizer.Reset();
             _powDebuffArrayRecognizer.Reset();
             _powRecognizer.Reset();
@@ -238,7 +239,6 @@ namespace SkillUseCounter
 
                 // 取得失敗していれば終了
                 if (pow         == PowRecognizer.InvalidPow ||
-                    //skills      == SkillArrayRecognizer.InvalidSkills ||
                     powDebuffs  == PowDebuffArrayRecognizer.InvalidPowDebuffs)
                 {
                     return false;

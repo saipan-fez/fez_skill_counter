@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using Microsoft.Extensions.Logging;
+using SkillUseCounter;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace FEZSkillUseCounter
@@ -20,6 +23,10 @@ namespace FEZSkillUseCounter
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            AppDomain.CurrentDomain.FirstChanceException += (s, args) =>
+            {
+                Logger.WriteException(args.Exception);
+            };
         }
     }
 }

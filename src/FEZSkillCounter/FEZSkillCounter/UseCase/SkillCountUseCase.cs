@@ -4,11 +4,9 @@ using Reactive.Bindings;
 using SkillUseCounter;
 using SkillUseCounter.Entity;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FEZSkillCounter.UseCase
@@ -23,38 +21,36 @@ namespace FEZSkillCounter.UseCase
 
     public class SkillCountUseCase
     {
-        private static readonly string DbFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.db");
+        // TODO: ApoData\Localの下に置く
+        private static readonly string DbFilePath  = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.db");
+        private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
 
-        public ReactivePropertySlim<SkillCountEntity> CurrentSkillCount { get; }
-        public ReactiveCollection<SkillCountEntity>   SkillCountHitory  { get; }
-        public ReactivePropertySlim<WarEvents>        WarStatus         { get; }
-        public ReactivePropertySlim<double>           AverageFps        { get; }
-        public ReactivePropertySlim<int>              Pow               { get; }
-        public ReactivePropertySlim<string>           PowDebuffs        { get; }
+        public ReactivePropertySlim<string>               MapName                { get; }
+        public ReactivePropertySlim<string>               WorkName               { get; }
+        public ReactiveCollection<SkillCountDetailEntity> CurrentSkillCollection { get; }
+        public ReactiveCollection<SkillCountEntity>       SkillCountHistories    { get; }
+        public ReactivePropertySlim<WarEvents>            WarStatus              { get; }
+        public ReactivePropertySlim<double>               AverageFps             { get; }
+        public ReactivePropertySlim<int>                  Pow                    { get; }
+        public ReactivePropertySlim<string>               PowDebuffs             { get; }
 
-        private SkillCountRepository _skillCountRepository;
-        private SkillCountService    _skillUseService;
+        private SkillCountRepository     _skillCountRepository;
+        private SkillCountFileRepository _skillCountFileRepository;
+        private SkillCountService        _skillUseService;
 
-        private SkillCountUseCase()
+        public SkillCountUseCase()
         {
-            CurrentSkillCount = new ReactivePropertySlim<SkillCountEntity>(new SkillCountEntity());
-            SkillCountHitory  = new ReactiveCollection<SkillCountEntity>();
-            WarStatus         = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
-            AverageFps        = new ReactivePropertySlim<double>(0d);
-            Pow               = new ReactivePropertySlim<int>(0);
-            PowDebuffs        = new ReactivePropertySlim<string>(string.Empty);
+            MapName                = new ReactivePropertySlim<string>(string.Empty);
+            WorkName               = new ReactivePropertySlim<string>(string.Empty);
+            CurrentSkillCollection = new ReactiveCollection<SkillCountDetailEntity>();
+            SkillCountHistories    = new ReactiveCollection<SkillCountEntity>();
+            WarStatus              = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
+            AverageFps             = new ReactivePropertySlim<double>(0d);
+            Pow                    = new ReactivePropertySlim<int>(0);
+            PowDebuffs             = new ReactivePropertySlim<string>(string.Empty);
         }
 
-        public static async Task<SkillCountUseCase> CreateAsync()
-        {
-            var ret = new SkillCountUseCase();
-
-            await ret.CreateAsync(DbFilePath);
-
-            return ret;
-        }
-
-        private async Task CreateAsync(string dbFilePath)
+        public async Task SetUpAsync()
         {
             _skillUseService = new SkillCountService();
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
@@ -66,26 +62,26 @@ namespace FEZSkillCounter.UseCase
             _skillUseService.PowUpdated         += _skillUseService_PowUpdated;
             _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
 
-            _skillCountRepository = await SkillCountRepository.CreateAsync(dbFilePath);
-            SkillCountHitory.AddRangeOnScheduler(_skillCountRepository.GetSkillCounts());
+            _skillCountRepository = await SkillCountRepository.CreateAsync(DbFilePath);
+            SkillCountHistories.AddRangeOnScheduler(_skillCountRepository.GetSkillCounts());
+
+            _skillCountFileRepository = await SkillCountFileRepository.CreateAsync(TxtFilePath);
         }
 
         public void StartSkillCounter()
         {
-
+            _skillUseService.Start();
         }
 
         public void StopSkillCounter()
         {
-
+            _skillUseService.Stop();
         }
 
         public void ResetSkillCount()
         {
-            foreach (var d in CurrentSkillCount.Value.Details)
-            {
-                d.Reset();
-            }
+            _skillUseService.Reset();
+            CurrentSkillCollection.Clear();
 
             UpdateSkillText();
         }
@@ -102,12 +98,12 @@ namespace FEZSkillCounter.UseCase
             MapName.Value   = e.IsEmpty() ? string.Empty : e.Name;
         }
 
-        private void _skillUseService_WarFinished(object sender, Map e)
+        private async void _skillUseService_WarFinished(object sender, Map e)
         {
             WarStatus.Value = WarEvents.WarFinished;
             MapName.Value   = e.IsEmpty() ? string.Empty : e.Name;
 
-            SaveSkillCount();
+            await SaveSkillCountAsync();
         }
 
         private void _skillUseService_FpsUpdated(object sender, double e)
@@ -129,26 +125,17 @@ namespace FEZSkillCounter.UseCase
 
         private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
         {
-            bool requireUpdate = false;
+            var requireUpdate = false;
             if (skills != null)
             {
                 foreach (var s in skills.Where(x => !x.IsEmpty()))
                 {
-                    if (!CurrentSkillCount.Value.Details.Any(x => x.SkillName == s.Name))
-                    {
-                        var detail = new SkillCountDetailEntity()
-                        {
-                            SkillName      = s.Name,
-                            SkillShortName = s.ShortName
-                        };
-                        CurrentSkillCount.Value.Details.Add(detail);
-                        requireUpdate = true;
-                    }
+                    requireUpdate = AddSkillIfNotExists(s);
                 }
             }
             else
             {
-                CurrentSkillCount.Value = new SkillCountEntity();
+                CurrentSkillCollection.Clear();
                 requireUpdate = true;
             }
 
@@ -160,7 +147,10 @@ namespace FEZSkillCounter.UseCase
 
         private void _skillUseService_SkillCountIncremented(object sender, Skill skill)
         {
-            var skillCount = CurrentSkillCount.Value.Details.FirstOrDefault(x => x.SkillName == skill.Name);
+            // TODO: スキルカウントが反映されるまで遅い
+            AddSkillIfNotExists(skill);
+
+            var skillCount = CurrentSkillCollection.FirstOrDefault(x => x.SkillName == skill.Name);
             if (skillCount != null)
             {
                 skillCount.Increment();
@@ -169,22 +159,35 @@ namespace FEZSkillCounter.UseCase
             }
         }
 
-        private void UpdateSkillText()
+        private bool AddSkillIfNotExists(Skill s)
         {
-            var text = string.Join(
-                Environment.NewLine,
-                CurrentSkillCount.Value.Details.Select(x => x.SkillShortName + "：" + x.Count));
-
-            using (var sw = new StreamWriter("skillcount.txt", false, Encoding.UTF8))
+            if (CurrentSkillCollection.Any(x => x.SkillName == s.Name))
             {
-                sw.WriteLine(text);
-                sw.Flush();
+                return false;
             }
+
+            if (!s.IsEmpty())
+            {
+                WorkName.Value = s.WorkName;
+            }
+
+            CurrentSkillCollection.Add(new SkillCountDetailEntity()
+            {
+                SkillName      = s.Name,
+                SkillShortName = s.ShortName
+            });
+
+            return true;
         }
 
-        private void SaveSkillCount()
+        private void UpdateSkillText()
         {
-            if (!CurrentSkillCount.Value.Details.Any())
+            _skillCountFileRepository.Save(CurrentSkillCollection);
+        }
+
+        private async Task SaveSkillCountAsync()
+        {
+            if (!CurrentSkillCollection.Any())
             {
                 return;
             }
@@ -192,11 +195,12 @@ namespace FEZSkillCounter.UseCase
             var entity = new SkillCountEntity()
             {
                 RecordDate = DateTime.Now,
-                MapName    = mapName,
-                WorkName   = skillCounts.First(x => x.s).
+                MapName    = MapName.Value,
+                WorkName   = WorkName.Value,
+                Details    = CurrentSkillCollection.ToList()
             };
 
-            _skillCountRepository.Add(
+            await _skillCountRepository.AddAsync(entity);
         }
     }
 }

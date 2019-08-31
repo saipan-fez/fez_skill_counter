@@ -3,6 +3,7 @@ using FEZSkillCounter.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace FEZSkillCounter.Model.Repository
 {
@@ -40,7 +41,10 @@ namespace FEZSkillCounter.Model.Repository
 
         public IEnumerable<SkillCountEntity> GetSkillCounts()
         {
-            return _skillCountDbContext.SkillCountDbSet;
+            return _skillCountDbContext.SkillCountDbSet
+                .Include(nameof(SkillCountEntity.Details))
+                .OrderBy(x => x.RecordDate)
+                .ToList();
         }
     }
 }

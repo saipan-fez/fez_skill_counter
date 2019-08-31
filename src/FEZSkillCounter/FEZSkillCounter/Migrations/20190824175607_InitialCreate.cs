@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FEZSkillCounter.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,24 +30,25 @@ namespace FEZSkillCounter.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     SkillName = table.Column<string>(nullable: true),
                     SkillShortName = table.Column<string>(nullable: true),
+                    WorkName = table.Column<string>(nullable: true),
                     Count = table.Column<int>(nullable: false),
-                    SkillCountEntitySkillCountId = table.Column<int>(nullable: true)
+                    ParentSkillCountId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SkillCountDetailEntity", x => x.SkillCountDetailId);
                     table.ForeignKey(
-                        name: "FK_SkillCountDetailEntity_SkillCountDbSet_SkillCountEntitySkillCountId",
-                        column: x => x.SkillCountEntitySkillCountId,
+                        name: "FK_SkillCountDetailEntity_SkillCountDbSet_ParentSkillCountId",
+                        column: x => x.ParentSkillCountId,
                         principalTable: "SkillCountDbSet",
                         principalColumn: "SkillCountId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillCountDetailEntity_SkillCountEntitySkillCountId",
+                name: "IX_SkillCountDetailEntity_ParentSkillCountId",
                 table: "SkillCountDetailEntity",
-                column: "SkillCountEntitySkillCountId");
+                column: "ParentSkillCountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

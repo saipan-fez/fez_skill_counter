@@ -33,6 +33,12 @@ namespace SkillUseCounter.Recognizer
             _mapRecognizer = mapRecognizer ?? throw new ArgumentNullException(nameof(mapRecognizer));
         }
 
+        public void Reset()
+        {
+            _previousValidMap = Map.Empty;
+            _previousState    = WarState.Waiting;
+        }
+
         public void Report(Bitmap bitmap)
         {
             var state = _previousState;

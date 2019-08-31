@@ -2,12 +2,18 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                      xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+                      xmlns:System="clr-namespace:System;assembly=mscorlib"
+                      xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+                      xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+                      xmlns:vm="clr-namespace:FEZSkillCounter.ViewModel"
                       mc:Ignorable="d"
-                      Title="FEZ Skill Counter" SaveWindowPosition="True"
-                      Height="650" Width="400">
+                      Title="FEZ Skill Counter" TitleCharacterCasing="Normal" SaveWindowPosition="True"
+                      Height="600" Width="400">
     <Controls:MetroWindow.Resources>
         <Style TargetType="materialDesign:ColorZone">
             <Setter Property="Mode" Value="Standard"/>
@@ -17,78 +23,296 @@
             <Setter Property="Margin" Value="0,5,0,5"/>
             <Setter Property="Effect" Value="{DynamicResource MaterialDesignShadowDepth1}"/>
         </Style>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+        </Style>
         <Style x:Key="HeaderTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
             <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="ValueTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
+        <Style x:Key="ValueTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
             <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </Controls:MetroWindow.Resources>
-    <Grid Margin="10">
-        <!-- デバッグ用情報 -->
-        <StackPanel>
-            <Button Content="Clear" Height="30" Width="70" Margin="0,0,0,10" HorizontalAlignment="Left" Click="Button_Click" />
-            <materialDesign:ColorZone>
+    <Controls:MetroWindow.DataContext>
+        <vm:MainWindowViewModel/>
+    </Controls:MetroWindow.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding ClosedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <dockablz:Layout>
+        <dragablz:TabablzControl>
+            <TabItem IsSelected="True">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <materialDesign:PackIcon Kind="Done" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
+                        <Separator Width="5" Background="Transparent"/>
+                        <TextBlock Text="Latest" Foreground="{DynamicResource MaterialDesignColumnHeader}"
+                                   FontSize="13" Margin="0,0,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <materialDesign:ColorZone Margin="10">
+                    <Grid>
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="CurrentScoreCountCollectionViewSource"
+                                                  Source="{Binding CurrentSkillCollection}" IsLiveSortingRequested="True">
+                                <CollectionViewSource.SortDescriptions>
+                                    <ComponentModel:SortDescription PropertyName="RecordDate" Direction="Descending"/>
+                                </CollectionViewSource.SortDescriptions>
+                                <CollectionViewSource.LiveSortingProperties>
+                                    <System:String>RecordDate</System:String>
+                                </CollectionViewSource.LiveSortingProperties>
+                            </CollectionViewSource>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Map：" Style="{StaticResource HeaderTextBlock}" />
+                            <TextBlock Grid.Column="1" Text="{Binding MapName}" Style="{StaticResource ValueTextBlock}" />
+                            <Button Grid.ColumnSpan="2" Height="30" Width="90" HorizontalAlignment="Right"
+                                    Command="{Binding ResetCommand}">
+                                <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                                    <materialDesign:PackIcon Kind="Refresh" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
+                                    <Separator Width="5" Background="Transparent"/>
+                                    <TextBlock Text="Reset" Foreground="{DynamicResource MaterialDesignColumnHeader}"
+                                   FontSize="13" Margin="0,0,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <DataGrid Grid.Row="2" MinHeight="380"
+                                  ItemsSource="{Binding Source={StaticResource CurrentScoreCountCollectionViewSource}}">
+                            <DataGrid.Columns>
+                                <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding SkillName}" Width="*" />
+                                <materialDesign:MaterialDataGridTextColumn Header="使用回数" Binding="{Binding Count}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:ColorZone>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <materialDesign:PackIcon Kind="History" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
+                        <Separator Width="5" Background="Transparent"/>
+                        <TextBlock Text="History" Foreground="{DynamicResource MaterialDesignColumnHeader}"
+                                   FontSize="13" Margin="0,0,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <materialDesign:ColorZone Margin="10">
+                    <Grid>
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="SkillCountHistoriesCollectionViewSource"
+                                                  Source="{Binding SkillCountHistories}" IsLiveSortingRequested="True">
+                                <CollectionViewSource.SortDescriptions>
+                                    <ComponentModel:SortDescription PropertyName="RecordDate" Direction="Descending"/>
+                                </CollectionViewSource.SortDescriptions>
+                                <CollectionViewSource.LiveSortingProperties>
+                                    <System:String>RecordDate</System:String>
+                                </CollectionViewSource.LiveSortingProperties>
+                            </CollectionViewSource>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="履歴" TextAlignment="Left" Style="{StaticResource HeaderTextBlock}" />
+                        <DataGrid Grid.Row="1"
+                                  ItemsSource="{Binding Source={StaticResource SkillCountHistoriesCollectionViewSource}}"
+                                  SelectedItem="{Binding SelectedSkillCountHistory.Value}">
+                            <DataGrid.Columns>
+                                <materialDesign:MaterialDataGridTextColumn Header="日時" Binding="{Binding RecordDate, StringFormat={}{0:yyyy/MM/dd HH:mm}}" IsReadOnly="True" Width="Auto" />
+                                <materialDesign:MaterialDataGridTextColumn Header="職業" Binding="{Binding WorkName}" IsReadOnly="True" Width="Auto"/>
+                                <materialDesign:MaterialDataGridTextColumn Header="マップ名" Binding="{Binding MapName}" IsReadOnly="True" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Grid.Row="2"  MaxHeight="400"
+                                  ItemsSource="{Binding SelectedSkillCountDatails.Value}">
+                            <DataGrid.Columns>
+                                <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding SkillName}" IsReadOnly="True" Width="*"/>
+                                <materialDesign:MaterialDataGridTextColumn Header="使用回数" Binding="{Binding Count}" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:ColorZone>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <materialDesign:PackIcon Kind="CodeBraces" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
+                        <Separator Width="5" Background="Transparent"/>
+                        <TextBlock Text="Debug" Foreground="{DynamicResource MaterialDesignColumnHeader}"
+                                   FontSize="13" Margin="0,0,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <materialDesign:ColorZone Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Pow.Value}" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Debuff" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PowDebuffs.Value}" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Status" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WarStatus.Value}" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="AvgTime" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding AverageFps.Value}" Style="{StaticResource ValueTextBlock}" />
+                    </Grid>
+                </materialDesign:ColorZone>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <materialDesign:PackIcon Kind="Settings" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
+                        <Separator Width="5" Background="Transparent"/>
+                        <TextBlock Text="Setting" Foreground="{DynamicResource MaterialDesignColumnHeader}"
+                                   FontSize="13" Margin="0,1,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </dragablz:TabablzControl>
+    </dockablz:Layout>
+    <!--<Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <Button Content="Clear" Height="30" Width="70" Margin="0,0,0,10" HorizontalAlignment="Left" Command="{Binding ResetCommand}" />
+                <materialDesign:ColorZone>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Debuff" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Name="PowText" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Name="DebuffText" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Status" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="平均処理時間" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="4" Grid.Column="0" Name="StatusText" Style="{StaticResource ValueTextBlock}" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Name="ProcessAvgTimeText" Style="{StaticResource ValueTextBlock}" />
+                    </Grid>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <Grid>
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="CurrentScoreCountCollectionViewSource"
+                                                  Source="{Binding CurrentSkillCollection}" IsLiveSortingRequested="True">
+                                <CollectionViewSource.SortDescriptions>
+                                    <ComponentModel:SortDescription PropertyName="RecordDate" Direction="Descending"/>
+                                </CollectionViewSource.SortDescriptions>
+                                <CollectionViewSource.LiveSortingProperties>
+                                    <System:String>RecordDate</System:String>
+                                </CollectionViewSource.LiveSortingProperties>
+                            </CollectionViewSource>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="スキル使用回数" Style="{StaticResource HeaderTextBlock}" />
+                        <TextBlock Grid.Row="0" Name="MapText" HorizontalAlignment="Right" Style="{StaticResource ValueTextBlock}" />
+                        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
+                                  MinHeight="380"
+                                  ItemsSource="{Binding Source={StaticResource CurrentScoreCountCollectionViewSource}}">
+                            <DataGrid.Columns>
+                                <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding SkillName}" Width="*" />
+                                <materialDesign:MaterialDataGridTextColumn Header="使用回数" Binding="{Binding Count}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:ColorZone>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Grid.Row="0">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Debuff" Style="{StaticResource HeaderTextBlock}" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Name="PowText" Style="{StaticResource ValueTextBlock}" />
-                    <TextBlock Grid.Row="1" Grid.Column="1" Name="DebuffText" Style="{StaticResource ValueTextBlock}" />
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Status" Style="{StaticResource HeaderTextBlock}" />
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="平均処理時間" Style="{StaticResource HeaderTextBlock}" />
-                    <TextBlock Grid.Row="4" Grid.Column="0" Name="StatusText" Style="{StaticResource ValueTextBlock}" />
-                    <TextBlock Grid.Row="4" Grid.Column="1" Name="ProcessAvgTimeText" Style="{StaticResource ValueTextBlock}" />
-                </Grid>
-            </materialDesign:ColorZone>
-            <!-- 直近の戦争のスキル使用回数 -->
-            <materialDesign:ColorZone>
-                <Grid>
+                    <Grid.Resources>
+                        <CollectionViewSource x:Key="SkillCountHistoriesCollectionViewSource"
+                                              Source="{Binding SkillCountHistories}" IsLiveSortingRequested="True">
+                            <CollectionViewSource.SortDescriptions>
+                                <ComponentModel:SortDescription PropertyName="RecordDate" Direction="Descending"/>
+                            </CollectionViewSource.SortDescriptions>
+                            <CollectionViewSource.LiveSortingProperties>
+                                <System:String>RecordDate</System:String>
+                            </CollectionViewSource.LiveSortingProperties>
+                        </CollectionViewSource>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="スキル使用回数" Style="{StaticResource HeaderTextBlock}" />
-                    <TextBlock Grid.Row="0" Name="MapText" HorizontalAlignment="Right" Style="{StaticResource ValueTextBlock}" />
-                    <DataGrid Grid.Row="1" Name="SkillCountDataGrid" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding Name}" Width="*" />
-                            <materialDesign:MaterialDataGridTextColumn Header="使用回数" Binding="{Binding Count}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </materialDesign:ColorZone>
-            <!-- スキル使用回数履歴 -->
-            <materialDesign:ColorZone Visibility="Collapsed">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="履歴" Style="{StaticResource HeaderTextBlock}" />
-                    <DataGrid Grid.Row="1" Name="SkillCountHistoryDataGrid" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="1" x:Name="SkillCountHistoriesDataGrid" AutoGenerateColumns="False"
+                              ItemsSource="{Binding Source={StaticResource SkillCountHistoriesCollectionViewSource}}"
+                              SelectedItem="{Binding SelectedSkillCountHistory.Value}">
                         <DataGrid.Columns>
-                            <materialDesign:MaterialDataGridTextColumn Header="日時" Binding="{Binding Date}" />
-                            <materialDesign:MaterialDataGridTextColumn Header="マップ名" Binding="{Binding Map}" />
-                            <materialDesign:MaterialDataGridTextColumn Header="スキル使用回数" Binding="{Binding SkillCounts}" />
+                            <materialDesign:MaterialDataGridTextColumn Header="日時" Binding="{Binding RecordDate, StringFormat={}{0:yyyy/MM/dd HH:mm}}" IsReadOnly="True" Width="Auto" />
+                            <materialDesign:MaterialDataGridTextColumn Header="職業" Binding="{Binding WorkName}" IsReadOnly="True" Width="Auto"/>
+                            <materialDesign:MaterialDataGridTextColumn Header="マップ名" Binding="{Binding MapName}" IsReadOnly="True" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Grid.Row="2" AutoGenerateColumns="False"
+                              ItemsSource="{Binding SelectedSkillCountDatails.Value}"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <materialDesign:MaterialDataGridTextColumn Header="スキル名" Binding="{Binding SkillName}" IsReadOnly="True" Width="*"/>
+                            <materialDesign:MaterialDataGridTextColumn Header="使用回数" Binding="{Binding Count}" IsReadOnly="True" Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </materialDesign:ColorZone>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </Grid>-->
 </Controls:MetroWindow>

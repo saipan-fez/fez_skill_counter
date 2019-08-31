@@ -46,7 +46,7 @@ namespace SkillUseCounter.Entity
                 var idx = resourceName.IndexOf("_");
                 if (idx != -1)
                 {
-                    var w = resourceName.Substring(0, idx + 1);
+                    var w = resourceName.Substring(0, idx);
                     switch (w)
                     {
                         case "Cestus":
@@ -75,7 +75,7 @@ namespace SkillUseCounter.Entity
 
         public bool IsEmpty()
         {
-            return Name == UnknownSkillName;
+            return Name == UnknownSkillName || WorkName == UnknownWorkName;
         }
     }
 }

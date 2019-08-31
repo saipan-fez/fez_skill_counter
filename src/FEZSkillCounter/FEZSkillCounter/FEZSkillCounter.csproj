@@ -50,6 +50,9 @@
     <Reference Include="Costura, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.4.0.0\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -192,7 +195,7 @@
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -212,14 +215,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Common\BindableBase.cs" />
-    <Compile Include="Migrations\20190817192046_Initial.cs" />
-    <Compile Include="Migrations\20190817192046_Initial.designer.cs">
-      <DependentUpon>20190817192046_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\20190824175607_InitialCreate.cs" />
+    <Compile Include="Migrations\20190824175607_InitialCreate.designer.cs">
+      <DependentUpon>20190824175607_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
+    <Compile Include="Model\Common\BindableBase.cs" />
     <Compile Include="Model\Repository\SkillCountDbContext.cs" />
     <Compile Include="Model\Repository\SkillCountDetailEntityExtension.cs" />
+    <Compile Include="Model\Repository\SkillCountFileRepository.cs" />
     <Compile Include="Model\Repository\SkillCountRepository.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +261,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="DB新規作成・更新手順.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
