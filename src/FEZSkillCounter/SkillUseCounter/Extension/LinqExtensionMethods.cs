@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-namespace SkillUseCounter.Extension
+namespace System.Linq
 {
-    internal static class LinqExtensionMethods
+    public static class LinqExtensionMethods
     {
         private class CompareSelector<T, TKey> : IEqualityComparer<T>
         {
@@ -29,6 +27,11 @@ namespace SkillUseCounter.Extension
         public static IEnumerable<T> Distinct<T, TKey>(this IEnumerable<T> source, Func<T, TKey> selector)
         {
             return source.Distinct(new CompareSelector<T, TKey>(selector));
+        }
+
+        public static IEnumerable<T> Union<T, TKey>(this IEnumerable<T> source, IEnumerable<T> second, Func<T, TKey> selector)
+        {
+            return source.Union(second, new CompareSelector<T, TKey>(selector));
         }
 
         public static bool SequenceEqual<T, TKey>(this IEnumerable<T> source, IEnumerable<T> second, Func<T, TKey> selector)

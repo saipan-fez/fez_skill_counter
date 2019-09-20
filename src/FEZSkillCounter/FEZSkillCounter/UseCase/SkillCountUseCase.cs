@@ -1,13 +1,16 @@
 ﻿using FEZSkillCounter.Model.Entity;
 using FEZSkillCounter.Model.Repository;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using SkillUseCounter;
 using SkillUseCounter.Entity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FEZSkillCounter.UseCase
 {
@@ -21,8 +24,6 @@ namespace FEZSkillCounter.UseCase
 
     public class SkillCountUseCase
     {
-        // TODO: ApoData\Localの下に置く
-        private static readonly string DbFilePath  = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.db");
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
 
         public ReactivePropertySlim<string>               MapName                { get; }
@@ -33,13 +34,21 @@ namespace FEZSkillCounter.UseCase
         public ReactivePropertySlim<double>               AverageFps             { get; }
         public ReactivePropertySlim<int>                  Pow                    { get; }
         public ReactivePropertySlim<string>               PowDebuffs             { get; }
+        public ReactiveProperty<bool>                     IsSkillCountFileSave   { get; }
+        public ReactiveProperty<bool>                     IsDebugModeEnabled     { get; }
 
         private SkillCountRepository     _skillCountRepository;
         private SkillCountFileRepository _skillCountFileRepository;
+        private SettingRepository        _settingRepository;
         private SkillCountService        _skillUseService;
 
         public SkillCountUseCase()
         {
+            _skillCountRepository = new SkillCountRepository(Application.Current.GetAppDb());
+            _settingRepository    = new SettingRepository(Application.Current.GetAppDb());
+
+            var setting = _settingRepository.GetSetting();
+
             MapName                = new ReactivePropertySlim<string>(string.Empty);
             WorkName               = new ReactivePropertySlim<string>(string.Empty);
             CurrentSkillCollection = new ReactiveCollection<SkillCountDetailEntity>();
@@ -48,6 +57,22 @@ namespace FEZSkillCounter.UseCase
             AverageFps             = new ReactivePropertySlim<double>(0d);
             Pow                    = new ReactivePropertySlim<int>(0);
             PowDebuffs             = new ReactivePropertySlim<string>(string.Empty);
+            IsSkillCountFileSave   = setting.ObserveProperty(x => x.IsSkillCountFileSave).ToReactiveProperty();
+            IsDebugModeEnabled     = setting.ObserveProperty(x => x.IsDebugModeEnabled).ToReactiveProperty();
+
+            IsSkillCountFileSave.Subscribe(async x =>
+            {
+                setting.IsSkillCountFileSave = x;
+                await _settingRepository.UpdateAsync();
+            });
+            IsDebugModeEnabled.Subscribe(async x =>
+            {
+                // ログ出力を切り替え
+                Logger.IsLogFileOutEnabled = x;
+
+                setting.IsDebugModeEnabled = x;
+                await _settingRepository.UpdateAsync();
+            });
         }
 
         public async Task SetUpAsync()
@@ -62,7 +87,6 @@ namespace FEZSkillCounter.UseCase
             _skillUseService.PowUpdated         += _skillUseService_PowUpdated;
             _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
 
-            _skillCountRepository = await SkillCountRepository.CreateAsync(DbFilePath);
             SkillCountHistories.AddRangeOnScheduler(_skillCountRepository.GetSkillCounts());
 
             _skillCountFileRepository = await SkillCountFileRepository.CreateAsync(TxtFilePath);
@@ -84,6 +108,16 @@ namespace FEZSkillCounter.UseCase
             CurrentSkillCollection.Clear();
 
             UpdateSkillText();
+        }
+
+        public void CopySkillCountToClipboard(IEnumerable<SkillCountEntity> entities)
+        {
+            var entityStrings = entities.Select(x => 
+                $"【マップ】{x.MapName}\r\n" +
+                $"【スキル】\r\n" +
+                $"{string.Join("\r\n", x.Details.Select(d => d.SkillShortName + "：" + d.Count))}");
+
+            Clipboard.SetText(string.Join("\r\n\r\n", entityStrings));
         }
 
         private void _skillUseService_WarStarted(object sender, Map e)
@@ -128,6 +162,12 @@ namespace FEZSkillCounter.UseCase
             var requireUpdate = false;
             if (skills != null)
             {
+                // 職が変更されていればスキル一覧をクリア
+                if (skills.Where(x => !x.IsEmpty()).FirstOrDefault().WorkName != WorkName.Value)
+                {
+                    CurrentSkillCollection.Clear();
+                }
+
                 foreach (var s in skills.Where(x => !x.IsEmpty()))
                 {
                     requireUpdate = AddSkillIfNotExists(s);
@@ -147,7 +187,6 @@ namespace FEZSkillCounter.UseCase
 
         private void _skillUseService_SkillCountIncremented(object sender, Skill skill)
         {
-            // TODO: スキルカウントが反映されるまで遅い
             AddSkillIfNotExists(skill);
 
             var skillCount = CurrentSkillCollection.FirstOrDefault(x => x.SkillName == skill.Name);
@@ -182,7 +221,10 @@ namespace FEZSkillCounter.UseCase
 
         private void UpdateSkillText()
         {
-            _skillCountFileRepository.Save(CurrentSkillCollection);
+            if (IsSkillCountFileSave.Value)
+            {
+                _skillCountFileRepository.Save(CurrentSkillCollection);
+            }
         }
 
         private async Task SaveSkillCountAsync()
@@ -200,7 +242,10 @@ namespace FEZSkillCounter.UseCase
                 Details    = CurrentSkillCollection.ToList()
             };
 
-            await _skillCountRepository.AddAsync(entity);
+            await _skillCountRepository.SaveAsync(entity);
+
+            // 履歴に追加
+            SkillCountHistories.Add(entity);
         }
     }
 }

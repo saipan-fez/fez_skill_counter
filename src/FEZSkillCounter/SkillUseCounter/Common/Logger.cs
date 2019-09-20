@@ -12,6 +12,8 @@ namespace SkillUseCounter
         private static StreamWriter _logWriter      = null;
         private static StreamWriter _errorLogWriter = null;
 
+        public static bool IsLogFileOutEnabled { get; set; } = false;
+
         public static void WriteException(Exception ex)
         {
             if (ex is FileNotFoundException && ex.Message.IndexOf("ControlzEx.XmlSerializers") != -1)
@@ -20,37 +22,43 @@ namespace SkillUseCounter
                 return;
             }
 
-#if DEBUG
-            if (_errorLogWriter == null)
+            if (IsLogFileOutEnabled)
             {
-                _errorLogWriter = CreateErrorLogWriter();
+                if (_errorLogWriter == null)
+                {
+                    _errorLogWriter = CreateErrorLogWriter();
+                }
             }
-#endif
 
             var msg = GenerateLogMessage(ex.ToString());
 
-#if DEBUG
-            _errorLogWriter.WriteLine(msg);
-            _errorLogWriter.Flush();
-#endif
+            if (IsLogFileOutEnabled)
+            {
+                _errorLogWriter.WriteLine(msg);
+                _errorLogWriter.Flush();
+            }
+
             Debug.WriteLine(msg);
         }
 
         public static void WriteLine(string message, [CallerMemberName] string memberName = "")
         {
-#if DEBUG
-            if (_logWriter == null)
+            if (IsLogFileOutEnabled)
             {
-                _logWriter = CreateLogWriter();
+                if (_logWriter == null)
+                {
+                    _logWriter = CreateLogWriter();
+                }
             }
-#endif
 
             var msg = GenerateLogMessage($"{message} ({memberName})");
 
-#if DEBUG
-            _logWriter.WriteLine(msg);
-            _logWriter.Flush();
-#endif
+            if (IsLogFileOutEnabled)
+            {
+                _logWriter.WriteLine(msg);
+                _logWriter.Flush();
+            }
+
             Debug.WriteLine(msg);
         }
 

@@ -4,6 +4,7 @@ using SkillUseCounter.Storage;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillUseCounter.Recognizer

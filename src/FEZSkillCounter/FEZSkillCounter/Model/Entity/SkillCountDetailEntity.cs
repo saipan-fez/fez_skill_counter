@@ -10,13 +10,13 @@ namespace FEZSkillCounter.Model.Entity
         private int _skillCountDetailId;
 
         public string SkillName { get { return _skillName; } set { SetProperty(ref _skillName, value); } }
-        private string _skillName = string.Empty;
+        private string _skillName = "Unknown";
 
         public string SkillShortName { get { return _skillShortName; } set { SetProperty(ref _skillShortName, value); } }
-        private string _skillShortName = string.Empty;
+        private string _skillShortName = "Unknown";
 
         public string WorkName { get { return _workName; } set { SetProperty(ref _workName, value); } }
-        private string _workName = string.Empty;
+        private string _workName = "Unknown";
 
         public int Count { get { return _count; } set { SetProperty(ref _count, value); } }
         private int _count = 0;

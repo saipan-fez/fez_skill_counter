@@ -5,18 +5,19 @@ using System.IO;
 
 namespace FEZSkillCounter.Model.Repository
 {
-    public class SkillCountDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         private const string DefaultDbFileName = "skillcount.db";
 
         public DbSet<SkillCountEntity> SkillCountDbSet { get; protected set; }
+        public DbSet<SettingEntity> SettingDbSet { get; protected set; }
         public string DbFilePath { get; private set; }
 
-        public SkillCountDbContext() : this(null)
+        public AppDbContext() : this(null)
         {
         }
 
-        public SkillCountDbContext(string dbFilePath)
+        public AppDbContext(string dbFilePath)
         {
             DbFilePath = dbFilePath;
         }

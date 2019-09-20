@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FEZSkillCounter.Migrations
 {
-    [DbContext(typeof(SkillCountDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class SkillCountDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -15,6 +15,20 @@ namespace FEZSkillCounter.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
+            modelBuilder.Entity("FEZSkillCounter.Model.Entity.SettingEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsDebugModeEnabled");
+
+                    b.Property<bool>("IsSkillCountFileSave");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SettingDbSet");
+                });
 
             modelBuilder.Entity("FEZSkillCounter.Model.Entity.SkillCountDetailEntity", b =>
                 {

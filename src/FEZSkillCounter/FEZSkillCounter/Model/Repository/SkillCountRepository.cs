@@ -7,41 +7,24 @@ using System.Linq;
 
 namespace FEZSkillCounter.Model.Repository
 {
-    public class SkillCountRepository : IDisposable
+    public class SkillCountRepository
     {
-        private SkillCountDbContext _skillCountDbContext;
+        private AppDbContext _appDbContext;
 
-        private SkillCountRepository(string dbFilePath)
+        public SkillCountRepository(AppDbContext appDbContext)
         {
-            _skillCountDbContext = new SkillCountDbContext(dbFilePath);
+            _appDbContext = appDbContext;
         }
 
-        public static async Task<SkillCountRepository> CreateAsync(string dbFilePath)
+        public async Task SaveAsync(SkillCountEntity skill)
         {
-            var ret = new SkillCountRepository(dbFilePath);
-            await ret._skillCountDbContext.Database.MigrateAsync();
-
-            return ret;
-        }
-
-        public void Dispose()
-        {
-            if (_skillCountDbContext != null)
-            {
-                _skillCountDbContext.Dispose();
-                _skillCountDbContext = null;
-            }
-        }
-
-        public async Task AddAsync(SkillCountEntity skill)
-        {
-            await _skillCountDbContext.SkillCountDbSet.AddAsync(skill);
-            await _skillCountDbContext.SaveChangesAsync();
+            await _appDbContext.SkillCountDbSet.AddAsync(skill);
+            await _appDbContext.SaveChangesAsync();
         }
 
         public IEnumerable<SkillCountEntity> GetSkillCounts()
         {
-            return _skillCountDbContext.SkillCountDbSet
+            return _appDbContext.SkillCountDbSet
                 .Include(nameof(SkillCountEntity.Details))
                 .OrderBy(x => x.RecordDate)
                 .ToList();

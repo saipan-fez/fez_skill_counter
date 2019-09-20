@@ -219,8 +219,14 @@
     <Compile Include="Migrations\20190824175607_InitialCreate.designer.cs">
       <DependentUpon>20190824175607_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20190912132229_AddSettingEntity.cs" />
+    <Compile Include="Migrations\20190912132229_AddSettingEntity.designer.cs">
+      <DependentUpon>20190912132229_AddSettingEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />
+    <Compile Include="Model\Entity\SettingEntity.cs" />
+    <Compile Include="Model\Repository\SettingRepository.cs" />
     <Compile Include="Model\Repository\SkillCountDbContext.cs" />
     <Compile Include="Model\Repository\SkillCountDetailEntityExtension.cs" />
     <Compile Include="Model\Repository\SkillCountFileRepository.cs" />
@@ -237,6 +243,7 @@
     <Compile Include="Model\Entity\SkillCountEntity.cs" />
     <Compile Include="UseCase\SkillCountUseCase.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\Converter\Converters.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

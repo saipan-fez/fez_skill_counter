@@ -151,7 +151,7 @@ namespace SkillUseCounter.Storage
                 { R.Sorcerer_アイスターゲット_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_アイスターゲット_S), R.Sorcerer_アイスターゲット_S, "アイタゲ", 34) },
                 { R.Sorcerer_アイスボルト.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_アイスボルト), R.Sorcerer_アイスボルト, "IB", 18) },
                 { R.Sorcerer_アイスボルト_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_アイスボルト_S), R.Sorcerer_アイスボルト_S, "IB", 18) },
-                { R.Sorcerer_エレキドライブ.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_エレキドライブ), R.Sorcerer_エレキドライブ, "IB", 36) },
+                { R.Sorcerer_エレキドライブ.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_エレキドライブ), R.Sorcerer_エレキドライブ, "エレキ", 36) },
                 { R.Sorcerer_エレキドライブ_D.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_エレキドライブ_D), R.Sorcerer_エレキドライブ_D, "エレキ", 36) },
                 { R.Sorcerer_エレキドライブ_S.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_エレキドライブ_S), R.Sorcerer_エレキドライブ_S, "エレキ", 36) },
                 { R.Sorcerer_グラビティキャプチャー.SHA1Hash(), Skill.CreateFromResource(nameof(R.Sorcerer_グラビティキャプチャー), R.Sorcerer_グラビティキャプチャー, "重力", 72) },
