@@ -22,21 +22,15 @@ namespace SkillUseCounter
                 return;
             }
 
-            if (IsLogFileOutEnabled)
+            if (_errorLogWriter == null)
             {
-                if (_errorLogWriter == null)
-                {
-                    _errorLogWriter = CreateErrorLogWriter();
-                }
+                _errorLogWriter = CreateErrorLogWriter();
             }
 
             var msg = GenerateLogMessage(ex.ToString());
 
-            if (IsLogFileOutEnabled)
-            {
-                _errorLogWriter.WriteLine(msg);
-                _errorLogWriter.Flush();
-            }
+            _errorLogWriter.WriteLine(msg);
+            _errorLogWriter.Flush();
 
             Debug.WriteLine(msg);
         }

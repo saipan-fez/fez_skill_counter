@@ -48,15 +48,15 @@ namespace FEZSkillCounter.ViewModel
             _skillCountUseCase = new SkillCountUseCase();
 
             IsLoaded     = new ReactivePropertySlim<bool>(false);
-            MapName = _skillCountUseCase.MapName
+            MapName      = _skillCountUseCase.MapName
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();
-            WorkName = _skillCountUseCase.WorkName
+            WorkName     = _skillCountUseCase.WorkName
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();
-            WarStatus = _skillCountUseCase.WarStatus.ToReadOnlyReactivePropertySlim();
+            WarStatus  = _skillCountUseCase.WarStatus.ToReadOnlyReactivePropertySlim();
             AverageFps = _skillCountUseCase.AverageFps.ToReadOnlyReactivePropertySlim();
-            Pow = _skillCountUseCase.Pow.ToReadOnlyReactivePropertySlim();
+            Pow        = _skillCountUseCase.Pow.ToReadOnlyReactivePropertySlim();
             PowDebuffs = _skillCountUseCase.PowDebuffs
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();
@@ -66,7 +66,7 @@ namespace FEZSkillCounter.ViewModel
             {
                 _skillCountUseCase.IsSkillCountFileSave.Value = x;
             });
-            IsDebugModeEnabled   = _skillCountUseCase.IsDebugModeEnabled.ToReactiveProperty();
+            IsDebugModeEnabled = _skillCountUseCase.IsDebugModeEnabled.ToReactiveProperty();
             IsDebugModeEnabled.Subscribe(x =>
             {
                 _skillCountUseCase.IsDebugModeEnabled.Value = x;
@@ -80,11 +80,11 @@ namespace FEZSkillCounter.ViewModel
             void doFilter(bool _)
             {
                 var filterWorks = new List<string>();
-                if (IsWarriorFilter.Value) filterWorks.Add("ウォーリアー");
+                if (IsWarriorFilter.Value)  filterWorks.Add("ウォーリアー");
                 if (IsSorcererFilter.Value) filterWorks.Add("ソーサラー");
-                if (IsScoutFilter.Value) filterWorks.Add("スカウト");
-                if (IsCestusFilter.Value) filterWorks.Add("セスタス");
-                if (IsFencerFilter.Value) filterWorks.Add("フェンサー");
+                if (IsScoutFilter.Value)    filterWorks.Add("スカウト");
+                if (IsCestusFilter.Value)   filterWorks.Add("セスタス");
+                if (IsFencerFilter.Value)   filterWorks.Add("フェンサー");
 
                 SkillCountHistories?.Refresh(entity => filterWorks.Contains(entity.WorkName));
             }
@@ -93,16 +93,15 @@ namespace FEZSkillCounter.ViewModel
             IsScoutFilter.Subscribe(doFilter);
             IsCestusFilter.Subscribe(doFilter);
             IsFencerFilter.Subscribe(doFilter);
-
             CurrentSkillCollection = _skillCountUseCase.CurrentSkillCollection.ToReadOnlyReactiveCollection();
             SkillCountHistories = _skillCountUseCase.SkillCountHistories.ToFilteredReadOnlyObservableCollection(x =>
             {
                 var filterWorks = new List<string>();
-                if (IsWarriorFilter.Value) filterWorks.Add("ウォーリアー");
+                if (IsWarriorFilter.Value)  filterWorks.Add("ウォーリアー");
                 if (IsSorcererFilter.Value) filterWorks.Add("ソーサラー");
-                if (IsScoutFilter.Value) filterWorks.Add("スカウト");
-                if (IsCestusFilter.Value) filterWorks.Add("セスタス");
-                if (IsFencerFilter.Value) filterWorks.Add("フェンサー");
+                if (IsScoutFilter.Value)    filterWorks.Add("スカウト");
+                if (IsCestusFilter.Value)   filterWorks.Add("セスタス");
+                if (IsFencerFilter.Value)   filterWorks.Add("フェンサー");
 
                 return filterWorks.Contains(x.WorkName);
             });

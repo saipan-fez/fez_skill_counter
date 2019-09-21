@@ -160,7 +160,7 @@ namespace FEZSkillCounter.UseCase
         private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
         {
             var requireUpdate = false;
-            if (skills != null)
+            if (skills != null && skills.Where(x => !x.IsEmpty()).Any())
             {
                 // 職が変更されていればスキル一覧をクリア
                 if (skills.Where(x => !x.IsEmpty()).FirstOrDefault().WorkName != WorkName.Value)
@@ -245,7 +245,8 @@ namespace FEZSkillCounter.UseCase
             await _skillCountRepository.SaveAsync(entity);
 
             // 履歴に追加
-            SkillCountHistories.Add(entity);
+            SkillCountHistories.AddOnScheduler(entity);
+            //SkillCountHistories.Add(entity);
         }
     }
 }
