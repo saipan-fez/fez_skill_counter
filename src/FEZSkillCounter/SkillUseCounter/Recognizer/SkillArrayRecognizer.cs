@@ -4,6 +4,7 @@ using SkillUseCounter.Storage;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillUseCounter.Recognizer
@@ -58,7 +59,7 @@ namespace SkillUseCounter.Recognizer
         public void Reset()
         {
             _previousSkill = InvalidSkills;
-            Updated?.Invoke(this, _previousSkill);
+            Updated?.Invoke(this, InvalidSkills);
         }
 
         private Skill[] GetSkills(Bitmap bitmap)

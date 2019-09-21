@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZSkillCounter", "FEZSkillCounter\FEZSkillCounter.csproj", "{B29592B6-EC38-41CD-B220-DD10AB755BD4}"
 EndProject
@@ -24,7 +24,6 @@ Global
 		{B29592B6-EC38-41CD-B220-DD10AB755BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B29592B6-EC38-41CD-B220-DD10AB755BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3308A3A5-26C5-48E9-9518-6338238BD667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3308A3A5-26C5-48E9-9518-6338238BD667}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -34,7 +33,6 @@ Global
 		{06ECABA1-59F0-42AC-B554-BC13525AB2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06ECABA1-59F0-42AC-B554-BC13525AB2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
