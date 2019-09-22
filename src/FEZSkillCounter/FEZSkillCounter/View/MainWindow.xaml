@@ -47,7 +47,7 @@
         <vm:MainWindowViewModel/>
     </Controls:MetroWindow.DataContext>
     <i:Interaction.Behaviors>
-        <behavior:ViewModelDisposeBehavior />
+        <!--<behavior:ViewModelDisposeBehavior />-->
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

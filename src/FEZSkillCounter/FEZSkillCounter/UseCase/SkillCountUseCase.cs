@@ -92,6 +92,8 @@ namespace FEZSkillCounter.UseCase
 
             try
             {
+                StopSkillCounter();
+
                 if (_skillUseService != null)
                 {
                     _skillUseService.Dispose();
