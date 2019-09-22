@@ -14,38 +14,38 @@ namespace SkillUseCounter
     /// <summary>
     /// スキル使用を通知するサービス
     /// </summary>
-    public class SkillCountService
+    public class SkillCountService : IDisposable
     {
         #region Event
         /// <summary>
         /// 処理速度(直近100回)を通知
         /// </summary>
-        public event EventHandler<double> ProcessTimeUpdated;
+        public event EventHandler<ProcessTimeUpdatedEventArgs> ProcessTimeUpdated;
 
         /// <summary>
         /// スキル一覧の更新通知
         /// </summary>
-        public event EventHandler<Skill[]> SkillsUpdated;
+        public event EventHandler<SkillsUpdatedEventArgs> SkillsUpdated;
 
         /// <summary>
         /// Powの更新通知
         /// </summary>
-        public event EventHandler<int> PowUpdated;
+        public event EventHandler<PowUpdatedEventArgs> PowUpdated;
 
         /// <summary>
         /// Powのデバフ(パワブレなど)更新通知
         /// </summary>
-        public event EventHandler<PowDebuff[]> PowDebuffsUpdated;
+        public event EventHandler<PowDebuffsUpdatedEventArgs> PowDebuffsUpdated;
 
         /// <summary>
         /// スキル使用を通知
         /// </summary>
-        public event EventHandler<Skill> SkillUsed;
+        public event EventHandler<SkillUsedEventArgs> SkillUsed;
 
         /// <summary>
         /// 戦争開始を通知
         /// </summary>
-        public event EventHandler<Map> WarStarted;
+        public event EventHandler<WarStartedEventArgs> WarStarted;
 
         /// <summary>
         /// 戦争中断を通知
@@ -54,12 +54,12 @@ namespace SkillUseCounter
         /// FOや回線落ちした後、別の戦場に入った場合<see cref="WarStarted"/>>の前に呼ばれる。
         //  なお、戦場に復帰した場合は呼ばれない。
         /// </remarks>
-        public event EventHandler<Map> WarCanceled;
+        public event EventHandler<WarCanceledEventArgs> WarCanceled;
 
         /// <summary>
         /// 戦争終了を通知
         /// </summary>
-        public event EventHandler<Map> WarFinished;
+        public event EventHandler<WarFinishedEventArgs> WarFinished;
         #endregion
 
         private PreRecognizer                      _preRecognizer            = new PreRecognizer();
@@ -88,28 +88,59 @@ namespace SkillUseCounter
                 Logger.WriteException(e.Exception);
             };
 
-            _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, e);
-            _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, e);
-            _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, e);
+            _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, new SkillsUpdatedEventArgs(e));
+            _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, new PowUpdatedEventArgs(e));
+            _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, new PowDebuffsUpdatedEventArgs(e));
             _warStateRecognizer.WarStarted    += (_, e) =>
             {
                 Logger.WriteLine("War started.");
 
                 // 開始時に各種数値をリセットする
                 Reset();
-                WarStarted?.Invoke(this, e);
+                WarStarted?.Invoke(this, new WarStartedEventArgs(e));
             };
             _warStateRecognizer.WarCanceled += (_, e) =>
             {
                 Logger.WriteLine("War canceled.");
-                WarCanceled?.Invoke(this, e);
+                WarCanceled?.Invoke(this, new WarCanceledEventArgs(e));
             };
             _warStateRecognizer.WarFinished += (_, e) =>
             {
                 Logger.WriteLine("War finished.");
-                WarFinished?.Invoke(this, e);
+                WarFinished?.Invoke(this, new WarFinishedEventArgs(e));
             };
         }
+
+        #region IDisposable 
+        private bool _disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            try
+            {
+                Stop();
+
+                if (_cts != null)
+                {
+                    _cts.Dispose();
+                    _cts = null;
+                }
+            }
+            finally
+            {
+                _disposed = true;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// スキル使用の監視開始
@@ -196,7 +227,7 @@ namespace SkillUseCounter
                     processTimes.Add(end - start);
                     if (processTimes.Count > 100)
                     {
-                        ProcessTimeUpdated?.Invoke(this, processTimes.Average());
+                        ProcessTimeUpdated?.Invoke(this, new ProcessTimeUpdatedEventArgs(processTimes.Average()));
                         processTimes.Clear();
                     }
 
@@ -256,7 +287,7 @@ namespace SkillUseCounter
                 {
                     SkillUsed?.BeginInvoke(
                         this,
-                        usedSkill,
+                        new SkillUsedEventArgs(usedSkill),
                         null,
                         null);
                 }

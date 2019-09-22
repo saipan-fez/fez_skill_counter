@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,7 @@ namespace FEZSkillCounter.UseCase
         WarFinished,
     }
 
-    public class SkillCountUseCase
+    public class SkillCountUseCase : IDisposable
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
 
@@ -75,6 +76,35 @@ namespace FEZSkillCounter.UseCase
             });
         }
 
+        #region IDisposable 
+        private bool _disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            try
+            {
+                if (_skillUseService != null)
+                {
+                    _skillUseService.Dispose();
+                    _skillUseService = null;
+                }
+            }
+            finally
+            {
+                _disposed = true;
+            }
+        }
+        #endregion
+
         public async Task SetUpAsync()
         {
             _skillUseService = new SkillCountService();
@@ -120,45 +150,46 @@ namespace FEZSkillCounter.UseCase
             Clipboard.SetText(string.Join("\r\n\r\n", entityStrings));
         }
 
-        private void _skillUseService_WarStarted(object sender, Map e)
+        private void _skillUseService_WarStarted(object sender, WarStartedEventArgs e)
         {
             WarStatus.Value = WarEvents.WarStarted;
-            MapName.Value   = e.IsEmpty() ? string.Empty : e.Name;
+            MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
         }
 
-        private void _skillUseService_WarCanceled(object sender, Map e)
+        private void _skillUseService_WarCanceled(object sender, WarCanceledEventArgs e)
         {
             WarStatus.Value = WarEvents.WarCanceled;
-            MapName.Value   = e.IsEmpty() ? string.Empty : e.Name;
+            MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
         }
 
-        private async void _skillUseService_WarFinished(object sender, Map e)
+        private async void _skillUseService_WarFinished(object sender, WarFinishedEventArgs e)
         {
             WarStatus.Value = WarEvents.WarFinished;
-            MapName.Value   = e.IsEmpty() ? string.Empty : e.Name;
+            MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
 
             await SaveSkillCountAsync();
         }
 
-        private void _skillUseService_FpsUpdated(object sender, double e)
+        private void _skillUseService_FpsUpdated(object sender, ProcessTimeUpdatedEventArgs e)
         {
-            AverageFps.Value = e;
+            AverageFps.Value = e.ProcessAvgTime;
         }
 
-        private void _skillUseService_PowUpdated(object sender, int pow)
+        private void _skillUseService_PowUpdated(object sender, PowUpdatedEventArgs e)
         {
-            Pow.Value = pow;
+            Pow.Value = e.Pow;
         }
 
-        private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuff[] e)
+        private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuffsUpdatedEventArgs e)
         {
             PowDebuffs.Value = e != null ?
-                string.Join(Environment.NewLine, e.Select(x => x.Name)) :
+                string.Join(Environment.NewLine, e.PowDebuffs.Select(x => x.Name)) :
                 string.Empty;
         }
 
-        private void _skillUseService_SkillsUpdated(object sender, Skill[] skills)
+        private void _skillUseService_SkillsUpdated(object sender, SkillsUpdatedEventArgs e)
         {
+            var skills = e.Skills;
             var requireUpdate = false;
             if (skills != null && skills.Where(x => !x.IsEmpty()).Any())
             {
@@ -185,11 +216,11 @@ namespace FEZSkillCounter.UseCase
             }
         }
 
-        private void _skillUseService_SkillCountIncremented(object sender, Skill skill)
+        private void _skillUseService_SkillCountIncremented(object sender, SkillUsedEventArgs e)
         {
-            AddSkillIfNotExists(skill);
+            AddSkillIfNotExists(e.UsedSkill);
 
-            var skillCount = CurrentSkillCollection.FirstOrDefault(x => x.SkillName == skill.Name);
+            var skillCount = CurrentSkillCollection.FirstOrDefault(x => x.SkillName == e.UsedSkill.Name);
             if (skillCount != null)
             {
                 skillCount.Increment();

@@ -12,6 +12,7 @@
                       xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
                       xmlns:vm="clr-namespace:FEZSkillCounter.ViewModel"
                       xmlns:converter="clr-namespace:FEZSkillCounter.View.Converter"
+                      xmlns:behavior="clr-namespace:FEZSkillCounter.View.Behavior"
                       mc:Ignorable="d"
                       Title="FEZ Skill Counter" TitleCharacterCasing="Normal" SaveWindowPosition="True"
                       Height="600" Width="400">
@@ -45,6 +46,9 @@
     <Controls:MetroWindow.DataContext>
         <vm:MainWindowViewModel/>
     </Controls:MetroWindow.DataContext>
+    <i:Interaction.Behaviors>
+        <behavior:ViewModelDisposeBehavior />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />

@@ -68,28 +68,36 @@ namespace SkillUseCounter.Recognizer
 
             Parallel.For(0, SkillRectTable.Length, i =>
             {
-                Bitmap b;
-                lock (_obj)
+                Bitmap b = null;
+                try
                 {
-                    var r = SkillRectTable[i];
-                    r.X = bitmap.Width + r.X;
-                    b = bitmap.Clone(r, PixelFormat.Format24bppRgb);
-                }
-
-                skills[i] = Skill.Empty;
-
-                var barray = b.ConvertToByteArray();
-
-                foreach (var skill in SkillStorage.Table)
-                {
-                    if (Compare(barray, skill.Value.Data))
+                    lock (_obj)
                     {
-                        skills[i] = skill.Value;
-                        break;
+                        var r = SkillRectTable[i];
+                        r.X = bitmap.Width + r.X;
+                        b = bitmap.Clone(r, PixelFormat.Format24bppRgb);
+                    }
+
+                    skills[i] = Skill.Empty;
+
+                    var barray = b.ConvertToByteArray();
+
+                    foreach (var skill in SkillStorage.Table)
+                    {
+                        if (Compare(barray, skill.Value.Data))
+                        {
+                            skills[i] = skill.Value;
+                            break;
+                        }
                     }
                 }
-
-                b.Dispose();
+                finally
+                {
+                    if (b != null)
+                    {
+                        b.Dispose();
+                    }
+                }
             });
 
             return skills;

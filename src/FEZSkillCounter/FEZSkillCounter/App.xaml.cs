@@ -1,10 +1,10 @@
-﻿using FEZSkillCounter.Model.Repository;
+﻿using FEZSkillCounter.Common;
+using FEZSkillCounter.Model.Repository;
 using Microsoft.EntityFrameworkCore;
 using SkillUseCounter;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace FEZSkillCounter
@@ -20,12 +20,9 @@ namespace FEZSkillCounter
         public AppDbContext AppDb { get; private set; }
 
 #if DEBUG
-        [DllImport("Kernel32.dll")]
-        public static extern bool AttachConsole(int processId);
-
         static App()
         {
-            AttachConsole(-1);
+            NativeMethods.AttachConsole(-1);
         }
 #endif
 

@@ -55,6 +55,7 @@
     <Compile Include="Entity\Map.cs" />
     <Compile Include="Entity\PowDebuff.cs" />
     <Compile Include="Entity\Skill.cs" />
+    <Compile Include="EventArgs.cs" />
     <Compile Include="Extension\BitmapExtension.cs" />
     <Compile Include="Extension\LinqExtensionMethods.cs" />
     <Compile Include="Properties\Resource.Designer.cs">

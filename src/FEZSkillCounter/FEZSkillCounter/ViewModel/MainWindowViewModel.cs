@@ -10,7 +10,7 @@ using System.Reactive.Linq;
 
 namespace FEZSkillCounter.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : IDisposable
     {
         private SkillCountUseCase _skillCountUseCase;
 
@@ -144,6 +144,35 @@ namespace FEZSkillCounter.ViewModel
                 MessageQueue.Enqueue("クリップボードにコピーしました");
             });
         }
+
+        #region IDisposable 
+        private bool _disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            try
+            {
+                if (_skillCountUseCase != null)
+                {
+                    _skillCountUseCase.Dispose();
+                    _skillCountUseCase = null;
+                }
+            }
+            finally
+            {
+                _disposed = true;
+            }
+        }
+        #endregion
     }
 
     public enum FilterWork
