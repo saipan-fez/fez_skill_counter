@@ -36,7 +36,6 @@ namespace FEZSkillCounter.ViewModel
         public ReadOnlyReactivePropertySlim<List<SkillCountDetailEntity>> SelectedSkillCountDatails { get; }
 
         public ReactiveCommand LoadedCommand { get; }
-        public ReactiveCommand ClosedCommand { get; }
         public ReactiveCommand ResetCommand  { get; }
 
         public ReactiveCommand<object> CopySkillCountsCommand { get; }
@@ -117,14 +116,6 @@ namespace FEZSkillCounter.ViewModel
                 _skillCountUseCase.StartSkillCounter();
 
                 IsLoaded.Value = true;
-            });
-
-            ClosedCommand = new ReactiveCommand();
-            ClosedCommand.Subscribe(() =>
-            {
-                _skillCountUseCase.StopSkillCounter();
-
-                IsLoaded.Value = false;
             });
 
             ResetCommand = new ReactiveCommand();

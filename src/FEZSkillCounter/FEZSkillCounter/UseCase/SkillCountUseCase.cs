@@ -92,8 +92,6 @@ namespace FEZSkillCounter.UseCase
 
             try
             {
-                StopSkillCounter();
-
                 if (_skillUseService != null)
                 {
                     _skillUseService.Dispose();
@@ -184,7 +182,7 @@ namespace FEZSkillCounter.UseCase
 
         private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuffsUpdatedEventArgs e)
         {
-            PowDebuffs.Value = e != null ?
+            PowDebuffs.Value = e.PowDebuffs != null ?
                 string.Join(Environment.NewLine, e.PowDebuffs.Select(x => x.Name)) :
                 string.Empty;
         }

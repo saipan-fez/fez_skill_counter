@@ -47,14 +47,11 @@
         <vm:MainWindowViewModel/>
     </Controls:MetroWindow.DataContext>
     <i:Interaction.Behaviors>
-        <!--<behavior:ViewModelDisposeBehavior />-->
+        <behavior:ViewModelDisposeBehavior />
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
-        </i:EventTrigger>
-        <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding ClosedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -163,8 +160,6 @@
                                             <CheckBox Content="セスタス" IsChecked="{Binding IsCestusFilter.Value}"/>
                                         </WrapPanel>
                                     </Grid>
-                                    <ComboBox Grid.Column="2" Width="80" HorizontalContentAlignment="Center" Visibility="Collapsed"
-                                              ItemsSource="{Binding FilterWorks}" SelectedItem="{Binding SelectedWork.Value, Mode=TwoWay}"/>
                                 </Grid>
                                 <Button Grid.Column="1" Height="30" Width="90" VerticalAlignment="Center"
                                         Command="{Binding CopySkillCountsCommand}"
