@@ -83,11 +83,6 @@ namespace SkillUseCounter
             PowStorage.Create();
             MapStorage.Create();
 
-            AppDomain.CurrentDomain.FirstChanceException += (s, e) =>
-            {
-                Logger.WriteException(e.Exception);
-            };
-
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, new SkillsUpdatedEventArgs(e));
             _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, new PowUpdatedEventArgs(e));
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, new PowDebuffsUpdatedEventArgs(e));
