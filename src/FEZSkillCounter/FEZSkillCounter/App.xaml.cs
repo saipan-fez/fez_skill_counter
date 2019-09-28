@@ -53,8 +53,9 @@ namespace FEZSkillCounter
                     MessageBox.Show(
                         "GLOBAL.iniの設定内容がツールに適していません。" + Environment.NewLine +
                         "下記の設定を見直してください。" + Environment.NewLine +
-                        "　・フルスクリーン　：OFF" + Environment.NewLine +
-                        "　・ウィンドウカラー：通常",
+                        "" + Environment.NewLine +
+                        "・フルスクリーン：OFF" + Environment.NewLine +
+                        "・ウィンドウカラー：通常",
                         "Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
