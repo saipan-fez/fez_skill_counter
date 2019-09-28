@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillUseCounter", "SkillUse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillUseCounterTest", "SkillUseCounterTest\SkillUseCounterTest.csproj", "{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZCommonLibrary", "FEZCommonLibrary\FEZCommonLibrary.csproj", "{C800E794-9149-46E3-A503-6AFA37ECC328}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{06ECABA1-59F0-42AC-B554-BC13525AB2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55A417E7-0CB2-47C9-A805-1C77C2FB7D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C800E794-9149-46E3-A503-6AFA37ECC328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C800E794-9149-46E3-A503-6AFA37ECC328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C800E794-9149-46E3-A503-6AFA37ECC328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C800E794-9149-46E3-A503-6AFA37ECC328}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

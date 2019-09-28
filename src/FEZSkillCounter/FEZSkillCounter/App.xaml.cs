@@ -41,9 +41,23 @@ namespace FEZSkillCounter
                     return;
                 }
 
-                var app = new App();
-                app.InitializeComponent();
-                app.Run();
+                var isValid = FEZCommonLibrary.FEZSettingValidator.ValidateGlobalIniSetting();
+                if (isValid)
+                {
+                    var app = new App();
+                    app.InitializeComponent();
+                    app.Run();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "GLOBAL.iniの設定内容がツールに適していません。" + Environment.NewLine +
+                        "下記の設定を見直してください。" + Environment.NewLine +
+                        "　・フルスクリーン　：OFF" + Environment.NewLine +
+                        "　・ウィンドウカラー：通常",
+                        "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

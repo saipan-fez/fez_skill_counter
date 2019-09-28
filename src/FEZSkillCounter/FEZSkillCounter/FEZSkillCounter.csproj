@@ -285,6 +285,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FEZCommonLibrary\FEZCommonLibrary.csproj">
+      <Project>{c800e794-9149-46e3-a503-6afa37ecc328}</Project>
+      <Name>FEZCommonLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SkillUseCounter\SkillUseCounter.csproj">
       <Project>{06ecaba1-59f0-42ac-b554-bc13525ab2b6}</Project>
       <Name>SkillUseCounter</Name>
