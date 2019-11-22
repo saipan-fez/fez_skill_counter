@@ -204,11 +204,6 @@ namespace FEZSkillCounter.UseCase
                     requireUpdate = AddSkillIfNotExists(s);
                 }
             }
-            else
-            {
-                CurrentSkillCollection.Clear();
-                requireUpdate = true;
-            }
 
             if (requireUpdate)
             {
