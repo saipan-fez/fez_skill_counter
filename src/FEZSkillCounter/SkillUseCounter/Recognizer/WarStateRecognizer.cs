@@ -105,8 +105,8 @@ namespace SkillUseCounter.Recognizer
             var h = bitmap.Height;
 
             // [Cost 130 / 130] の"C"と"/"の部分で判別する
-            ret &= bitmap.GetPixel(w - 441, h - 120) == Color.FromArgb(123, 123, 123);  // "C"
-            ret &= bitmap.GetPixel(w - 375, h - 112) == Color.FromArgb(156, 156, 156);  // "/"
+            ret &= bitmap.GetPixel(w - 441, h - 128) == Color.FromArgb(123, 123, 123);  // "C"
+            ret &= bitmap.GetPixel(w - 375, h - 120) == Color.FromArgb(156, 156, 156);  // "/"
 
             return ret;
         }
