@@ -275,7 +275,6 @@ namespace FEZSkillCounter.UseCase
 
             // 履歴に追加
             SkillCountHistories.AddOnScheduler(entity);
-            //SkillCountHistories.Add(entity);
         }
     }
 }
