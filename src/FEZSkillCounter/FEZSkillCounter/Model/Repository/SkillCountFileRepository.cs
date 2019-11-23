@@ -1,5 +1,5 @@
 ﻿using FEZSkillCounter.Model.Entity;
-using System;
+using NeoSmart.AsyncLock;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,16 +10,20 @@ namespace FEZSkillCounter.Model.Repository
 {
     public class SkillCountFileRepository
     {
-        public string FilePath { get; }
+        public string TxtFilePath { get; }
+        public string XmlFilePath { get; }
 
-        private SkillCountFileRepository(string filePath)
+        private AsyncLock _lock = new AsyncLock();
+
+        private SkillCountFileRepository(string txtFilePath, string xmlFilePath)
         {
-            FilePath = filePath;
+            TxtFilePath = txtFilePath;
+            XmlFilePath = xmlFilePath;
         }
 
-        public static async Task<SkillCountFileRepository> CreateAsync(string filePath)
+        public static async Task<SkillCountFileRepository> CreateAsync(string txtFilePath, string xmlFilePath)
         {
-            var ret = new SkillCountFileRepository(filePath);
+            var ret = new SkillCountFileRepository(txtFilePath, xmlFilePath);
             await ret.CreateAsync();
 
             return ret;
@@ -27,7 +31,7 @@ namespace FEZSkillCounter.Model.Repository
 
         private async Task CreateAsync()
         {
-            var fullPath  = Path.GetFullPath(FilePath);
+            var fullPath  = Path.GetFullPath(TxtFilePath);
             var directory = new DirectoryInfo(Path.GetDirectoryName(fullPath));
             var file      = new FileInfo(fullPath);
 
@@ -44,17 +48,64 @@ namespace FEZSkillCounter.Model.Repository
             await Task.CompletedTask;
         }
 
-        public void Save(IEnumerable<SkillCountDetailEntity> skills)
+        public async Task SaveAsync(IEnumerable<SkillCountDetailEntity> skills)
         {
-            var text = string.Join(
-                Environment.NewLine,
-                skills.Select(x => x.SkillShortName + "：" + x.Count));
+            // ファイルに書き込む内容を生成
+            var text      = CreateTxtContents(skills);
+            var skillsDom = CreateXmlDom(skills);
 
-            using (var sw = new StreamWriter(FilePath, false, Encoding.UTF8))
+            using (await _lock.LockAsync())
             {
-                sw.WriteLine(text);
-                sw.Flush();
+                // txtファイルへの書き込み
+                var txtWriteTask = Task.Run(() =>
+                {
+                    using (var sw = new StreamWriter(TxtFilePath, false, Encoding.UTF8))
+                    {
+                        sw.WriteLine(text);
+                        sw.Flush();
+                    }
+                });
+
+                // xmlファイルへの書き込み
+                var xmlWriteTask = Task.Run(() =>
+                {
+                    using (var sw = new StreamWriter(XmlFilePath, false, Encoding.UTF8))
+                    {
+
+                        sw.WriteLine(skillsDom);
+                        sw.Flush();
+                    }
+                });
+
+                await Task.WhenAll(txtWriteTask, xmlWriteTask);
             }
+        }
+
+        private string CreateTxtContents(IEnumerable<SkillCountDetailEntity> skills)
+        {
+            return string.Join("\n", skills.Select(x => x.SkillShortName + "：" + x.Count));
+        }
+
+        private string CreateXmlDom(IEnumerable<SkillCountDetailEntity> skills)
+        {
+            var skillDomCollection = skills.Select((x, i) =>
+            {
+                return
+                        $"<skill id='{i}'>\n" +
+                        $"    <name>{x.SkillName}</name>\n" +
+                        $"    <shortname>{x.SkillShortName}</shortname>\n" +
+                        $"    <count>{x.Count}</count>\n" +
+                        $"</skill>";
+            });
+
+            var skillsDom =
+                    $"<log>\n" +
+                    $"<skills>\n" +
+                    string.Join("\n", skillDomCollection) + "\n" +
+                    $"</skills>\n" +
+                    $"</log>\n";
+
+            return skillsDom;
         }
     }
 }

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FEZ Skill Counter</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style type="text/css">
+tr {
+    color:blue;
+}
+</style>
+
+<script>
+    const skillcount_xml_path = "skillcount.xml";   // スキル使用回数XMLファイルのパス
+    const timer_interval_ms   = 100;                // スキル使用回数XMLファイルの監視タイマー周期(ms)
+
+    function start() {
+        setInterval(update, timer_interval_ms);
+    }
+
+    function update() {
+        $.ajax({
+            url: skillcount_xml_path,
+            type: 'GET',
+            dataType: 'xml',
+            timeout: 5000,
+        }).done(function (xml) {
+            const table            = $("table");
+            const skill_collection = xml.getElementsByTagName('skill');
+            for (let skill of skill_collection) {
+                const name      = skill.getElementsByTagName("name")[0].textContent;
+                const shortname = skill.getElementsByTagName("shortname")[0].textContent;
+                const count     = skill.getElementsByTagName("count")[0].textContent;
+                const tr        = table.find(`#${name}`);
+                if (tr === undefined || tr.length <= 0) {
+                    table.append(`<tr id="${name}"><th class="shortname">${shortname}</th><th class="count">${count}</th><tr>`);
+                }
+                else {
+                    tr.find(".count").text(count);
+                }
+            }
+        });
+    }
+</script>
+</head>
+<body onload="start();">
+    <table id="table"></table>
+</body>
+</html>

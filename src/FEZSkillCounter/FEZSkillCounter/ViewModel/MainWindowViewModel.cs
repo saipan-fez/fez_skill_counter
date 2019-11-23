@@ -119,9 +119,9 @@ namespace FEZSkillCounter.ViewModel
             });
 
             ResetCommand = new ReactiveCommand();
-            ResetCommand.Subscribe(() =>
+            ResetCommand.Subscribe(async () =>
             {
-                _skillCountUseCase.ResetSkillCount();
+                await _skillCountUseCase.ResetSkillCountAsync();
             });
 
             CopySkillCountsCommand = SelectedSkillCountHistory

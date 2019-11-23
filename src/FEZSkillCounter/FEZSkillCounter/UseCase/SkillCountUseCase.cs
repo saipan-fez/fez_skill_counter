@@ -26,6 +26,7 @@ namespace FEZSkillCounter.UseCase
     public class SkillCountUseCase : IDisposable
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
+        private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.xml");
 
         public ReactivePropertySlim<string>               MapName                { get; }
         public ReactivePropertySlim<string>               WorkName               { get; }
@@ -119,7 +120,7 @@ namespace FEZSkillCounter.UseCase
 
             SkillCountHistories.AddRangeOnScheduler(_skillCountRepository.GetSkillCounts());
 
-            _skillCountFileRepository = await SkillCountFileRepository.CreateAsync(TxtFilePath);
+            _skillCountFileRepository = await SkillCountFileRepository.CreateAsync(TxtFilePath, XmlFilePath);
         }
 
         public void StartSkillCounter()
@@ -132,12 +133,12 @@ namespace FEZSkillCounter.UseCase
             _skillUseService.Stop();
         }
 
-        public void ResetSkillCount()
+        public async Task ResetSkillCountAsync()
         {
             _skillUseService.Reset();
             CurrentSkillCollection.Clear();
 
-            UpdateSkillText();
+            await UpdateSkillTextAsync();
         }
 
         public void CopySkillCountToClipboard(IEnumerable<SkillCountEntity> entities)
@@ -150,13 +151,13 @@ namespace FEZSkillCounter.UseCase
             Clipboard.SetText(string.Join("\r\n\r\n", entityStrings));
         }
 
-        private void _skillUseService_WarStarted(object sender, WarStartedEventArgs e)
+        private async void _skillUseService_WarStarted(object sender, WarStartedEventArgs e)
         {
             WarStatus.Value = WarEvents.WarStarted;
             MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
 
             // 戦争開始時にスキル回数をリセットする
-            ResetSkillCount();
+            await UpdateSkillTextAsync();
         }
 
         private void _skillUseService_WarCanceled(object sender, WarCanceledEventArgs e)
@@ -190,7 +191,7 @@ namespace FEZSkillCounter.UseCase
                 string.Empty;
         }
 
-        private void _skillUseService_SkillsUpdated(object sender, SkillsUpdatedEventArgs e)
+        private async void _skillUseService_SkillsUpdated(object sender, SkillsUpdatedEventArgs e)
         {
             var skills = e.Skills;
             var requireUpdate = false;
@@ -210,11 +211,11 @@ namespace FEZSkillCounter.UseCase
 
             if (requireUpdate)
             {
-                UpdateSkillText();
+                await UpdateSkillTextAsync();
             }
         }
 
-        private void _skillUseService_SkillCountIncremented(object sender, SkillUsedEventArgs e)
+        private async void _skillUseService_SkillCountIncremented(object sender, SkillUsedEventArgs e)
         {
             AddSkillIfNotExists(e.UsedSkill);
 
@@ -223,7 +224,7 @@ namespace FEZSkillCounter.UseCase
             {
                 skillCount.Increment();
 
-                UpdateSkillText();
+                await UpdateSkillTextAsync();
             }
         }
 
@@ -248,11 +249,11 @@ namespace FEZSkillCounter.UseCase
             return true;
         }
 
-        private void UpdateSkillText()
+        private async Task UpdateSkillTextAsync()
         {
             if (IsSkillCountFileSave.Value)
             {
-                _skillCountFileRepository.Save(CurrentSkillCollection);
+                await _skillCountFileRepository.SaveAsync(CurrentSkillCollection);
             }
         }
 
