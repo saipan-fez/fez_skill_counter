@@ -10,6 +10,8 @@ namespace FEZSkillCounter.Model.Repository
 {
     public class SkillCountFileRepository
     {
+        private const int RetryCount = 5;
+
         public string TxtFilePath { get; }
         public string XmlFilePath { get; }
 
@@ -59,25 +61,37 @@ namespace FEZSkillCounter.Model.Repository
                 // txtファイルへの書き込み
                 var txtWriteTask = Task.Run(() =>
                 {
-                    using (var sw = new StreamWriter(TxtFilePath, false, Encoding.UTF8))
-                    {
-                        sw.WriteLine(text);
-                        sw.Flush();
-                    }
+                    WriteWithRetry(TxtFilePath, text);
                 });
 
                 // xmlファイルへの書き込み
                 var xmlWriteTask = Task.Run(() =>
                 {
-                    using (var sw = new StreamWriter(XmlFilePath, false, Encoding.UTF8))
-                    {
-
-                        sw.WriteLine(skillsDom);
-                        sw.Flush();
-                    }
+                    WriteWithRetry(XmlFilePath, skillsDom);
                 });
 
                 await Task.WhenAll(txtWriteTask, xmlWriteTask);
+            }
+        }
+
+        private void WriteWithRetry(string path, string content)
+        {
+            for (int i = 0; i < RetryCount; i++)
+            {
+                try
+                {
+                    using (var sw = new StreamWriter(path, false, Encoding.UTF8))
+                    {
+
+                        sw.WriteLine(content);
+                        sw.Flush();
+                    }
+                    break;
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
 

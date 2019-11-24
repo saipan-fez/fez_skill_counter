@@ -157,7 +157,7 @@ namespace FEZSkillCounter.UseCase
             MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
 
             // 戦争開始時にスキル回数をリセットする
-            await UpdateSkillTextAsync();
+            await ResetSkillCountAsync();
         }
 
         private void _skillUseService_WarCanceled(object sender, WarCanceledEventArgs e)
