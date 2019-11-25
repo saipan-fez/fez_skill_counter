@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>FEZ Skill Counter</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/animatecss/3.1.0/animate.css">
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+    body {
+        background-color: black;
+    }
+    tr {
+        color    : white;
+        font-size: 20px;
+    }
+    .skillimage {
+        width : 25px;
+        height: 25px;
+    }
+    td.shortname {
+        padding-left: 0.2em;
+        text-align  : left;
+    }
+    td.count {
+        padding-left: 0.5em;
+        text-align  : right;
+    }
+</style>
+
+<script>
+    const skillcount_xml_path = "skillcount.xml";   // スキル使用回数XMLファイルのパス
+    const timer_interval_ms   = 100;                // スキル使用回数XMLファイルの監視タイマー周期(ms)
+
+    function start() {
+        setInterval(timer_tick, timer_interval_ms);
+    }
+
+    function timer_tick() {
+        $.ajax({
+            url: skillcount_xml_path,
+            type: 'GET',
+            dataType: 'xml',
+            timeout: 5000,
+        }).done(function (xml) {
+            let   skill_collection = [];
+            const skills_xml       = xml.getElementsByTagName('skill');
+            for (let skill of skills_xml) {
+                skill_collection.push({
+                    name     : skill.getElementsByTagName("name")[0].textContent,
+                    shortname: skill.getElementsByTagName("shortname")[0].textContent,
+                    count    : skill.getElementsByTagName("count")[0].textContent,
+                });
+            }
+
+            const table = $("table");
+            for (let skill of skill_collection) {
+                const tr = table.find(`#${skill.name}`);
+                if (tr === undefined || tr.length <= 0) {
+                    insert_skill(table, skill.name, skill.shortname, skill.count);
+                }
+                else {
+                    update_count(tr.find(".count_value"), skill.count);
+                }
+            }
+            for (let tr of table.find(`tr`)) {
+                if (!skill_collection.map(x => x.name).includes(tr.id)) {
+                    remove_skill(table, tr.id);
+                }
+            }
+        });
+    }
+
+    function insert_skill(table, name, shortname, count) {
+        const row = $(
+            `<tr id="${name}" style="display=none;">` +
+                `<td class="skillimg"><img class="skillimage" src="http://fewiki.jp/index.php?plugin=attach&refer=Skill%2F%A5%A6%A5%A9%A5%EA%A5%A2%A1%BC%A5%B9%A5%AD%A5%EB&openfile=%B4%F0%CB%DC%B9%B6%B7%E2.gif"/></td>` +
+                `<td class="shortname"><div>${shortname}</div></td>` +
+                `<td class="count"><div class="count_value">${count}</div></td>` +
+            `</tr>`
+        );
+        row.hide();
+        table.append(row);
+        row.fadeIn();
+    }
+
+    function remove_skill(table, id) {
+        const tr = table.find(`#${id}`);
+        tr.fadeOut(() => {
+            tr.remove();
+        });
+    }
+
+    function update_count(target, text) {
+        if (target.text() != text) {
+            target.fadeOut(() => {
+                target.html(text);
+                target.fadeIn();
+            });
+        }
+    }
+</script>
+</head>
+<body onload="start();">
+    <table id="table"></table>
+</body>
+</html>
