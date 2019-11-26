@@ -26,7 +26,7 @@ namespace FEZSkillCounter.UseCase
     public class SkillCountUseCase : IDisposable
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
-        private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.xml");
+        private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "html\\skillcount.xml");
 
         public ReactivePropertySlim<string>               MapName                { get; }
         public ReactivePropertySlim<string>               WorkName               { get; }
@@ -243,7 +243,8 @@ namespace FEZSkillCounter.UseCase
             CurrentSkillCollection.Add(new SkillCountDetailEntity()
             {
                 SkillName      = s.Name,
-                SkillShortName = s.ShortName
+                SkillShortName = s.ShortName,
+                WorkName       = s.WorkName,
             });
 
             return true;

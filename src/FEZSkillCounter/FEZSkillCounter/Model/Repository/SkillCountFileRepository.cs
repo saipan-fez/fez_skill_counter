@@ -112,8 +112,11 @@ namespace FEZSkillCounter.Model.Repository
                         $"</skill>";
             });
 
+            var work = skills.FirstOrDefault()?.WorkName ?? "不明";
+
             var skillsDom =
                     $"<log>\n" +
+                    $"<work>{work}</work>\n" +
                     $"<skills>\n" +
                     string.Join("\n", skillDomCollection) + "\n" +
                     $"</skills>\n" +
