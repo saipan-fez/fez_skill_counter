@@ -1,0 +1,46 @@
+﻿<log>
+<work>ウォーリアー</work>
+<skills>
+<skill id='0'>
+    <name>シールドバッシュ</name>
+    <shortname>バッシュ</shortname>
+    <count>10</count>
+</skill>
+<skill id='1'>
+    <name>ガードレインフォース</name>
+    <shortname>ガドレ</shortname>
+    <count>1</count>
+</skill>
+<skill id='2'>
+    <name>ブレイズスラッシュ</name>
+    <shortname>ブレイズ</shortname>
+    <count>2</count>
+</skill>
+<skill id='3'>
+    <name>アーススタンプ</name>
+    <shortname>スタンプ</shortname>
+    <count>0</count>
+</skill>
+<skill id='4'>
+    <name>クランブルストーム</name>
+    <shortname>クラン</shortname>
+    <count>0</count>
+</skill>
+<skill id='5'>
+    <name>ソリッドウォール</name>
+    <shortname>ソリッド</shortname>
+    <count>0</count>
+</skill>
+<skill id='6'>
+    <name>エンダーペイン</name>
+    <shortname>エンダー</shortname>
+    <count>0</count>
+</skill>
+<skill id='7'>
+    <name>スラムアタック</name>
+    <shortname>スラム</shortname>
+    <count>0</count>
+</skill>
+</skills>
+</log>
+

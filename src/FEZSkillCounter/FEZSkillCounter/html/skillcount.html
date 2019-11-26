@@ -19,7 +19,7 @@
         height: 25px;
     }
     td.shortname {
-        padding-left: 0.2em;
+        padding-left: 0.5em;
         text-align  : left;
     }
     td.count {
@@ -44,6 +44,7 @@
             timeout: 5000,
         }).done(function (xml) {
             let   skill_collection = [];
+            const work             = xml.getElementsByTagName('work')[0].textContent;
             const skills_xml       = xml.getElementsByTagName('skill');
             for (let skill of skills_xml) {
                 skill_collection.push({
@@ -57,7 +58,7 @@
             for (let skill of skill_collection) {
                 const tr = table.find(`#${skill.name}`);
                 if (tr === undefined || tr.length <= 0) {
-                    insert_skill(table, skill.name, skill.shortname, skill.count);
+                    insert_skill(table, work, skill.name, skill.shortname, skill.count);
                 }
                 else {
                     update_count(tr.find(".count_value"), skill.count);
@@ -71,10 +72,10 @@
         });
     }
 
-    function insert_skill(table, name, shortname, count) {
+    function insert_skill(table, work, name, shortname, count) {
         const row = $(
             `<tr id="${name}" style="display=none;">` +
-                `<td class="skillimg"><img class="skillimage" src="http://fewiki.jp/index.php?plugin=attach&refer=Skill%2F%A5%A6%A5%A9%A5%EA%A5%A2%A1%BC%A5%B9%A5%AD%A5%EB&openfile=%B4%F0%CB%DC%B9%B6%B7%E2.gif"/></td>` +
+                `<td class="skillimg"><img class="skillimage" src="imgs/${work}/${name}.png"/></td>` +
                 `<td class="shortname"><div>${shortname}</div></td>` +
                 `<td class="count"><div class="count_value">${count}</div></td>` +
             `</tr>`
