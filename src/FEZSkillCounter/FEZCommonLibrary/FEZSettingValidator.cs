@@ -15,28 +15,30 @@ namespace FEZCommonLibrary
         /// <returns></returns>
         public static bool ValidateGlobalIniSetting()
         {
-            var fullscreen  = GetGlobalIniValue("GLOBAL", "FULLSCREEN");
-            var windowColor = GetGlobalIniValue("GLOBAL", "WINDOW_COLOR");
-
-            return
-                fullscreen  == "0" &&   // ウィンドウモード
-                windowColor == "1";     // カラー1
-        }
-
-        private static string GetGlobalIniValue(string section, string key)
-        {
             var globalIniPath = Path.Combine(
                 Environment.Is64BitOperatingSystem ?
                     Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) :
                     Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
                 "SquareEnix\\FantasyEarthZero\\Settings\\GLOBAL.INI");
 
-            return GetIniValue(globalIniPath, section, key);
+            // TODO: 確認するフォルダをインストール先に対応させる(現状デフォルトのみ対応)
+            // インストール先にGLOBAL.iniが存在しない場合はチェックをスルー
+            if (!File.Exists(globalIniPath))
+            {
+                return true;
+            }
+
+            var fullscreen  = GetIniValue(globalIniPath, "GLOBAL", "FULLSCREEN");
+            var windowColor = GetIniValue(globalIniPath, "GLOBAL", "WINDOW_COLOR");
+
+            return
+                fullscreen  == "0" &&   // ウィンドウモード
+                windowColor == "1";     // カラー1
         }
 
         private static string GetIniValue(string path, string section, string key)
         {
-            StringBuilder sb = new StringBuilder(256);
+            var sb = new StringBuilder(256);
             NativeMethods.GetPrivateProfileString(section, key, string.Empty, sb, sb.Capacity, path);
             return sb.ToString();
         }
