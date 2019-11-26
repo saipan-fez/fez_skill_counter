@@ -3,6 +3,12 @@ skip_non_tags: true
 image: Visual Studio 2019
 configuration: Release
 platform: Any CPU
+init:
+  - ps: Set-WinSystemLocale ja-JP
+  - ps: Start-Sleep -s 10
+  - ps: Restart-Computer
+  - ps: Start-Sleep -s 10
+
 before_build:
 - cmd: >-
     cd src\FEZSkillCounter
@@ -11,6 +17,8 @@ before_build:
 build:
   project: src\FEZSkillCounter\FEZSkillCounter.sln
   verbosity: minimal
-artifacts:
-- path: src\FEZSkillCounter\FEZSkillCounter\bin\$(configuration)
-  name: fez_skill_counter
+
+after_build:
+  - cmd: tree /F C:\projects\fez-skill-counter\src\FEZSkillCounter\FEZSkillCounter\bin\Release
+  - cmd: 7z a FEZSkillCounter.zip C:\projects\fez-skill-counter\src\FEZSkillCounter\FEZSkillCounter\bin\Release\* -mcl=on
+  - cmd: appveyor PushArtifact FEZSkillCounter.zip
