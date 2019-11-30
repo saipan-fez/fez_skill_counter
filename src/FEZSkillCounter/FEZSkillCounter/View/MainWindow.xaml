@@ -34,7 +34,7 @@
         <Style x:Key="HeaderTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style x:Key="ValueTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
@@ -194,57 +194,6 @@
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                            <materialDesign:PackIcon Kind="CodeBraces" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
-                            <Separator Width="5" Background="Transparent"/>
-                            <TextBlock Text="Debug" Foreground="{DynamicResource MaterialDesignColumnHeader}"
-                                       FontSize="13" Margin="0,0,6,0" FontWeight="Medium" FontFamily="{StaticResource ContentFontFamily}" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <materialDesign:ColorZone Margin="10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Pow.Value}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Debuff" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PowDebuffs.Value}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Status" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WarStatus.Value}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="6" Grid.Column="0" Text="AvgTime" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding AverageFps.Value, StringFormat={}{0:F2}ms}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="8" Grid.Column="0" Text="攻撃側キープ" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding AttackKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="10" Grid.Column="0" Text="防衛側キープ" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding DefenceKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
-                            <TextBlock Grid.Row="12" Grid.Column="0" Text="書の状況" Style="{StaticResource HeaderTextBlock}" />
-                            <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding IsBookUsing.Value}" Style="{StaticResource ValueTextBlock}" />
-                        </Grid>
-                    </materialDesign:ColorZone>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
                             <materialDesign:PackIcon Kind="Settings" Foreground="{DynamicResource MaterialDesignColumnHeader}" />
                             <Separator Width="5" Background="Transparent"/>
                             <TextBlock Text="Setting" Foreground="{DynamicResource MaterialDesignColumnHeader}"
@@ -274,6 +223,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="15"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="30"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="テキスト・HTMLファイルに出力する" Style="{StaticResource SettingHeaderTextBlock}"/>
@@ -288,6 +238,47 @@
                             <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
                                        Text="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
                             <ToggleButton Grid.Row="4" Grid.Column="3" IsChecked="{Binding IsDebugModeEnabled.Value}"/>
+
+                            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
+                                  Visibility="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Pow.Value}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Debuff" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PowDebuffs.Value}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Status" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WarStatus.Value}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="AvgTime" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding AverageFps.Value, StringFormat={}{0:F2}ms}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="8" Grid.Column="0" Text="攻撃側キープ" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding AttackKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="10" Grid.Column="0" Text="防衛側キープ" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding DefenceKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
+                                <TextBlock Grid.Row="12" Grid.Column="0" Text="書の状況" Style="{StaticResource HeaderTextBlock}" />
+                                <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding IsBookUsing.Value}" Style="{StaticResource ValueTextBlock}" />
+                            </Grid>
                         </Grid>
                     </materialDesign:ColorZone>
                 </TabItem>
