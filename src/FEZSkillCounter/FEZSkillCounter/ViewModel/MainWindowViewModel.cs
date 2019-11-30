@@ -25,6 +25,7 @@ namespace FEZSkillCounter.ViewModel
         public ReadOnlyReactivePropertySlim<int>       Pow                  { get; }
         public ReadOnlyReactivePropertySlim<string>    PowDebuffs           { get; }
         public ReactiveProperty<bool>                  IsSkillCountFileSave { get; }
+        public ReactiveProperty<bool>                  IsNotifyBookUses     { get; }
         public ReactiveProperty<bool>                  IsDebugModeEnabled   { get; }
 
         public ReactiveProperty<bool> IsWarriorFilter  { get; }
@@ -70,6 +71,11 @@ namespace FEZSkillCounter.ViewModel
             IsSkillCountFileSave.Subscribe(x =>
             {
                 _skillCountUseCase.IsSkillCountFileSave.Value = x;
+            });
+            IsNotifyBookUses = _skillCountUseCase.IsNotifyBookUses.ToReactiveProperty();
+            IsNotifyBookUses.Subscribe(x =>
+            {
+                _skillCountUseCase.IsNotifyBookUses.Value = x;
             });
             IsDebugModeEnabled = _skillCountUseCase.IsDebugModeEnabled.ToReactiveProperty();
             IsDebugModeEnabled.Subscribe(x =>

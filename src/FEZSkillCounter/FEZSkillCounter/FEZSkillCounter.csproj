@@ -228,6 +228,10 @@
     <Compile Include="Migrations\20190912132229_AddSettingEntity.designer.cs">
       <DependentUpon>20190912132229_AddSettingEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20191130192253_AddNotifyBookUseSetting.cs" />
+    <Compile Include="Migrations\20191130192253_AddNotifyBookUseSetting.designer.cs">
+      <DependentUpon>20191130192253_AddNotifyBookUseSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
     <Compile Include="Model\BookUseNotificator.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />

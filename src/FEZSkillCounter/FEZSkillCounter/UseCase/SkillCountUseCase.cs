@@ -42,6 +42,7 @@ namespace FEZSkillCounter.UseCase
         public ReactivePropertySlim<int>                  Pow                    { get; }
         public ReactivePropertySlim<string>               PowDebuffs             { get; }
         public ReactiveProperty<bool>                     IsSkillCountFileSave   { get; }
+        public ReactiveProperty<bool>                     IsNotifyBookUses       { get; }
         public ReactiveProperty<bool>                     IsDebugModeEnabled     { get; }
 
         private SkillCountRepository     _skillCountRepository;
@@ -69,11 +70,17 @@ namespace FEZSkillCounter.UseCase
             Pow                    = new ReactivePropertySlim<int>(0);
             PowDebuffs             = new ReactivePropertySlim<string>(string.Empty);
             IsSkillCountFileSave   = setting.ObserveProperty(x => x.IsSkillCountFileSave).ToReactiveProperty();
+            IsNotifyBookUses       = setting.ObserveProperty(x => x.IsNotifyBookUses).ToReactiveProperty();
             IsDebugModeEnabled     = setting.ObserveProperty(x => x.IsDebugModeEnabled).ToReactiveProperty();
 
             IsSkillCountFileSave.Subscribe(async x =>
             {
                 setting.IsSkillCountFileSave = x;
+                await _settingRepository.UpdateAsync();
+            });
+            IsNotifyBookUses.Subscribe(async x =>
+            {
+                setting.IsNotifyBookUses = x;
                 await _settingRepository.UpdateAsync();
             });
             IsDebugModeEnabled.Subscribe(async x =>
@@ -198,10 +205,13 @@ namespace FEZSkillCounter.UseCase
             DefenceKeepDamage.Value = e.Damage.DefenceKeepDamage;
 
             // 書の使用通知のため状態をレポートする
-            _bookUseNotificator.ReportCurrentStatusWithNotify(
-                WarStatus.Value,
-                IsBookUsing.Value,
-                e.Damage);
+            if (IsNotifyBookUses.Value)
+            {
+                _bookUseNotificator.ReportCurrentStatusWithNotify(
+                    WarStatus.Value,
+                    IsBookUsing.Value,
+                    e.Damage);
+            }
         }
 
         private void _skillUseService_BookUsesUpdated(object sender, BookUsesUpdatedEventArgs e)

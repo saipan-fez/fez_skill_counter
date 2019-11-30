@@ -272,16 +272,22 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="15"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="テキストファイルに出力する（配信向け）" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="テキスト・HTMLファイルに出力する" Style="{StaticResource SettingHeaderTextBlock}"/>
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
                                        Text="{Binding IsSkillCountFileSave.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
                             <ToggleButton Grid.Row="0" Grid.Column="3" IsChecked="{Binding IsSkillCountFileSave.Value}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="デバッグ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="書の時間お知らせ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
+                                       Text="{Binding IsNotifyBookUses.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
+                            <ToggleButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding IsSkillCountFileSave.Value}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="デバッグ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
                                        Text="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
-                            <ToggleButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding IsDebugModeEnabled.Value}"/>
+                            <ToggleButton Grid.Row="4" Grid.Column="3" IsChecked="{Binding IsDebugModeEnabled.Value}"/>
                         </Grid>
                     </materialDesign:ColorZone>
                 </TabItem>
