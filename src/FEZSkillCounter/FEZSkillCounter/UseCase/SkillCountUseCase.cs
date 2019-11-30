@@ -1,4 +1,5 @@
-﻿using FEZSkillCounter.Model.Entity;
+﻿using FEZSkillCounter.Model;
+using FEZSkillCounter.Model.Entity;
 using FEZSkillCounter.Model.Repository;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -27,6 +28,7 @@ namespace FEZSkillCounter.UseCase
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
         private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "html\\skillcount.xml");
+        private static readonly string NotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets\\Sound\\book_notify.wav");
 
         public ReactivePropertySlim<string>               MapName                { get; }
         public ReactivePropertySlim<string>               WorkName               { get; }
@@ -34,6 +36,9 @@ namespace FEZSkillCounter.UseCase
         public ReactiveCollection<SkillCountEntity>       SkillCountHistories    { get; }
         public ReactivePropertySlim<WarEvents>            WarStatus              { get; }
         public ReactivePropertySlim<double>               AverageFps             { get; }
+        public ReactivePropertySlim<double>               AttackKeepDamage       { get; }
+        public ReactivePropertySlim<double>               DefenceKeepDamage      { get; }
+        public ReactivePropertySlim<bool>                 IsBookUsing            { get; }
         public ReactivePropertySlim<int>                  Pow                    { get; }
         public ReactivePropertySlim<string>               PowDebuffs             { get; }
         public ReactiveProperty<bool>                     IsSkillCountFileSave   { get; }
@@ -43,6 +48,7 @@ namespace FEZSkillCounter.UseCase
         private SkillCountFileRepository _skillCountFileRepository;
         private SettingRepository        _settingRepository;
         private SkillCountService        _skillUseService;
+        private BookUseNotificator       _bookUseNotificator;
 
         public SkillCountUseCase()
         {
@@ -57,6 +63,9 @@ namespace FEZSkillCounter.UseCase
             SkillCountHistories    = new ReactiveCollection<SkillCountEntity>();
             WarStatus              = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
             AverageFps             = new ReactivePropertySlim<double>(0d);
+            AttackKeepDamage       = new ReactivePropertySlim<double>(0d);
+            DefenceKeepDamage      = new ReactivePropertySlim<double>(0d);
+            IsBookUsing            = new ReactivePropertySlim<bool>(false);
             Pow                    = new ReactivePropertySlim<int>(0);
             PowDebuffs             = new ReactivePropertySlim<string>(string.Empty);
             IsSkillCountFileSave   = setting.ObserveProperty(x => x.IsSkillCountFileSave).ToReactiveProperty();
@@ -108,6 +117,8 @@ namespace FEZSkillCounter.UseCase
 
         public async Task SetUpAsync()
         {
+            _bookUseNotificator = new BookUseNotificator(NotifySoundFilePath);
+
             _skillUseService = new SkillCountService();
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
             _skillUseService.WarCanceled        += _skillUseService_WarCanceled;
@@ -117,6 +128,8 @@ namespace FEZSkillCounter.UseCase
             _skillUseService.PowDebuffsUpdated  += _skillUseService_PowDebuffsUpdated;
             _skillUseService.PowUpdated         += _skillUseService_PowUpdated;
             _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
+            _skillUseService.KeepDamageUpdated  += _skillUseService_KeepDamageUpdated;
+            _skillUseService.BookUsesUpdated    += _skillUseService_BookUsesUpdated;
 
             SkillCountHistories.AddRangeOnScheduler(_skillCountRepository.GetSkillCounts());
 
@@ -177,6 +190,23 @@ namespace FEZSkillCounter.UseCase
         private void _skillUseService_FpsUpdated(object sender, ProcessTimeUpdatedEventArgs e)
         {
             AverageFps.Value = e.ProcessAvgTime;
+        }
+
+        private void _skillUseService_KeepDamageUpdated(object sender, KeepDamageUpdatedEventArgs e)
+        {
+            AttackKeepDamage.Value  = e.Damage.AttackKeepDamage;
+            DefenceKeepDamage.Value = e.Damage.DefenceKeepDamage;
+
+            // 書の使用通知のため状態をレポートする
+            _bookUseNotificator.ReportCurrentStatusWithNotify(
+                WarStatus.Value,
+                IsBookUsing.Value,
+                e.Damage);
+        }
+
+        private void _skillUseService_BookUsesUpdated(object sender, BookUsesUpdatedEventArgs e)
+        {
+            IsBookUsing.Value = e.IsBookUsed;
         }
 
         private void _skillUseService_PowUpdated(object sender, PowUpdatedEventArgs e)

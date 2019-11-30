@@ -11,7 +11,11 @@ namespace SkillUseCounter.Recognizer
         /// <summary>
         /// L*a*b色空間上での色差の閾値
         /// </summary>
-        private const double ColorDiffThreashold = 10.0d;
+        /// <remarks>
+        /// 若干透過が入っているためか色差を大きめにとる
+        /// (10.0dでは一部超える場合があった)
+        /// </remarks>
+        private const double ColorDiffThreashold = 15.0d;
 
         private bool _previousUsed = false;
 

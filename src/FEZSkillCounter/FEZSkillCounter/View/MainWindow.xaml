@@ -218,6 +218,12 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="10"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="Pow" Style="{StaticResource HeaderTextBlock}" />
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Pow.Value}" Style="{StaticResource ValueTextBlock}" />
@@ -227,6 +233,12 @@
                             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WarStatus.Value}" Style="{StaticResource ValueTextBlock}" />
                             <TextBlock Grid.Row="6" Grid.Column="0" Text="AvgTime" Style="{StaticResource HeaderTextBlock}" />
                             <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding AverageFps.Value, StringFormat={}{0:F2}ms}" Style="{StaticResource ValueTextBlock}" />
+                            <TextBlock Grid.Row="8" Grid.Column="0" Text="攻撃側キープ" Style="{StaticResource HeaderTextBlock}" />
+                            <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding AttackKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
+                            <TextBlock Grid.Row="10" Grid.Column="0" Text="防衛側キープ" Style="{StaticResource HeaderTextBlock}" />
+                            <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding DefenceKeepDamage.Value, StringFormat={}{0:F2}}" Style="{StaticResource ValueTextBlock}" />
+                            <TextBlock Grid.Row="12" Grid.Column="0" Text="書の状況" Style="{StaticResource HeaderTextBlock}" />
+                            <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding IsBookUsing.Value}" Style="{StaticResource ValueTextBlock}" />
                         </Grid>
                     </materialDesign:ColorZone>
                 </TabItem>

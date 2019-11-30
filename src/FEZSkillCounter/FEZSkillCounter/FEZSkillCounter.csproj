@@ -229,6 +229,7 @@
       <DependentUpon>20190912132229_AddSettingEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
+    <Compile Include="Model\BookUseNotificator.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />
     <Compile Include="Model\Entity\SettingEntity.cs" />
     <Compile Include="Model\Repository\SettingRepository.cs" />
@@ -304,6 +305,9 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Sound\book_notify.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="html\imgs\ウォーリアー\アサルトエッジ.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

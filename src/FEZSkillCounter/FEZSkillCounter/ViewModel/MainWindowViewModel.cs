@@ -19,6 +19,9 @@ namespace FEZSkillCounter.ViewModel
         public ReadOnlyReactivePropertySlim<string>    WorkName             { get; }
         public ReadOnlyReactivePropertySlim<WarEvents> WarStatus            { get; }
         public ReadOnlyReactivePropertySlim<double>    AverageFps           { get; }
+        public ReadOnlyReactivePropertySlim<double>    AttackKeepDamage     { get; }
+        public ReadOnlyReactivePropertySlim<double>    DefenceKeepDamage    { get; }
+        public ReadOnlyReactivePropertySlim<bool>      IsBookUsing          { get; }
         public ReadOnlyReactivePropertySlim<int>       Pow                  { get; }
         public ReadOnlyReactivePropertySlim<string>    PowDebuffs           { get; }
         public ReactiveProperty<bool>                  IsSkillCountFileSave { get; }
@@ -53,10 +56,13 @@ namespace FEZSkillCounter.ViewModel
             WorkName     = _skillCountUseCase.WorkName
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();
-            WarStatus  = _skillCountUseCase.WarStatus.ToReadOnlyReactivePropertySlim();
-            AverageFps = _skillCountUseCase.AverageFps.ToReadOnlyReactivePropertySlim();
-            Pow        = _skillCountUseCase.Pow.ToReadOnlyReactivePropertySlim();
-            PowDebuffs = _skillCountUseCase.PowDebuffs
+            WarStatus         = _skillCountUseCase.WarStatus.ToReadOnlyReactivePropertySlim();
+            AverageFps        = _skillCountUseCase.AverageFps.ToReadOnlyReactivePropertySlim();
+            AttackKeepDamage  = _skillCountUseCase.AttackKeepDamage.ToReadOnlyReactivePropertySlim();
+            DefenceKeepDamage = _skillCountUseCase.DefenceKeepDamage.ToReadOnlyReactivePropertySlim();
+            IsBookUsing       = _skillCountUseCase.IsBookUsing.ToReadOnlyReactivePropertySlim();
+            Pow               = _skillCountUseCase.Pow.ToReadOnlyReactivePropertySlim();
+            PowDebuffs        = _skillCountUseCase.PowDebuffs
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();
 
