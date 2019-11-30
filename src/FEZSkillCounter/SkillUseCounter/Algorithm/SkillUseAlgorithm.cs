@@ -162,7 +162,7 @@ namespace SkillUseCounter.Algorithm
                 // なお、上記にさらにスキル使用によるPow消費が同時に発生しうるが、
                 // こちらは滅多にないため考慮しない。
                 // TODO: その場合でも以降問題なく動作するようにする(現状ではおそらくバグる)
-                if (debuffPowSum.Any(x => Math.Abs(x - powDiff) < PowRegenerateThreashold))
+                if (debuffPowSum.Any(x => Math.Abs(x + powDiff) < PowRegenerateThreashold))
                 {
                     Logger.WriteLine($"-------------------------");
                     Logger.WriteLine($"Detected to PowDebuff.");

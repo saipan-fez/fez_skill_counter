@@ -12,7 +12,7 @@ namespace SkillUseCounterTest
 
         private readonly Skill[] TestSkill = new Skill[]
         {
-            new Skill("Name", "ShorName", new int[]{ 10, 15, 20 }, true)
+            new Skill("Name", "ShorName", "workName", new int[]{ 10, 15, 20 }, true)
         };
         private readonly PowDebuff[] EmptyPowDebuff = new PowDebuff[0];
         private readonly PowDebuff[] PowerBreak = new PowDebuff[]
