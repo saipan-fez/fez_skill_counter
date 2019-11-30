@@ -89,9 +89,6 @@ namespace SkillUseCounter
             _warStateRecognizer.WarStarted    += (_, e) =>
             {
                 Logger.WriteLine("War started.");
-
-                // 開始時に各種数値をリセットする
-                Reset();
                 WarStarted?.Invoke(this, new WarStartedEventArgs(e));
             };
             _warStateRecognizer.WarCanceled += (_, e) =>
@@ -264,8 +261,8 @@ namespace SkillUseCounter
                 var powDebuffs = _powDebuffArrayRecognizer.Recognize(screenShot.Image);
 
                 // 取得失敗していれば終了
-                if (pow         == PowRecognizer.InvalidPow ||
-                    powDebuffs  == PowDebuffArrayRecognizer.InvalidPowDebuffs)
+                if (pow        == PowRecognizer.InvalidPow ||
+                    powDebuffs == PowDebuffArrayRecognizer.InvalidPowDebuffs)
                 {
                     return false;
                 }

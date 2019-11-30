@@ -53,7 +53,7 @@ namespace SkillUseCounter.Recognizer
                     if (IsDisplayCost(bitmap) && !map.IsEmpty())
                     {
                         state = WarState.Waring;
-                        WarStarted(this, map);
+                        WarStarted?.Invoke(this, map);
                     }
                     break;
 
@@ -63,14 +63,14 @@ namespace SkillUseCounter.Recognizer
                     if (IsDisplayWarResult(bitmap) && !map.IsEmpty())
                     {
                         state = WarState.Waiting;
-                        WarFinished(this, map);
+                        WarFinished?.Invoke(this, map);
                     }
                     // FOして別の戦場を入りなおしたとき、状態はAtWarのままのため、
                     // 一度Waitingに状態変更通知を投げて、即座に戦争状態に戻す
                     if (!map.IsEmpty() && map != _previousValidMap)
                     {
-                        WarCanceled(this, map);
-                        WarStarted(this, map);
+                        WarCanceled?.Invoke(this, map);
+                        WarStarted?.Invoke(this, map);
                     }
                     break;
 

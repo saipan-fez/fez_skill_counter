@@ -2,6 +2,7 @@
 using NSubstitute;
 using SkillUseCounter.Entity;
 using SkillUseCounter.Recognizer;
+using SkillUseCounter.Storage;
 using System.Drawing;
 
 namespace SkillUseCounterTest
@@ -14,36 +15,40 @@ namespace SkillUseCounterTest
         [TestInitialize]
         public void Initialize()
         {
-            var mock = Substitute.For<IRecognizer<Map>>();
-            {
-                mock.Recognize(Arg.Any<Bitmap>()).Returns(new Map("test"));
-            }
-
-            recognizer = new WarStateRecognizer(mock);
+            MapStorage.Create();
+            recognizer = new WarStateRecognizer(new MapRecognizer());
         }
 
         [TestMethod]
         public void 戦争開始したか()
         {
-            //using (var startBitmap = new Bitmap("TestImages\\WarFinished.png"))
-            //{
-            //    var state = recognizer.Recognize(startBitmap);
-            //    Assert.AreEqual(state, WarState.AtWar);
-            //}
+            var str = "";
+            recognizer.WarStarted += (s, e) => str = "WarStarted";
+
+            using (var startBitmap = new Bitmap("TestImages\\WarStarted.png"))
+            {
+                recognizer.Report(startBitmap);
+
+                // イベントが発火したかどうかチェック
+                Assert.AreEqual("WarStarted", str);
+            }
         }
 
         [TestMethod]
         public void 戦争終了したか()
         {
-            //using (var startBitmap = new Bitmap("TestImages\\WarFinished.png"))
-            //using (var endBitmap   = new Bitmap("TestImages\\WarFinished.png"))
-            //{
-            //    var state1 = recognizer.Recognize(startBitmap);
-            //    Assert.AreEqual(state1, WarState.AtWar);
+            var str = "";
+            recognizer.WarFinished += (s, e) => str = "WarFinished";
 
-            //    var state2 = recognizer.Recognize(startBitmap);
-            //    Assert.AreEqual(state2, WarState.Waiting);
-            //}
+            using (var startBitmap = new Bitmap("TestImages\\WarStarted.png"))
+            using (var endBitmap = new Bitmap("TestImages\\WarFinished.png"))
+            {
+                recognizer.Report(startBitmap);
+                recognizer.Report(endBitmap);
+
+                // イベントが発火したかどうかチェック
+                Assert.AreEqual("WarFinished", str);
+            }
         }
     }
 }

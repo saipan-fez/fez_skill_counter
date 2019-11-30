@@ -52,6 +52,7 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Entity\FEZScreenShot.cs" />
+    <Compile Include="Entity\KeepDamage.cs" />
     <Compile Include="Entity\Map.cs" />
     <Compile Include="Entity\PowDebuff.cs" />
     <Compile Include="Entity\Skill.cs" />
@@ -65,6 +66,7 @@
     </Compile>
     <Compile Include="Recognizer\IRecognizer.cs" />
     <Compile Include="Recognizer\IResettableRecognizer.cs" />
+    <Compile Include="Recognizer\KeepDamageRecognizer.cs" />
     <Compile Include="Recognizer\MapRecognizer.cs" />
     <Compile Include="Recognizer\PowDebuffArrayRecognizer.cs" />
     <Compile Include="Recognizer\PowRecognizer.cs" />
