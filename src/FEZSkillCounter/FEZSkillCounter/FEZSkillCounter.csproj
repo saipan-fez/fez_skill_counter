@@ -305,7 +305,7 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\Sound\book_notify.wav">
+    <Content Include="sound\book_notify.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="html\imgs\ウォーリアー\アサルトエッジ.png">
