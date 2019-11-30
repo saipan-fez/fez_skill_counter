@@ -83,6 +83,7 @@
         row.hide();
         table.append(row);
         row.fadeIn();
+        console.log("skill added.:", name);
     }
 
     function remove_skill(table, id) {
@@ -90,6 +91,7 @@
         tr.fadeOut(() => {
             tr.remove();
         });
+        console.log("skill removed.:", id);
     }
 
     function update_count(target, text) {
@@ -98,6 +100,7 @@
                 target.html(text);
                 target.fadeIn();
             });
+            console.log("count updated.:", text);
         }
     }
 </script>
