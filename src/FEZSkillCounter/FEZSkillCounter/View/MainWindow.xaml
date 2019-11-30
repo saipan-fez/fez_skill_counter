@@ -283,7 +283,7 @@
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="書の時間お知らせ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
                                        Text="{Binding IsNotifyBookUses.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
-                            <ToggleButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding IsSkillCountFileSave.Value}"/>
+                            <ToggleButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding IsNotifyBookUses.Value}"/>
                             <TextBlock Grid.Row="4" Grid.Column="0" Text="デバッグ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
                             <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
                                        Text="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
