@@ -38,6 +38,16 @@ namespace SkillUseCounter
         public event EventHandler<PowDebuffsUpdatedEventArgs> PowDebuffsUpdated;
 
         /// <summary>
+        /// キープへのダメージ量変更通知
+        /// </summary>
+        public event EventHandler<KeepDamageUpdatedEventArgs> KeepDamageUpdated;
+
+        /// <summary>
+        /// 書の使用状態変更通知
+        /// </summary>
+        public event EventHandler<BookUsesUpdatedEventArgs> BookUsesUpdated;
+
+        /// <summary>
         /// スキル使用を通知
         /// </summary>
         public event EventHandler<SkillUsedEventArgs> SkillUsed;
@@ -67,6 +77,8 @@ namespace SkillUseCounter
         private IResettableRecognizer<Skill[]>     _skillArrayRecognizer     = new SkillArrayRecognizer();
         private IResettableRecognizer<PowDebuff[]> _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
         private IResettableRecognizer<int>         _powRecognizer            = new PowRecognizer();
+        private IResettableRecognizer<KeepDamage>  _keepDamageRecognizer     = new KeepDamageRecognizer();
+        private IResettableRecognizer<bool>        _bookUseRecognizer        = new BookUseRecognizer();
 
         private FEZScreenShotStorage               _screenShotStorage        = new FEZScreenShotStorage();
         private SkillUseAlgorithm                  _skillCountAlgorithm      = new SkillUseAlgorithm();
@@ -86,6 +98,8 @@ namespace SkillUseCounter
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, new SkillsUpdatedEventArgs(e));
             _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, new PowUpdatedEventArgs(e));
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, new PowDebuffsUpdatedEventArgs(e));
+            _keepDamageRecognizer.Updated     += (_, e) => KeepDamageUpdated?.Invoke(this, new KeepDamageUpdatedEventArgs(e));
+            _bookUseRecognizer.Updated        += (_, e) => BookUsesUpdated?.Invoke(this, new BookUsesUpdatedEventArgs(e));
             _warStateRecognizer.WarStarted    += (_, e) =>
             {
                 Logger.WriteLine("War started.");
@@ -198,6 +212,8 @@ namespace SkillUseCounter
             _warStateRecognizer.Reset();
             _skillArrayRecognizer.Reset();
             _powDebuffArrayRecognizer.Reset();
+            _keepDamageRecognizer.Reset();
+            _bookUseRecognizer.Reset();
             _powRecognizer.Reset();
         }
 
@@ -255,12 +271,15 @@ namespace SkillUseCounter
                 // 戦争の状況を登録
                 _warStateRecognizer.Report(screenShot.Image);
 
-                // 現在のPow・スキル・デバフを取得
+                // 現在のPow・スキル・デバフ・キープダメージ・倍書の使用状況を取得
                 var pow        = _powRecognizer.Recognize(screenShot.Image);
                 var skills     = _skillArrayRecognizer.Recognize(screenShot.Image);
                 var powDebuffs = _powDebuffArrayRecognizer.Recognize(screenShot.Image);
+                var keepDamage = _keepDamageRecognizer.Recognize(screenShot.Image);
+                var isBookUsed = _bookUseRecognizer.Recognize(screenShot.Image);
 
                 // 取得失敗していれば終了
+                //   キープダメージ・倍書の使用状況は取得有無がスキル使用に影響がないためチェックしない
                 if (pow        == PowRecognizer.InvalidPow ||
                     powDebuffs == PowDebuffArrayRecognizer.InvalidPowDebuffs)
                 {

@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookUseRecognizerTest.cs" />
     <Compile Include="KeepDamageRecognizerTest.cs" />
     <Compile Include="MapRecognizerTest.cs" />
     <Compile Include="PowRecognizerTest.cs" />
@@ -81,6 +82,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestImages\BookUse\BookOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestImages\BookUse\BookOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestImages\KeepDamage\A0.0-D0.9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

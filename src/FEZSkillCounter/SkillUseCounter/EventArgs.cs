@@ -39,6 +39,24 @@ namespace SkillUseCounter
         }
     }
 
+    public class KeepDamageUpdatedEventArgs : EventArgs
+    {
+        public KeepDamage Damage { get; }
+        public KeepDamageUpdatedEventArgs(KeepDamage damage)
+        {
+            Damage = damage;
+        }
+    }
+
+    public class BookUsesUpdatedEventArgs : EventArgs
+    {
+        public bool IsBookUsed { get; }
+        public BookUsesUpdatedEventArgs(bool isUsed)
+        {
+            IsBookUsed = isUsed;
+        }
+    }
+
     public class SkillUsedEventArgs : EventArgs
     {
         public Skill UsedSkill { get; }

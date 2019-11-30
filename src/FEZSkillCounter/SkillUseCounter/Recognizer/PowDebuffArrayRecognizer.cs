@@ -1,7 +1,6 @@
 ﻿using Colourful;
 using Colourful.Conversion;
 using Colourful.Difference;
-using SkillUseCounter.Extension;
 using SkillUseCounter.Entity;
 using System;
 using System.Drawing;

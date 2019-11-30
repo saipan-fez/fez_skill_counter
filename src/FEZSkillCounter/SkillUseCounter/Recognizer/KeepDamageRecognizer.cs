@@ -10,12 +10,16 @@ namespace SkillUseCounter.Recognizer
 {
     public class KeepDamageRecognizer : IResettableRecognizer<KeepDamage>
     {
+        /// <summary>
+        /// L*a*b色空間上での色差の閾値
+        /// </summary>
         private const double ColorDiffThreashold = 10.0d;
 
-        private KeepDamage _previousKeepDamage = KeepDamage.Empty;
+        // 攻撃・防衛側それぞれで走査するy座標
+        private const int Y_Attack  = 18;
+        private const int Y_Defence = 51;
 
-        private int Y_Attack  = 18;
-        private int Y_Defence = 51;
+        private KeepDamage _previousKeepDamage = KeepDamage.Empty;
 
         private readonly List<Tuple<uint[], int>> AttackKeepDamageMap = new List<Tuple<uint[], int>>()
         {
