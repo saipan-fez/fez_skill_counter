@@ -2,6 +2,7 @@
 using FEZSkillCounter.UseCase;
 using SkillUseCounter.Entity;
 using System;
+using System.IO;
 using System.Media;
 
 namespace FEZSkillCounter.Model
@@ -43,6 +44,11 @@ namespace FEZSkillCounter.Model
         {
             try
             {
+                if (!File.Exists(path))
+                {
+                    throw new FileNotFoundException();
+                }
+
                 return new SoundPlayer(path);
             }
             catch

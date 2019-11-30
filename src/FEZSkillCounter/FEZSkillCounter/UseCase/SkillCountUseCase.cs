@@ -28,7 +28,7 @@ namespace FEZSkillCounter.UseCase
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
         private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "html\\skillcount.xml");
-        private static readonly string NotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets\\Sound\\book_notify.wav");
+        private static readonly string NotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sound\\book_notify.wav");
 
         public ReactivePropertySlim<string>               MapName                { get; }
         public ReactivePropertySlim<string>               WorkName               { get; }
