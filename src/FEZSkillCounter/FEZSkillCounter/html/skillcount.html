@@ -8,9 +8,11 @@
 <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
     body {
-        background-color: black;
+        /* 背景色 */
+        background-color: transparent;
     }
     tr {
+        /* 文字のサイズと色 */
         color    : white;
         font-size: 20px;
     }
@@ -29,6 +31,12 @@
 </style>
 
 <script>
+    // -----------------------------------------------
+    // スキルアイコン表示ON/OFFを切り替える
+    // true: 表示   false: 非表示
+    const skillimage_display = true;
+    // -----------------------------------------------
+
     const skillcount_xml_path = "skillcount.xml";   // スキル使用回数XMLファイルのパス
     const timer_interval_ms   = 100;                // スキル使用回数XMLファイルの監視タイマー周期(ms)
 
@@ -73,9 +81,12 @@
     }
 
     function insert_skill(table, work, name, shortname, count) {
+        let skill_image_row = skillimage_display ?
+            `<td class="skillimg"><img class="skillimage" src="imgs/${work}/${name}.png"/></td>` :
+            ``;
         const row = $(
             `<tr id="${name}" style="display=none;">` +
-                `<td class="skillimg"><img class="skillimage" src="imgs/${work}/${name}.png"/></td>` +
+                skill_image_row +
                 `<td class="shortname"><div>${shortname}</div></td>` +
                 `<td class="count"><div class="count_value">${count}</div></td>` +
             `</tr>`
