@@ -130,6 +130,11 @@ namespace SkillUseCounter.Algorithm
 
                 // タイムスタンプの昇順でソート(＝ 直近のもの)
                 _debuffList = _debuffList.OrderBy(x => x.TimeStamp).ToList();
+
+                Logger.WriteLine($"-------------------------");
+                Logger.WriteLine($"PowDebuffList added.");
+                Logger.WriteLine($"[debuffList]");
+                Logger.WriteLine($"{string.Join("     " + Environment.NewLine, _debuffList.Select(x => "ID:" + x.DebuffId + " TimeStamp:" + x.TimeStamp + " Pow:[" + string.Join(",", x.Pow) + "]"))}");
             }
 
             //var ask = activeSkill != null ? activeSkill.Name : "null";
@@ -222,14 +227,11 @@ namespace SkillUseCounter.Algorithm
             var leavePowDebuffs = _previousPowDebuff.Except(powDebuff, x => x.Id);
             if (leavePowDebuffs.Any())
             {
-                Logger.WriteLine($"-------------------------");
-                Logger.WriteLine($"leavePowDebuffs.Any() is true.");
-                Logger.WriteLine($"[previous]");
-                Logger.WriteLine($"    {string.Join(",", _previousPowDebuff.Select(x => x.Name))}");
-                Logger.WriteLine($"[current]");
-                Logger.WriteLine($"    {string.Join(",", powDebuff.Select(x => x.Name))}");
-
                 _debuffList.RemoveAll(x => leavePowDebuffs.Any(y => y.Id == x.DebuffId));
+
+                Logger.WriteLine($"-------------------------");
+                Logger.WriteLine($"_debuffList removed.");
+                Logger.WriteLine($"{string.Join("     " + Environment.NewLine, _debuffList.Select(x => "ID:" + x.DebuffId + " TimeStamp:" + x.TimeStamp + " Pow:[" + string.Join(",", x.Pow) + "]"))}");
             }
 
     Finish:
