@@ -11,15 +11,6 @@
         /* 背景色 */
         background-color: transparent;
     }
-    tr {
-        /* 文字のサイズと色 */
-        color    : white;
-        font-size: 20px;
-    }
-    .skillimage {
-        width : 25px;
-        height: 25px;
-    }
     td.shortname {
         padding-left: 0.5em;
         text-align  : left;
@@ -31,69 +22,150 @@
 </style>
 
 <script>
-    // -----------------------------------------------
-    // スキルアイコン表示ON/OFFを切り替える
-    // true: 表示   false: 非表示
-    const skillimage_display = true;
-    // -----------------------------------------------
-
+    const setting_xml_path    = "setting.xml";      // 設定XMLファイルのパス
     const skillcount_xml_path = "skillcount.xml";   // スキル使用回数XMLファイルのパス
     const timer_interval_ms   = 100;                // スキル使用回数XMLファイルの監視タイマー周期(ms)
 
-    function start() {
+    let setting = {
+        IsShowSkillIcon: true,
+        SkillIconSize: 25,
+        FontName: "ＭＳ ゴシック",
+        FontSize:20,
+        StrokeSize: 2,
+        FontColor: {
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+        },
+        StrokeColor: {
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+        }
+    };
+
+    async function start() {
+        initialize();
         setInterval(timer_tick, timer_interval_ms);
     }
 
-    function timer_tick() {
-        $.ajax({
-            url: skillcount_xml_path,
-            type: 'GET',
-            dataType: 'xml',
-            timeout: 5000,
-        }).done(function (xml) {
-            let   skill_collection = [];
-            const work             = xml.getElementsByTagName('work')[0].textContent;
-            const skills_xml       = xml.getElementsByTagName('skill');
-            for (let skill of skills_xml) {
-                skill_collection.push({
-                    name     : skill.getElementsByTagName("name")[0].textContent,
-                    shortname: skill.getElementsByTagName("shortname")[0].textContent,
-                    count    : skill.getElementsByTagName("count")[0].textContent,
-                });
-            }
-
-            const table = $("table");
-            for (let skill of skill_collection) {
-                const tr = table.find(`#${skill.name}`);
-                if (tr === undefined || tr.length <= 0) {
-                    insert_skill(table, work, skill.name, skill.shortname, skill.count);
-                }
-                else {
-                    update_count(tr.find(".count_value"), skill.count);
-                }
-            }
-            for (let tr of table.find(`tr`)) {
-                if (!skill_collection.map(x => x.name).includes(tr.id)) {
-                    remove_skill(table, tr.id);
-                }
-            }
+    function rq(url) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'xml',
+                timeout: 5000,
+            }).done(xml => {
+                resolve(xml);
+            }).fail(res => {
+                reject(res);
+            });
         });
     }
 
+    async function initialize() {
+        const xml = await rq(setting_xml_path);
+        setting.IsShowSkillIcon = xml.getElementsByTagName('IsShowSkillIcon')[0].textContent;
+        setting.SkillIconSize   = xml.getElementsByTagName('SkillIconSize')[0].textContent;
+        setting.FontName        = xml.getElementsByTagName('FontName')[0].textContent;
+        setting.FontSize        = xml.getElementsByTagName('FontSize')[0].textContent;
+        setting.StrokeSize      = xml.getElementsByTagName('StrokeSize')[0].textContent;
+        setting.FontColor.R     = xml.getElementsByTagName('FontColorR')[0].textContent;
+        setting.FontColor.G     = xml.getElementsByTagName('FontColorG')[0].textContent;
+        setting.FontColor.B     = xml.getElementsByTagName('FontColorB')[0].textContent;
+        setting.FontColor.A     = xml.getElementsByTagName('FontColorA')[0].textContent;
+        setting.StrokeColor.R   = xml.getElementsByTagName('StrokeColorR')[0].textContent;
+        setting.StrokeColor.G   = xml.getElementsByTagName('StrokeColorG')[0].textContent;
+        setting.StrokeColor.B   = xml.getElementsByTagName('StrokeColorB')[0].textContent;
+        setting.StrokeColor.A   = xml.getElementsByTagName('StrokeColorA')[0].textContent;
+    }
+
+    async function timer_tick() {
+        let   skill_collection = [];
+        const xml              = await rq(skillcount_xml_path);
+        const work             = xml.getElementsByTagName('work')[0].textContent;
+        const skills_xml       = xml.getElementsByTagName('skill');
+        for (let skill of skills_xml) {
+            skill_collection.push({
+                name     : skill.getElementsByTagName("name")[0].textContent,
+                shortname: skill.getElementsByTagName("shortname")[0].textContent,
+                count    : skill.getElementsByTagName("count")[0].textContent,
+            });
+        }
+
+        const table = $("table");
+        for (let skill of skill_collection) {
+            const tr = table.find(`#${skill.name}`);
+            if (tr === undefined || tr.length <= 0) {
+                insert_skill(table, work, skill.name, skill.shortname, skill.count);
+            }
+            else {
+                update_count(tr.find(".count_value"), skill.count);
+            }
+        }
+        for (let tr of table.find(`tr`)) {
+            if (!skill_collection.map(x => x.name).includes(tr.id)) {
+                remove_skill(table, tr.id);
+            }
+        }
+    }
+
     function insert_skill(table, work, name, shortname, count) {
-        let skill_image_row = skillimage_display ?
-            `<td class="skillimg"><img class="skillimage" src="imgs/${work}/${name}.png"/></td>` :
-            ``;
-        const row = $(
-            `<tr id="${name}" style="display=none;">` +
-                skill_image_row +
-                `<td class="shortname"><div>${shortname}</div></td>` +
-                `<td class="count"><div class="count_value">${count}</div></td>` +
-            `</tr>`
-        );
-        row.hide();
+        function create_svg(content, txtclass="t1") {
+            return $(`
+                <svg class="s1" height="${setting.SkillIconSize}">
+                    <text y="50%" class="${txtclass}" dominant-baseline="central"
+                        style="stroke-linejoin:round; paint-order:stroke;
+                            stroke-width:${setting.StrokeSize};
+                            font-size:${setting.FontSize}px;
+                            stroke:rgba(${setting.StrokeColor.R},${setting.StrokeColor.G},${setting.StrokeColor.B},${setting.StrokeColor.A});
+                            fill:rgba(${setting.FontColor.R},${setting.FontColor.G},${setting.FontColor.B},${setting.FontColor.A});">
+                        ${content}
+                    </text>
+                </svg>`);
+        }
+        const row = $(`<tr id="${name}"></tr>`);
+        row.css("display", "none");
+        row.css("font-family", setting.FontName);
+        row.css("color", `rgba(${setting.FontColor.R},${setting.FontColor.G},${setting.FontColor.B},${setting.FontColor.A})`);
+        // スキルアイコン列
+        if (setting.IsShowSkillIcon) {
+            const cell = $(`<td></td>`);
+            const img = $(`<img class="skillimage" src="imgs/${work}/${name}.png"/>`);
+            img.height(setting.SkillIconSize);
+            img.width(setting.SkillIconSize);
+            cell.append(img);
+            row.append(cell);
+        }
+
+        // スキル名列
+        {
+            const cell = $(`<td class="shortname"></td>`);
+            const svg  = create_svg(shortname);
+            cell.append(svg);
+            row.append(cell);
+        }
+
+        // スキル使用回数列
+        {
+            const cell = $(`<td class="count"></td>`);
+            const svg  = create_svg(count, "count_value");
+            cell.append(svg);
+            row.append(cell);
+        }
         table.append(row);
-        row.fadeIn();
+        row.hide();
+        row.fadeIn("normal", function() {
+            // テキストの長さを調整 ※調整しないと原因不明の余白が入る
+            row.find(".s1").each(function(index, element) {
+                var elm  = $(element);
+                var bbox = elm[0].getBBox();
+                elm[0].setAttribute("width", bbox.x + bbox.width + bbox.x + parseInt(setting.StrokeSize) * 2);
+            });
+        });
         console.log("skill added.:", name);
     }
 
@@ -109,7 +181,14 @@
         if (target.text() != text) {
             target.fadeOut(() => {
                 target.html(text);
-                target.fadeIn();
+                target.fadeIn("normal", function() {
+                    // テキストの長さを再調整 ※カウント数の桁が上がった時に幅が変わる
+                    $(".s1").each(function(index, element) {
+                        var elm  = $(element);
+                        var bbox = elm[0].getBBox();
+                        elm[0].setAttribute("width", bbox.x + bbox.width + bbox.x + parseInt(setting.StrokeSize) * 2);
+                    });
+                });
             });
             console.log("count updated.:", text);
         }

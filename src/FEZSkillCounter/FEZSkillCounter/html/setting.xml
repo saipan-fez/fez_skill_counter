@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <IsShowSkillIcon>true</IsShowSkillIcon>
+  <SkillIconSize>30</SkillIconSize>
+  <FontName>UD Digi Kyokasho N-B</FontName>
+  <FontSize>15</FontSize>
+  <StrokeSize>0</StrokeSize>
+  <FontColorR>0</FontColorR>
+  <FontColorG>0</FontColorG>
+  <FontColorB>0</FontColorB>
+  <FontColorA>255</FontColorA>
+  <StrokeColorR>255</StrokeColorR>
+  <StrokeColorG>0</StrokeColorG>
+  <StrokeColorB>0</StrokeColorB>
+  <StrokeColorA>255</StrokeColorA>
+</Setting>
