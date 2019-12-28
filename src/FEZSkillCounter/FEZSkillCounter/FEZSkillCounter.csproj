@@ -290,9 +290,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="skillcount.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="skillcount.db" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
