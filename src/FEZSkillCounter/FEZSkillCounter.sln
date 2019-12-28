@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZSkillCounter", "FEZSkillCounter\FEZSkillCounter.csproj", "{B29592B6-EC38-41CD-B220-DD10AB755BD4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A6CCFC1D-B375-4081-ACE1-B39D881F754B} = {A6CCFC1D-B375-4081-ACE1-B39D881F754B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZSkillCounterTest", "FEZSkillCounterTest\FEZSkillCounterTest.csproj", "{7AAFB0F1-F00A-4473-A488-C7A66025C9B6}"
 EndProject

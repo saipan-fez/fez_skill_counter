@@ -6,7 +6,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/animatecss/3.1.0/animate.css">
 <style type="text/css">
-    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
     body {
         /* 背景色 */
         background-color: transparent;
@@ -39,9 +38,9 @@
             A: 255,
         },
         StrokeColor: {
-            R: 255,
-            G: 255,
-            B: 255,
+            R: 0,
+            G: 0,
+            B: 0,
             A: 255,
         }
     };
@@ -114,9 +113,10 @@
     }
 
     function insert_skill(table, work, name, shortname, count) {
+        const rowHeight = Math.max(setting.SkillIconSize, setting.FontSize);
         function create_svg(content, txtclass="t1") {
             return $(`
-                <svg class="s1" height="${setting.SkillIconSize}">
+                <svg class="s1" height="${rowHeight}">
                     <text y="50%" class="${txtclass}" dominant-baseline="central"
                         style="stroke-linejoin:round; paint-order:stroke;
                             stroke-width:${setting.StrokeSize};
