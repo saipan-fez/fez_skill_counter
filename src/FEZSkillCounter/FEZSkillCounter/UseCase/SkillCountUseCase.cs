@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reactive.Disposables;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,20 +29,21 @@ namespace FEZSkillCounter.UseCase
         private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "html\\skillcount.xml");
         private static readonly string NotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sound\\book_notify.wav");
 
-        public ReactivePropertySlim<string>               MapName                { get; }
-        public ReactivePropertySlim<string>               WorkName               { get; }
-        public ReactiveCollection<SkillCountDetailEntity> CurrentSkillCollection { get; }
-        public ReactiveCollection<SkillCountEntity>       SkillCountHistories    { get; }
-        public ReactivePropertySlim<WarEvents>            WarStatus              { get; }
-        public ReactivePropertySlim<double>               AverageFps             { get; }
-        public ReactivePropertySlim<double>               AttackKeepDamage       { get; }
-        public ReactivePropertySlim<double>               DefenceKeepDamage      { get; }
-        public ReactivePropertySlim<bool>                 IsBookUsing            { get; }
-        public ReactivePropertySlim<int>                  Pow                    { get; }
-        public ReactivePropertySlim<string>               PowDebuffs             { get; }
-        public ReactiveProperty<bool>                     IsSkillCountFileSave   { get; }
-        public ReactiveProperty<bool>                     IsNotifyBookUses       { get; }
-        public ReactiveProperty<bool>                     IsDebugModeEnabled     { get; }
+        public ReactivePropertySlim<string>               MapName                 { get; }
+        public ReactivePropertySlim<string>               WorkName                { get; }
+        public ReactiveCollection<SkillCountDetailEntity> CurrentSkillCollection  { get; }
+        public ReactiveCollection<SkillCountEntity>       SkillCountHistories     { get; }
+        public ReactiveCollection<SkillUseEntity>         SkillUseCollection      { get; }
+        public ReactivePropertySlim<WarEvents>            WarStatus               { get; }
+        public ReactivePropertySlim<double>               AverageFps              { get; }
+        public ReactivePropertySlim<double>               AttackKeepDamage        { get; }
+        public ReactivePropertySlim<double>               DefenceKeepDamage       { get; }
+        public ReactivePropertySlim<bool>                 IsBookUsing             { get; }
+        public ReactivePropertySlim<int>                  Pow                     { get; }
+        public ReactivePropertySlim<string>               PowDebuffs              { get; }
+        public ReactiveProperty<bool>                     IsSkillCountFileSave    { get; }
+        public ReactiveProperty<bool>                     IsNotifyBookUses        { get; }
+        public ReactiveProperty<bool>                     IsDebugModeEnabled      { get; }
 
         private SkillCountRepository     _skillCountRepository;
         private SkillCountFileRepository _skillCountFileRepository;
@@ -62,6 +62,7 @@ namespace FEZSkillCounter.UseCase
             WorkName               = new ReactivePropertySlim<string>(string.Empty);
             CurrentSkillCollection = new ReactiveCollection<SkillCountDetailEntity>();
             SkillCountHistories    = new ReactiveCollection<SkillCountEntity>();
+            SkillUseCollection     = new ReactiveCollection<SkillUseEntity>();
             WarStatus              = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
             AverageFps             = new ReactivePropertySlim<double>(0d);
             AttackKeepDamage       = new ReactivePropertySlim<double>(0d);
@@ -157,6 +158,7 @@ namespace FEZSkillCounter.UseCase
         {
             _skillUseService.Reset();
             CurrentSkillCollection.Clear();
+            SkillUseCollection.Clear();
 
             await UpdateSkillTextAsync();
         }
@@ -266,6 +268,13 @@ namespace FEZSkillCounter.UseCase
 
                 await UpdateSkillTextAsync();
             }
+
+            SkillUseCollection.Add(new SkillUseEntity()
+            {
+                UseDate        = DateTime.Now,
+                SkillName      = e.UsedSkill.Name,
+                SkillShortName = e.UsedSkill.ShortName,
+            });
         }
 
         private bool AddSkillIfNotExists(Skill s)
@@ -307,16 +316,20 @@ namespace FEZSkillCounter.UseCase
 
             var entity = new SkillCountEntity()
             {
-                RecordDate = DateTime.Now,
-                MapName    = MapName.Value,
-                WorkName   = WorkName.Value,
-                Details    = CurrentSkillCollection.ToList()
+                RecordDate       = DateTime.Now,
+                MapName          = MapName.Value,
+                WorkName         = WorkName.Value,
+                Details          = CurrentSkillCollection.ToList(),
+                SkillUseHitories = SkillUseCollection.ToList()
             };
 
             await _skillCountRepository.SaveAsync(entity);
 
             // 履歴に追加
             SkillCountHistories.AddOnScheduler(entity);
+
+            // スキル使用履歴を
+            SkillUseCollection.Clear();
         }
     }
 }

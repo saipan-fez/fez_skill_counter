@@ -21,5 +21,6 @@ namespace FEZSkillCounter.Model.Entity
         private string _workName = "Unknown";
 
         public List<SkillCountDetailEntity> Details { get; set; } = new List<SkillCountDetailEntity>();
+        public List<SkillUseEntity> SkillUseHitories { get; set; } = new List<SkillUseEntity>();
     }
 }
