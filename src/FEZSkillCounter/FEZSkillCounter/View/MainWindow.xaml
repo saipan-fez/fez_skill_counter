@@ -175,7 +175,8 @@
                             <DataGrid Grid.Row="1"
                                       Name="SkillCountHistoryDataGrid"
                                       ItemsSource="{Binding Source={StaticResource SkillCountHistoriesCollectionViewSource}}"
-                                      SelectedItem="{Binding SelectedSkillCountHistory.Value}">
+                                      SelectedItem="{Binding SelectedSkillCountHistory.Value}"
+                                      SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <materialDesign:MaterialDataGridTextColumn Header="日時" Binding="{Binding RecordDate, StringFormat={}{0:yyyy/MM/dd HH:mm}}" IsReadOnly="True" Width="Auto" />
                                     <materialDesign:MaterialDataGridTextColumn Header="職業" Binding="{Binding WorkName}" IsReadOnly="True" Width="Auto"/>
