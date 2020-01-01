@@ -161,7 +161,6 @@ namespace SkillUseCounter.Recognizer
             ret &= bitmap.GetPixel(center.X - 80, center.Y - 222) == Color.FromArgb(74, 60, 47);
             ret &= bitmap.GetPixel(center.X - 82, center.Y - 157) == Color.FromArgb(91, 68, 60);
             ret &= bitmap.GetPixel(center.X - 35, center.Y + 229) == Color.FromArgb(98, 44, 45);
-            ret &= bitmap.GetPixel(center.X +  0, center.Y + 229) == Color.FromArgb(44, 29, 28);
 
             return ret;
         }
