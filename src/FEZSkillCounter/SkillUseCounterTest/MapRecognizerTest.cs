@@ -20,10 +20,20 @@ namespace SkillUseCounterTest
         [TestMethod]
         public void マップ名が取得できているか()
         {
-            using (var bitmap = new Bitmap("TestImages\\MapTest.png"))
+            using (var bitmap = new Bitmap("TestImages\\Map\\MapTest.png"))
             {
                 var map = recognizer.Recognize(bitmap);
-                Assert.AreEqual(map.Name, "ダガー島");
+                Assert.AreEqual(map.Name, "カペラ隕石跡");
+            }
+        }
+
+        [TestMethod]
+        public void 闘技場が取得できているか()
+        {
+            using (var bitmap = new Bitmap("TestImages\\Map\\Tougijou.png"))
+            {
+                var map = recognizer.Recognize(bitmap);
+                Assert.AreEqual(map.Name, "闘技場");
             }
         }
     }

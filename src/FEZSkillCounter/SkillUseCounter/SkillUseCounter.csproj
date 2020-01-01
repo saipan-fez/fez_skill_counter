@@ -137,6 +137,7 @@
     <Content Include="assets\MapBitmap\ワーグノスの地.bmp" />
     <Content Include="assets\MapBitmap\ワードノール平原.bmp" />
     <Content Include="assets\MapBitmap\始まりの大地.bmp" />
+    <Content Include="assets\MapBitmap\闘技場.bmp" />
     <Content Include="assets\PowBitmap\pow_0.bmp" />
     <Content Include="assets\PowBitmap\pow_1.bmp" />
     <Content Include="assets\PowBitmap\pow_2.bmp" />
@@ -370,6 +371,7 @@
     <Content Include="assets\SkillBitmap\Warrior_ベヒモステイル_S.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_通常攻撃.bmp" />
     <Content Include="assets\SkillBitmap\Warrior_通常攻撃_S.bmp" />
+    <None Include="Resources\闘技場.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

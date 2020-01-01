@@ -88,6 +88,9 @@
     <Content Include="TestImages\BookUse\BookOn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestImages\WarFinished2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestImages\KeepDamage\A0.0-D0.9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -106,7 +109,10 @@
     <Content Include="TestImages\KeepDamage\Invalid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestImages\MapTest.png">
+    <Content Include="TestImages\Map\Tougijou.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestImages\Map\MapTest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestImages\pow\100.png">
@@ -130,7 +136,7 @@
     <Content Include="TestImages\pow\90.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestImages\WarFinished.png">
+    <Content Include="TestImages\WarFinished1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestImages\WarStarted.png">

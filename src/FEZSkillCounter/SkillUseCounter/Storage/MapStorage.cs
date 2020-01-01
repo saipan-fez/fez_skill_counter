@@ -69,6 +69,7 @@ namespace SkillUseCounter.Storage
                 { R.ワーグノスの地.FillPaddingToZero().SHA1Hash(), new Map(nameof(R.ワーグノスの地)) },
                 { R.ワードノール平原.FillPaddingToZero().SHA1Hash(), new Map(nameof(R.ワードノール平原)) },
                 { R.始まりの大地.FillPaddingToZero().SHA1Hash(), new Map(nameof(R.始まりの大地)) },
+                { R.闘技場.FillPaddingToZero().SHA1Hash(), new Map(nameof(R.闘技場)) },
             };
         }
     }

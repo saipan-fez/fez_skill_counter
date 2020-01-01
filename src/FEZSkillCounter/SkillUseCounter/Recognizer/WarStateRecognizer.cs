@@ -50,7 +50,7 @@ namespace SkillUseCounter.Recognizer
             {
                 case WarState.Waiting:
                     // 戦争待機中なら、戦争が開始したかどうかチェックする
-                    if (IsDisplayCost(bitmap) && !map.IsEmpty())
+                    if (IsCostDisplayed(bitmap) && !map.IsEmpty())
                     {
                         state = WarState.Waring;
                         WarStarted?.Invoke(this, map);
@@ -60,7 +60,7 @@ namespace SkillUseCounter.Recognizer
                 case WarState.Waring:
                     // 戦争中なら、戦争が終了したかどうかチェックする
                     // 考慮事項：FO・死んだときやMAP名上にマウスカーソル
-                    if (IsDisplayWarResult(bitmap) && !map.IsEmpty())
+                    if (IsWarResultDisplayed(bitmap) && !map.IsEmpty())
                     {
                         state = WarState.Waiting;
                         WarFinished?.Invoke(this, map);
@@ -92,7 +92,7 @@ namespace SkillUseCounter.Recognizer
             return _mapRecognizer.Recognize(bitmap);
         }
 
-        private bool IsDisplayCost(Bitmap bitmap)
+        private bool IsCostDisplayed(Bitmap bitmap)
         {
             if (bitmap == null)
             {
@@ -104,14 +104,24 @@ namespace SkillUseCounter.Recognizer
             var w = bitmap.Width;
             var h = bitmap.Height;
 
-            // [Cost 130 / 130] の"C"と"/"の部分で判別する
+            // [Cost 150 / 150] の"C"と"/"の部分で判別する
             ret &= bitmap.GetPixel(w - 441, h - 128) == Color.FromArgb(123, 123, 123);  // "C"
             ret &= bitmap.GetPixel(w - 375, h - 120) == Color.FromArgb(156, 156, 156);  // "/"
 
             return ret;
         }
 
-        private bool IsDisplayWarResult(Bitmap bitmap)
+        private bool IsWarResultDisplayed(Bitmap bitmap)
+        {
+            return IsNewWarResultDisplayed(bitmap) || IsOldWarResultDisplayed(bitmap);
+        }
+
+        /// <summary>
+        /// 戦績画面 新UI(通常戦争の戦績画面)が表示されているかどうか
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        private bool IsNewWarResultDisplayed(Bitmap bitmap)
         {
             if (bitmap == null)
             {
@@ -127,6 +137,31 @@ namespace SkillUseCounter.Recognizer
             ret &= bitmap.GetPixel(center.X - 262 +  50, center.Y - 353 + 200) == Color.FromArgb(167, 155, 145);
             ret &= bitmap.GetPixel(center.X - 262 + 730, center.Y - 353 + 335) == Color.FromArgb( 50,  50,  50);
             ret &= bitmap.GetPixel(center.X - 262 + 730, center.Y - 353 + 550) == Color.FromArgb( 61,  47,  43);
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 戦績画面 旧UI(闘技場などの戦績画面)が表示されているかどうか
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        private bool IsOldWarResultDisplayed(Bitmap bitmap)
+        {
+            if (bitmap == null)
+            {
+                return false;
+            }
+
+            bool ret = true;
+
+            var center = new Point(bitmap.Size.Width / 2, bitmap.Size.Height / 2);
+
+            // 戦績結果が画面に表示されているかどうか
+            ret &= bitmap.GetPixel(center.X - 80, center.Y - 222) == Color.FromArgb(74, 60, 47);
+            ret &= bitmap.GetPixel(center.X - 82, center.Y - 157) == Color.FromArgb(91, 68, 60);
+            ret &= bitmap.GetPixel(center.X - 35, center.Y + 229) == Color.FromArgb(98, 44, 45);
+            ret &= bitmap.GetPixel(center.X +  0, center.Y + 229) == Color.FromArgb(44, 29, 28);
 
             return ret;
         }

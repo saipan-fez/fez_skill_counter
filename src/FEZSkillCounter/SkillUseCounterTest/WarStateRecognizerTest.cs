@@ -35,13 +35,30 @@ namespace SkillUseCounterTest
         }
 
         [TestMethod]
-        public void 戦争終了したか()
+        public void 戦争終了したか_通常戦争()
         {
             var str = "";
             recognizer.WarFinished += (s, e) => str = "WarFinished";
 
             using (var startBitmap = new Bitmap("TestImages\\WarStarted.png"))
-            using (var endBitmap = new Bitmap("TestImages\\WarFinished.png"))
+            using (var endBitmap = new Bitmap("TestImages\\WarFinished1.png"))
+            {
+                recognizer.Report(startBitmap);
+                recognizer.Report(endBitmap);
+
+                // イベントが発火したかどうかチェック
+                Assert.AreEqual("WarFinished", str);
+            }
+        }
+
+        [TestMethod]
+        public void 戦争終了したか_闘技場()
+        {
+            var str = "";
+            recognizer.WarFinished += (s, e) => str = "WarFinished";
+
+            using (var startBitmap = new Bitmap("TestImages\\WarStarted.png"))
+            using (var endBitmap = new Bitmap("TestImages\\WarFinished2.png"))
             {
                 recognizer.Report(startBitmap);
                 recognizer.Report(endBitmap);
