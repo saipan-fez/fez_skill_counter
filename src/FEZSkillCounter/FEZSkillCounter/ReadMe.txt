@@ -1,5 +1,5 @@
 ﻿================================================================================
- FEZ Auto Score
+ FEZ Skill Counter
 
  URL    : https://saipan-fez.github.io/fez_skill_counter
           https://github.com/saipan-fez/fez_skill_counter
@@ -7,8 +7,8 @@
  ================================================================================
 
 □始めに
-  FEZ Auto Scoreは、SQUARE ENIX社が提供するオンラインゲーム
-  「FANTASY EARTH ZERO」の戦績結果を自動的に解析し、保存するためのツールです。
+  FEZ Skill Counterは、SQUARE ENIX社が提供するオンラインゲーム
+  「FANTASY EARTH ZERO」のスキル使用を自動的にカウントし、保存するためのツールです。
 
   FANTASY EARTH ZERO  公式サイト
   http://www.fantasy-earth.com/
@@ -45,7 +45,7 @@
 □ライセンス
 MIT License
 
-Copyright (c) 2019 saipan-fez
+Copyright (c) 2019-2020 saipan-fez
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
