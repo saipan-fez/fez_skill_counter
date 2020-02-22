@@ -237,10 +237,11 @@
       <DependentUpon>20191228150743_add skill use table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
-    <Compile Include="Model\BookUseNotificator.cs" />
+    <Compile Include="Model\Notificator\BookUseNotificator.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />
     <Compile Include="Model\Entity\SettingEntity.cs" />
     <Compile Include="Model\Entity\SkillUseHitoryEntity.cs" />
+    <Compile Include="Model\Notificator\EnchantSpellUseNotificator.cs" />
     <Compile Include="Model\Repository\SettingRepository.cs" />
     <Compile Include="Model\Repository\SkillCountDbContext.cs" />
     <Compile Include="Model\Repository\SkillCountDetailEntityExtension.cs" />

@@ -67,6 +67,7 @@
     <Compile Include="BookUseRecognizerTest.cs" />
     <Compile Include="KeepDamageRecognizerTest.cs" />
     <Compile Include="MapRecognizerTest.cs" />
+    <Compile Include="HpRecognizerTest.cs" />
     <Compile Include="PowRecognizerTest.cs" />
     <Compile Include="SkillCountAlgorithmTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

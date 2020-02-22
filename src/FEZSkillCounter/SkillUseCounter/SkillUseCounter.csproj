@@ -65,6 +65,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Recognizer\BookUseRecognizer.cs" />
+    <Compile Include="Recognizer\HpRecognizer.cs" />
     <Compile Include="Recognizer\IRecognizer.cs" />
     <Compile Include="Recognizer\IResettableRecognizer.cs" />
     <Compile Include="Recognizer\KeepDamageRecognizer.cs" />

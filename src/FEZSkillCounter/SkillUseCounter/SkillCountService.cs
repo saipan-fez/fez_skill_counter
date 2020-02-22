@@ -33,6 +33,11 @@ namespace SkillUseCounter
         public event EventHandler<PowUpdatedEventArgs> PowUpdated;
 
         /// <summary>
+        /// Hpの更新通知
+        /// </summary>
+        public event EventHandler<HpUpdatedEventArgs> HpUpdated;
+
+        /// <summary>
         /// Powのデバフ(パワブレなど)更新通知
         /// </summary>
         public event EventHandler<PowDebuffsUpdatedEventArgs> PowDebuffsUpdated;
@@ -77,6 +82,7 @@ namespace SkillUseCounter
         private IResettableRecognizer<Skill[]>     _skillArrayRecognizer     = new SkillArrayRecognizer();
         private IResettableRecognizer<PowDebuff[]> _powDebuffArrayRecognizer = new PowDebuffArrayRecognizer();
         private IResettableRecognizer<int>         _powRecognizer            = new PowRecognizer();
+        private IResettableRecognizer<int>         _hpRecognizer             = new HpRecognizer();
         private IResettableRecognizer<KeepDamage>  _keepDamageRecognizer     = new KeepDamageRecognizer();
         private IResettableRecognizer<bool>        _bookUseRecognizer        = new BookUseRecognizer();
 
@@ -97,6 +103,7 @@ namespace SkillUseCounter
 
             _skillArrayRecognizer.Updated     += (_, e) => SkillsUpdated?.Invoke(this, new SkillsUpdatedEventArgs(e));
             _powRecognizer.Updated            += (_, e) => PowUpdated?.Invoke(this, new PowUpdatedEventArgs(e));
+            _hpRecognizer.Updated             += (_, e) => HpUpdated?.Invoke(this, new HpUpdatedEventArgs(e));
             _powDebuffArrayRecognizer.Updated += (_, e) => PowDebuffsUpdated?.Invoke(this, new PowDebuffsUpdatedEventArgs(e));
             _keepDamageRecognizer.Updated     += (_, e) => KeepDamageUpdated?.Invoke(this, new KeepDamageUpdatedEventArgs(e));
             _bookUseRecognizer.Updated        += (_, e) => BookUsesUpdated?.Invoke(this, new BookUsesUpdatedEventArgs(e));
@@ -215,6 +222,7 @@ namespace SkillUseCounter
             _keepDamageRecognizer.Reset();
             _bookUseRecognizer.Reset();
             _powRecognizer.Reset();
+            _hpRecognizer.Reset();
         }
 
         private void Run(CancellationToken token)
@@ -273,6 +281,7 @@ namespace SkillUseCounter
 
                 // 現在のPow・スキル・デバフ・キープダメージ・倍書の使用状況を取得
                 var pow        = _powRecognizer.Recognize(screenShot.Image);
+                var hp         = _hpRecognizer.Recognize(screenShot.Image);
                 var skills     = _skillArrayRecognizer.Recognize(screenShot.Image);
                 var powDebuffs = _powDebuffArrayRecognizer.Recognize(screenShot.Image);
                 var keepDamage = _keepDamageRecognizer.Recognize(screenShot.Image);
@@ -280,7 +289,8 @@ namespace SkillUseCounter
 
                 // 取得失敗していれば終了
                 //   キープダメージ・倍書の使用状況は取得有無がスキル使用に影響がないためチェックしない
-                if (pow        == PowRecognizer.InvalidPow ||
+                if (hp         == HpRecognizer.InvalidHp ||
+                    pow        == PowRecognizer.InvalidPow ||
                     powDebuffs == PowDebuffArrayRecognizer.InvalidPowDebuffs)
                 {
                     return false;

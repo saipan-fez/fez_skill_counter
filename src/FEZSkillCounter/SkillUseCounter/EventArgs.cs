@@ -30,6 +30,15 @@ namespace SkillUseCounter
         }
     }
 
+    public class HpUpdatedEventArgs : EventArgs
+    {
+        public int Hp { get; }
+        public HpUpdatedEventArgs(int hp)
+        {
+            Hp = hp;
+        }
+    }
+
     public class PowDebuffsUpdatedEventArgs : EventArgs
     {
         public PowDebuff[] PowDebuffs { get; }

@@ -23,6 +23,7 @@ namespace FEZSkillCounter.ViewModel
         public ReadOnlyReactivePropertySlim<double>    DefenceKeepDamage    { get; }
         public ReadOnlyReactivePropertySlim<bool>      IsBookUsing          { get; }
         public ReadOnlyReactivePropertySlim<int>       Pow                  { get; }
+        public ReadOnlyReactivePropertySlim<int>       Hp                   { get; }
         public ReadOnlyReactivePropertySlim<string>    PowDebuffs           { get; }
         public ReactiveProperty<bool>                  IsSkillCountFileSave { get; }
         public ReactiveProperty<bool>                  IsNotifyBookUses     { get; }
@@ -63,6 +64,7 @@ namespace FEZSkillCounter.ViewModel
             DefenceKeepDamage = _skillCountUseCase.DefenceKeepDamage.ToReadOnlyReactivePropertySlim();
             IsBookUsing       = _skillCountUseCase.IsBookUsing.ToReadOnlyReactivePropertySlim();
             Pow               = _skillCountUseCase.Pow.ToReadOnlyReactivePropertySlim();
+            Hp                = _skillCountUseCase.Hp.ToReadOnlyReactivePropertySlim();
             PowDebuffs        = _skillCountUseCase.PowDebuffs
                 .Select(x => string.IsNullOrEmpty(x) ? "" : x)
                 .ToReadOnlyReactivePropertySlim();

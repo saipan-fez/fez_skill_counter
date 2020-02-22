@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Media;
 
-namespace FEZSkillCounter.Model
+namespace FEZSkillCounter.Model.Notificator
 {
     public class BookUseNotificator : IDisposable
     {

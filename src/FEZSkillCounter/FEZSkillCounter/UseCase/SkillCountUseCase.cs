@@ -1,5 +1,6 @@
 ﻿using FEZSkillCounter.Model;
 using FEZSkillCounter.Model.Entity;
+using FEZSkillCounter.Model.Notificator;
 using FEZSkillCounter.Model.Repository;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -40,16 +41,18 @@ namespace FEZSkillCounter.UseCase
         public ReactivePropertySlim<double>               DefenceKeepDamage       { get; }
         public ReactivePropertySlim<bool>                 IsBookUsing             { get; }
         public ReactivePropertySlim<int>                  Pow                     { get; }
+        public ReactivePropertySlim<int>                  Hp                      { get; }
         public ReactivePropertySlim<string>               PowDebuffs              { get; }
         public ReactiveProperty<bool>                     IsSkillCountFileSave    { get; }
         public ReactiveProperty<bool>                     IsNotifyBookUses        { get; }
         public ReactiveProperty<bool>                     IsDebugModeEnabled      { get; }
 
-        private SkillCountRepository     _skillCountRepository;
-        private SkillCountFileRepository _skillCountFileRepository;
-        private SettingRepository        _settingRepository;
-        private SkillCountService        _skillUseService;
-        private BookUseNotificator       _bookUseNotificator;
+        private SkillCountRepository       _skillCountRepository;
+        private SkillCountFileRepository   _skillCountFileRepository;
+        private SettingRepository          _settingRepository;
+        private SkillCountService          _skillUseService;
+        private BookUseNotificator         _bookUseNotificator;
+        private EnchantSpellUseNotificator _enchantSpellUseNotificator;
 
         public SkillCountUseCase()
         {
@@ -126,6 +129,7 @@ namespace FEZSkillCounter.UseCase
         public async Task SetUpAsync()
         {
             _bookUseNotificator = new BookUseNotificator(NotifySoundFilePath);
+            _enchantSpellUseNotificator = new EnchantSpellUseNotificator(NotifySoundFilePath);
 
             _skillUseService = new SkillCountService();
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
@@ -135,6 +139,7 @@ namespace FEZSkillCounter.UseCase
             _skillUseService.SkillsUpdated      += _skillUseService_SkillsUpdated;
             _skillUseService.PowDebuffsUpdated  += _skillUseService_PowDebuffsUpdated;
             _skillUseService.PowUpdated         += _skillUseService_PowUpdated;
+            _skillUseService.HpUpdated          += _skillUseService_HpUpdated;
             _skillUseService.ProcessTimeUpdated += _skillUseService_FpsUpdated;
             _skillUseService.KeepDamageUpdated  += _skillUseService_KeepDamageUpdated;
             _skillUseService.BookUsesUpdated    += _skillUseService_BookUsesUpdated;
@@ -224,6 +229,11 @@ namespace FEZSkillCounter.UseCase
         private void _skillUseService_PowUpdated(object sender, PowUpdatedEventArgs e)
         {
             Pow.Value = e.Pow;
+        }
+
+        private void _skillUseService_HpUpdated(object sender, HpUpdatedEventArgs e)
+        {
+            Hp.Value = e.Hp;
         }
 
         private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuffsUpdatedEventArgs e)
