@@ -236,6 +236,14 @@
     <Compile Include="Migrations\20191228150743_add skill use table.designer.cs">
       <DependentUpon>20191228150743_add skill use table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200224112452_AddSetting.cs" />
+    <Compile Include="Migrations\20200224112452_AddSetting.designer.cs">
+      <DependentUpon>20200224112452_AddSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200229040025_AddEnchantSpellUseSetting.cs" />
+    <Compile Include="Migrations\20200229040025_AddEnchantSpellUseSetting.designer.cs">
+      <DependentUpon>20200229040025_AddEnchantSpellUseSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
     <Compile Include="Model\Notificator\BookUseNotificator.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />
@@ -313,6 +321,9 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="sound\enchant_notify.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Resource Include="html\setting.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

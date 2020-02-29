@@ -28,24 +28,29 @@ namespace FEZSkillCounter.UseCase
     {
         private static readonly string TxtFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "skillcount.txt");
         private static readonly string XmlFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "html\\skillcount.xml");
-        private static readonly string NotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sound\\book_notify.wav");
+        private static readonly string BookUseNotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sound\\book_notify.wav");
+        private static readonly string EnchantSpellUseNotifySoundFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sound\\enchant_notify.wav");
 
-        public ReactivePropertySlim<string>               MapName                 { get; }
-        public ReactivePropertySlim<string>               WorkName                { get; }
-        public ReactiveCollection<SkillCountDetailEntity> CurrentSkillCollection  { get; }
-        public ReactiveCollection<SkillCountEntity>       SkillCountHistories     { get; }
-        public ReactiveCollection<SkillUseEntity>         SkillUseCollection      { get; }
-        public ReactivePropertySlim<WarEvents>            WarStatus               { get; }
-        public ReactivePropertySlim<double>               AverageFps              { get; }
-        public ReactivePropertySlim<double>               AttackKeepDamage        { get; }
-        public ReactivePropertySlim<double>               DefenceKeepDamage       { get; }
-        public ReactivePropertySlim<bool>                 IsBookUsing             { get; }
-        public ReactivePropertySlim<int>                  Pow                     { get; }
-        public ReactivePropertySlim<int>                  Hp                      { get; }
-        public ReactivePropertySlim<string>               PowDebuffs              { get; }
-        public ReactiveProperty<bool>                     IsSkillCountFileSave    { get; }
-        public ReactiveProperty<bool>                     IsNotifyBookUses        { get; }
-        public ReactiveProperty<bool>                     IsDebugModeEnabled      { get; }
+        public ReactivePropertySlim<string>               MapName                    { get; }
+        public ReactivePropertySlim<string>               WorkName                   { get; }
+        public ReactiveCollection<SkillCountDetailEntity> CurrentSkillCollection     { get; }
+        public ReactiveCollection<SkillCountEntity>       SkillCountHistories        { get; }
+        public ReactiveCollection<SkillUseEntity>         SkillUseCollection         { get; }
+        public ReactivePropertySlim<WarEvents>            WarStatus                  { get; }
+        public ReactivePropertySlim<double>               AverageFps                 { get; }
+        public ReactivePropertySlim<double>               AttackKeepDamage           { get; }
+        public ReactivePropertySlim<double>               DefenceKeepDamage          { get; }
+        public ReactivePropertySlim<bool>                 IsBookUsing                { get; }
+        public ReactivePropertySlim<int>                  Pow                        { get; }
+        public ReactivePropertySlim<int>                  Hp                         { get; }
+        public ReactivePropertySlim<string>               PowDebuffs                 { get; }
+        public ReactiveProperty<bool>                     IsSkillCountFileSave       { get; }
+        public ReactiveProperty<bool>                     IsNotifyBookUses           { get; }
+        public ReactiveProperty<bool>                     IsNotifySpellUses          { get; }
+        public ReactiveProperty<bool>                     IsNotifyEnchantUses        { get; }
+        public ReactiveProperty<TimeSpan?>                EnchantSpellNotifyTimeSpan { get; }
+        public ReactiveProperty<bool>                     IsAllwaysOnTop             { get; }
+        public ReactiveProperty<bool>                     IsDebugModeEnabled         { get; }
 
         private SkillCountRepository       _skillCountRepository;
         private SkillCountFileRepository   _skillCountFileRepository;
@@ -61,21 +66,26 @@ namespace FEZSkillCounter.UseCase
 
             var setting = _settingRepository.GetSetting();
 
-            MapName                = new ReactivePropertySlim<string>(string.Empty);
-            WorkName               = new ReactivePropertySlim<string>(string.Empty);
-            CurrentSkillCollection = new ReactiveCollection<SkillCountDetailEntity>();
-            SkillCountHistories    = new ReactiveCollection<SkillCountEntity>();
-            SkillUseCollection     = new ReactiveCollection<SkillUseEntity>();
-            WarStatus              = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
-            AverageFps             = new ReactivePropertySlim<double>(0d);
-            AttackKeepDamage       = new ReactivePropertySlim<double>(0d);
-            DefenceKeepDamage      = new ReactivePropertySlim<double>(0d);
-            IsBookUsing            = new ReactivePropertySlim<bool>(false);
-            Pow                    = new ReactivePropertySlim<int>(0);
-            PowDebuffs             = new ReactivePropertySlim<string>(string.Empty);
-            IsSkillCountFileSave   = setting.ObserveProperty(x => x.IsSkillCountFileSave).ToReactiveProperty();
-            IsNotifyBookUses       = setting.ObserveProperty(x => x.IsNotifyBookUses).ToReactiveProperty();
-            IsDebugModeEnabled     = setting.ObserveProperty(x => x.IsDebugModeEnabled).ToReactiveProperty();
+            MapName                    = new ReactivePropertySlim<string>(string.Empty);
+            WorkName                   = new ReactivePropertySlim<string>(string.Empty);
+            CurrentSkillCollection     = new ReactiveCollection<SkillCountDetailEntity>();
+            SkillCountHistories        = new ReactiveCollection<SkillCountEntity>();
+            SkillUseCollection         = new ReactiveCollection<SkillUseEntity>();
+            WarStatus                  = new ReactivePropertySlim<WarEvents>(WarEvents.Invalid);
+            AverageFps                 = new ReactivePropertySlim<double>(0d);
+            AttackKeepDamage           = new ReactivePropertySlim<double>(0d);
+            DefenceKeepDamage          = new ReactivePropertySlim<double>(0d);
+            IsBookUsing                = new ReactivePropertySlim<bool>(false);
+            Pow                        = new ReactivePropertySlim<int>(0);
+            Hp                         = new ReactivePropertySlim<int>(0);
+            PowDebuffs                 = new ReactivePropertySlim<string>(string.Empty);
+            IsSkillCountFileSave       = setting.ObserveProperty(x => x.IsSkillCountFileSave).ToReactiveProperty();
+            IsNotifyBookUses           = setting.ObserveProperty(x => x.IsNotifyBookUses).ToReactiveProperty();
+            IsNotifySpellUses          = setting.ObserveProperty(x => x.IsNotifySpellUses).ToReactiveProperty();
+            IsNotifyEnchantUses        = setting.ObserveProperty(x => x.IsNotifyEnchantUses).ToReactiveProperty();
+            EnchantSpellNotifyTimeSpan = setting.ObserveProperty(x => x.EnchantSpellNotifyTimeSpan).ToReactiveProperty();
+            IsAllwaysOnTop             = setting.ObserveProperty(x => x.IsAllwaysOnTop).ToReactiveProperty();
+            IsDebugModeEnabled         = setting.ObserveProperty(x => x.IsDebugModeEnabled).ToReactiveProperty();
 
             IsSkillCountFileSave.Subscribe(async x =>
             {
@@ -84,7 +94,47 @@ namespace FEZSkillCounter.UseCase
             });
             IsNotifyBookUses.Subscribe(async x =>
             {
+                if (_bookUseNotificator != null)
+                {
+                    _bookUseNotificator.IsEnabled = x;
+                }
+
                 setting.IsNotifyBookUses = x;
+                await _settingRepository.UpdateAsync();
+            });
+            IsNotifySpellUses.Subscribe(async x =>
+            {
+                if (_enchantSpellUseNotificator != null)
+                {
+                    _enchantSpellUseNotificator.IsSpellNotifyEnabled = x;
+                }
+
+                setting.IsNotifySpellUses = x;
+                await _settingRepository.UpdateAsync();
+            });
+            IsNotifyEnchantUses.Subscribe(async x =>
+            {
+                if (_enchantSpellUseNotificator != null)
+                {
+                    _enchantSpellUseNotificator.IsEnchantNotifyEnabled = x;
+                }
+
+                setting.IsNotifyEnchantUses = x;
+                await _settingRepository.UpdateAsync();
+            });
+            EnchantSpellNotifyTimeSpan.Subscribe(async x =>
+            {
+                if (_enchantSpellUseNotificator != null)
+                {
+                    _enchantSpellUseNotificator.NotifyTimeSpan = x ?? TimeSpan.Zero;
+                }
+
+                setting.EnchantSpellNotifyTimeSpan = x;
+                await _settingRepository.UpdateAsync();
+            });
+            IsAllwaysOnTop.Subscribe(async x =>
+            {
+                setting.IsAllwaysOnTop = x;
                 await _settingRepository.UpdateAsync();
             });
             IsDebugModeEnabled.Subscribe(async x =>
@@ -128,8 +178,16 @@ namespace FEZSkillCounter.UseCase
 
         public async Task SetUpAsync()
         {
-            _bookUseNotificator = new BookUseNotificator(NotifySoundFilePath);
-            _enchantSpellUseNotificator = new EnchantSpellUseNotificator(NotifySoundFilePath);
+            _bookUseNotificator = new BookUseNotificator(BookUseNotifySoundFilePath)
+            {
+                IsEnabled = IsNotifyBookUses.Value
+            };
+            _enchantSpellUseNotificator = new EnchantSpellUseNotificator(EnchantSpellUseNotifySoundFilePath)
+            {
+                NotifyTimeSpan         = EnchantSpellNotifyTimeSpan.Value ?? TimeSpan.Zero,
+                IsEnchantNotifyEnabled = IsNotifyEnchantUses.Value,
+                IsSpellNotifyEnabled   = IsNotifySpellUses.Value
+            };
 
             _skillUseService = new SkillCountService();
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
@@ -183,6 +241,11 @@ namespace FEZSkillCounter.UseCase
             WarStatus.Value = WarEvents.WarStarted;
             MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
 
+            // エンチャント・スペル未使用通知のため状態をレポートする
+            _enchantSpellUseNotificator.ReportCurrentStatusWithNotify(
+                WarStatus.Value,
+                Hp.Value);
+
             // 戦争開始時にスキル回数をリセットする
             await ResetSkillCountAsync();
         }
@@ -212,13 +275,10 @@ namespace FEZSkillCounter.UseCase
             DefenceKeepDamage.Value = e.Damage.DefenceKeepDamage;
 
             // 書の使用通知のため状態をレポートする
-            if (IsNotifyBookUses.Value)
-            {
-                _bookUseNotificator.ReportCurrentStatusWithNotify(
-                    WarStatus.Value,
-                    IsBookUsing.Value,
-                    e.Damage);
-            }
+            _bookUseNotificator.ReportCurrentStatusWithNotify(
+                WarStatus.Value,
+                IsBookUsing.Value,
+                e.Damage);
         }
 
         private void _skillUseService_BookUsesUpdated(object sender, BookUsesUpdatedEventArgs e)
@@ -234,6 +294,11 @@ namespace FEZSkillCounter.UseCase
         private void _skillUseService_HpUpdated(object sender, HpUpdatedEventArgs e)
         {
             Hp.Value = e.Hp;
+
+            // エンチャント・スペル未使用通知のため状態をレポートする
+            _enchantSpellUseNotificator.ReportCurrentStatusWithNotify(
+                WarStatus.Value,
+                e.Hp);
         }
 
         private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuffsUpdatedEventArgs e)

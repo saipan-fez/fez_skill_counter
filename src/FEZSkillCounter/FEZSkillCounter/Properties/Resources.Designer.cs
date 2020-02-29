@@ -68,5 +68,14 @@ namespace FEZSkillCounter.Properties {
                 return ResourceManager.GetStream("book_notify", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream enchant_notify {
+            get {
+                return ResourceManager.GetStream("enchant_notify", resourceCulture);
+            }
+        }
     }
 }

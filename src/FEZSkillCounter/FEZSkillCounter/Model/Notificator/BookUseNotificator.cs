@@ -19,6 +19,11 @@ namespace FEZSkillCounter.Model.Notificator
         /// </summary>
         private readonly TimeSpan BookUseNoticationTimeSpan = TimeSpan.FromMinutes(1);
 
+        /// <summary>
+        /// 通知の有効状態
+        /// </summary>
+        public bool IsEnabled { get; set; } = false;
+
         private DateTime? _previousNotificateDateTime = null;   // 前回通知を行った日時
         private SoundPlayer _soundPlayer;
 
@@ -66,6 +71,11 @@ namespace FEZSkillCounter.Model.Notificator
         /// <param name="keepDamage"></param>
         public void ReportCurrentStatusWithNotify(WarEvents warEvents, bool isBookUsed, KeepDamage keepDamage)
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             // 書を使用中なら通知の必要がないので対象外
             if (isBookUsed)
             {

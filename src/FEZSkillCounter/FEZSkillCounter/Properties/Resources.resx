@@ -121,4 +121,7 @@
   <data name="book_notify" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\sound\book_notify.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="enchant_notify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sound\enchant_notify.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

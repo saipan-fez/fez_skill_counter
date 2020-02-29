@@ -34,13 +34,14 @@ namespace FEZSkillCounter
         [STAThread]
         public static void Main()
         {
+#if !DEBUG
             using (var semaphore = new Semaphore(1, 1, "FEZSkillCounter", out bool createdNew))
             {
                 if (!createdNew)
                 {
                     return;
                 }
-
+#endif
                 var isValid = FEZCommonLibrary.FEZSettingValidator.ValidateGlobalIniSetting();
                 if (isValid)
                 {
@@ -59,7 +60,9 @@ namespace FEZSkillCounter
                         "Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+#if !DEBUG
             }
+#endif
         }
 
         private async void Application_Startup(object sender, StartupEventArgs e)

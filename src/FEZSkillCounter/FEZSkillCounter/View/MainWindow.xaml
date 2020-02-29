@@ -15,7 +15,8 @@
                       xmlns:behavior="clr-namespace:FEZSkillCounter.View.Behavior"
                       mc:Ignorable="d"
                       Title="FEZ Skill Counter" TitleCharacterCasing="Normal" SaveWindowPosition="True"
-                      Height="600" Width="400">
+                      Height="600" Width="400"
+                      Topmost="{Binding IsAllwaysOnTop.Value}">
     <Controls:MetroWindow.Resources>
         <converter:BoolToOnOffStringConverter x:Key="BoolToOnOffStringConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -214,7 +215,6 @@
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="25"/>
                                 <ColumnDefinition Width="10"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
@@ -224,23 +224,41 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="15"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="テキスト・HTMLファイルに出力する" Style="{StaticResource SettingHeaderTextBlock}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
-                                       Text="{Binding IsSkillCountFileSave.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
-                            <ToggleButton Grid.Row="0" Grid.Column="3" IsChecked="{Binding IsSkillCountFileSave.Value}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="書の時間お知らせ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
-                                       Text="{Binding IsNotifyBookUses.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
-                            <ToggleButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding IsNotifyBookUses.Value}"/>
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="デバッグ機能を有効にする" Style="{StaticResource SettingHeaderTextBlock}"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource SettingValueTextBlock}"
-                                       Text="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BoolToOnOffStringConverter}}"/>
-                            <ToggleButton Grid.Row="4" Grid.Column="3" IsChecked="{Binding IsDebugModeEnabled.Value}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="テキスト・HTMLファイル出力" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="0" Grid.Column="2" IsChecked="{Binding IsSkillCountFileSave.Value}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="書の時間お知らせ" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="2" Grid.Column="2" IsChecked="{Binding IsNotifyBookUses.Value}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="エンチャ切れお知らせ" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="4" Grid.Column="2" IsChecked="{Binding IsNotifyEnchantUses.Value}"/>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="スペル切れお知らせ" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="6" Grid.Column="2" IsChecked="{Binding IsNotifySpellUses.Value}"/>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Text="エンチャ・スペル切れお知らせ時間" VerticalAlignment="Center" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <Grid Grid.Row="8" Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Controls:NumericUpDown Grid.Column="0" HideUpDownButtons="True" TextAlignment="Right"
+                                                        Minimum="0" Maximum="200" Value="{Binding EnchantSpellNotifySecond.Value}"/>
+                                <TextBlock Grid.Column="1" Text="秒" VerticalAlignment="Bottom"/>
+                            </Grid>
+                            <TextBlock Grid.Row="10" Grid.Column="0" Text="常に最前面に表示（要・再起動）" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="10" Grid.Column="2" IsChecked="{Binding IsAllwaysOnTop.Value}"/>
+                            <TextBlock Grid.Row="12" Grid.Column="0" Text="デバッグ機能" Style="{StaticResource SettingHeaderTextBlock}"/>
+                            <ToggleButton Grid.Row="12" Grid.Column="2" IsChecked="{Binding IsDebugModeEnabled.Value}"/>
 
-                            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
+                            <Grid Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4"
                                   Visibility="{Binding IsDebugModeEnabled.Value, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>

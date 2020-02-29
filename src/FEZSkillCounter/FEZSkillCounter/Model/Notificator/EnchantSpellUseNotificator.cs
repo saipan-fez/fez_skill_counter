@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FEZSkillCounter.Model.Notificator
@@ -15,10 +16,18 @@ namespace FEZSkillCounter.Model.Notificator
         /// <summary>
         /// 戦争開始から通知を出すまでの待機時間
         /// </summary>
-        public TimeSpan NotifyTimeSpan { get; }
+        public TimeSpan NotifyTimeSpan { get; set; }
 
-        private DateTime? _warStartDateTime = null; // 戦争開始時間
-        private bool _isNotified = false;
+        /// <summary>
+        /// エンチャント未使用通知の有効
+        /// </summary>
+        public bool IsEnchantNotifyEnabled { get; set; }
+
+        /// <summary>
+        /// スペル未使用通知の有効
+        /// </summary>
+        public bool IsSpellNotifyEnabled { get; set; }
+
         private SoundPlayer _soundPlayer;
 
         /// <summary>
@@ -53,9 +62,15 @@ namespace FEZSkillCounter.Model.Notificator
             catch
             {
                 // 失敗した場合はデフォルトの音声
-                return new SoundPlayer(Resources.book_notify);
+                return new SoundPlayer(Resources.enchant_notify);
             }
         }
+
+        private const int Invalid_Hp = -1;
+
+        private int _hp = Invalid_Hp;
+        private Task _task = null;
+        private CancellationTokenSource _cts = null;
 
         /// <summary>
         /// 現在の状態を通知し、必要であればユーザに書の使用を通知します4
@@ -64,29 +79,64 @@ namespace FEZSkillCounter.Model.Notificator
         /// <param name="hp"></param>
         public void ReportCurrentStatusWithNotify(WarEvents warEvents, int hp)
         {
-            // 戦争中じゃなければ通知対象外
+            // 現在のHPを保持
+            _hp = hp;
+
             if (warEvents != WarEvents.WarStarted)
             {
-                _warStartDateTime = null;
-                _isNotified = false;
-                return;
+                if (_cts != null)
+                {
+                    _cts.Cancel(false);
+                    _cts.Dispose();
+                    _cts  = null;
+                    _task = null;
+                }
             }
-
-            // 戦争が開始したら開始時間を保持
-            if (!_warStartDateTime.HasValue)
+            else
             {
-                _warStartDateTime = DateTime.Now;
+                if (_task != null)
+                {
+                    if (_task.IsCanceled || _task.IsCompleted)
+                    {
+                        if (_cts != null)
+                        {
+                            _cts.Dispose();
+                            _cts = null;
+                            _task = null;
+                        }
+                    }
+                }
+
+                if (_cts == null)
+                {
+                    _cts = new CancellationTokenSource();
+
+                    var token = _cts.Token;
+                    _task = Task.Run(async () => await PlayNotifySoundIfSpellEhchantNotUsedAsync(token), token);
+                }
             }
+        }
 
-            // 未通知かつ、戦争開始から所定の時間経過している、
-            // かつスペルまたはエンチャントが使用されていなければ通知
-            if (!_isNotified && (DateTime.Now - _warStartDateTime) > NotifyTimeSpan)
+        private async Task PlayNotifySoundIfSpellEhchantNotUsedAsync(CancellationToken token)
+        {
+            try
             {
-                if (!IsSpellUsed(hp) || !IsEnchantUsed(hp))
+                // 通知時間まで待機
+                await Task.Delay(NotifyTimeSpan, token);
+
+                // 現在のHPを確認して、
+                // スペルまたはエンチャントが使用されていなければ通知
+                if ((!IsSpellUsed(_hp)   && IsSpellNotifyEnabled) ||
+                    (!IsEnchantUsed(_hp) && IsEnchantNotifyEnabled))
                 {
                     PlayNotifySound();
-                    _isNotified = true;
                 }
+            }
+            catch (OperationCanceledException)
+            { }
+            catch
+            {
+                // nop
             }
         }
 
@@ -103,7 +153,7 @@ namespace FEZSkillCounter.Model.Notificator
         private bool IsSpellUsed(int hp)
         {
             // スペル使用時のHP+100ボーナスがあるかどうかチェック
-            return hp >= 110;
+            return hp >= 1100;
         }
 
         private bool IsEnchantUsed(int hp)
