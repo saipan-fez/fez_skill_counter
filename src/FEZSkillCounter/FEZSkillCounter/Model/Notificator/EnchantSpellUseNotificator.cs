@@ -13,6 +13,8 @@ namespace FEZSkillCounter.Model.Notificator
 {
     public class EnchantSpellUseNotificator : IDisposable
     {
+        private const int Invalid_Hp = -1;
+
         /// <summary>
         /// 戦争開始から通知を出すまでの待機時間
         /// </summary>
@@ -29,6 +31,9 @@ namespace FEZSkillCounter.Model.Notificator
         public bool IsSpellNotifyEnabled { get; set; }
 
         private SoundPlayer _soundPlayer;
+        private int _hp = Invalid_Hp;
+        private CancellationTokenSource _cts = null;
+        private WarEvents _warEvent = WarEvents.Invalid;
 
         /// <summary>
         /// </summary>
@@ -43,6 +48,12 @@ namespace FEZSkillCounter.Model.Notificator
             try
             {
                 _soundPlayer.Dispose();
+
+                if (_cts != null)
+                {
+                    _cts.Cancel(false);
+                    _cts.Dispose();
+                }
             }
             catch
             { }
@@ -66,55 +77,31 @@ namespace FEZSkillCounter.Model.Notificator
             }
         }
 
-        private const int Invalid_Hp = -1;
+        /// <summary>
+        /// 戦争開始を報告
+        /// </summary>
+        public void ReportWarStarted()
+        {
+            // 戦争開始で別スレッドを立ち上げて通知準備
+            if (_cts != null)
+            {
+                _cts.Cancel(false);
+                _cts.Dispose();
+            }
 
-        private int _hp = Invalid_Hp;
-        private Task _task = null;
-        private CancellationTokenSource _cts = null;
+            _cts = new CancellationTokenSource();
+
+            var token = _cts.Token;
+            Task.Run(async () => await PlayNotifySoundIfSpellEhchantNotUsedAsync(token), token);
+        }
 
         /// <summary>
-        /// 現在の状態を通知し、必要であればユーザに書の使用を通知します4
+        /// 現在のHPを報告
         /// </summary>
-        /// <param name="warEvents"></param>
         /// <param name="hp"></param>
-        public void ReportCurrentStatusWithNotify(WarEvents warEvents, int hp)
+        public void ReportHp(int hp)
         {
-            // 現在のHPを保持
             _hp = hp;
-
-            if (warEvents != WarEvents.WarStarted)
-            {
-                if (_cts != null)
-                {
-                    _cts.Cancel(false);
-                    _cts.Dispose();
-                    _cts  = null;
-                    _task = null;
-                }
-            }
-            else
-            {
-                if (_task != null)
-                {
-                    if (_task.IsCanceled || _task.IsCompleted)
-                    {
-                        if (_cts != null)
-                        {
-                            _cts.Dispose();
-                            _cts = null;
-                            _task = null;
-                        }
-                    }
-                }
-
-                if (_cts == null)
-                {
-                    _cts = new CancellationTokenSource();
-
-                    var token = _cts.Token;
-                    _task = Task.Run(async () => await PlayNotifySoundIfSpellEhchantNotUsedAsync(token), token);
-                }
-            }
         }
 
         private async Task PlayNotifySoundIfSpellEhchantNotUsedAsync(CancellationToken token)
@@ -158,9 +145,11 @@ namespace FEZSkillCounter.Model.Notificator
 
         private bool IsEnchantUsed(int hp)
         {
-            // HPエンチャント使用時のHPが1000を超えているかチェック
-            // なお、1100の場合はスペル使用の可能性があるため除外
-            // (HPエンチャントで+100の可能性もあるが、確率的に低いため考慮しない)
+            // HPエンチャント使用でHPが1000を超えているかチェック
+            //
+            // 1100の場合はスペル使用の可能性があるため除外
+            // HPエンチャントで+100の可能性もあるが、確率的に低いため考慮しない。
+            // また、HPスペルによるHP増加も判断できないため考慮しない。
             return (hp > 1000 && hp != 1100);
         }
     }

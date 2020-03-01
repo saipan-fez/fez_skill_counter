@@ -189,6 +189,11 @@ namespace FEZSkillCounter.UseCase
                 IsSpellNotifyEnabled   = IsNotifySpellUses.Value
             };
 
+            if (EnchantSpellNotifyTimeSpan.Value == TimeSpan.Zero)
+            {
+                EnchantSpellNotifyTimeSpan.Value = TimeSpan.FromSeconds(10);
+            }
+
             _skillUseService = new SkillCountService();
             _skillUseService.WarStarted         += _skillUseService_WarStarted;
             _skillUseService.WarCanceled        += _skillUseService_WarCanceled;
@@ -241,10 +246,8 @@ namespace FEZSkillCounter.UseCase
             WarStatus.Value = WarEvents.WarStarted;
             MapName.Value   = e.Map.IsEmpty() ? string.Empty : e.Map.Name;
 
-            // エンチャント・スペル未使用通知のため状態をレポートする
-            _enchantSpellUseNotificator.ReportCurrentStatusWithNotify(
-                WarStatus.Value,
-                Hp.Value);
+            // エンチャント・スペル未使用通知のため戦争開始をレポートする
+            _enchantSpellUseNotificator.ReportWarStarted();
 
             // 戦争開始時にスキル回数をリセットする
             await ResetSkillCountAsync();
@@ -295,10 +298,8 @@ namespace FEZSkillCounter.UseCase
         {
             Hp.Value = e.Hp;
 
-            // エンチャント・スペル未使用通知のため状態をレポートする
-            _enchantSpellUseNotificator.ReportCurrentStatusWithNotify(
-                WarStatus.Value,
-                e.Hp);
+            // エンチャント・スペル未使用通知のためHPをレポートする
+            _enchantSpellUseNotificator.ReportHp(e.Hp);
         }
 
         private void _skillUseService_PowDebuffsUpdated(object sender, PowDebuffsUpdatedEventArgs e)

@@ -250,7 +250,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Controls:NumericUpDown Grid.Column="0" HideUpDownButtons="True" TextAlignment="Right"
-                                                        Minimum="0" Maximum="200" Value="{Binding EnchantSpellNotifySecond.Value}"/>
+                                                        Minimum="1" Maximum="200" Value="{Binding EnchantSpellNotifySecond.Value}"/>
                                 <TextBlock Grid.Column="1" Text="秒" VerticalAlignment="Bottom"/>
                             </Grid>
                             <TextBlock Grid.Row="10" Grid.Column="0" Text="常に最前面に表示（要・再起動）" Style="{StaticResource SettingHeaderTextBlock}"/>
