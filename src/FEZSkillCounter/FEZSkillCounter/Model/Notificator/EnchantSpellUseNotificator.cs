@@ -1,11 +1,7 @@
 ﻿using FEZSkillCounter.Properties;
-using FEZSkillCounter.UseCase;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,8 +9,6 @@ namespace FEZSkillCounter.Model.Notificator
 {
     public class EnchantSpellUseNotificator : IDisposable
     {
-        private const int Invalid_Hp = -1;
-
         /// <summary>
         /// 戦争開始から通知を出すまでの待機時間
         /// </summary>
@@ -31,9 +25,8 @@ namespace FEZSkillCounter.Model.Notificator
         public bool IsSpellNotifyEnabled { get; set; }
 
         private SoundPlayer _soundPlayer;
-        private int _hp = Invalid_Hp;
+        private int _hp;
         private CancellationTokenSource _cts = null;
-        private WarEvents _warEvent = WarEvents.Invalid;
 
         /// <summary>
         /// </summary>

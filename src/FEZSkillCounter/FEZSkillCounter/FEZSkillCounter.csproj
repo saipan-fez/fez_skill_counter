@@ -244,6 +244,10 @@
     <Compile Include="Migrations\20200229040025_AddEnchantSpellUseSetting.designer.cs">
       <DependentUpon>20200229040025_AddEnchantSpellUseSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200301062347_UpdateSettingDefaultValue.cs" />
+    <Compile Include="Migrations\20200301062347_UpdateSettingDefaultValue.designer.cs">
+      <DependentUpon>20200301062347_UpdateSettingDefaultValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SkillCountDbContextModelSnapshot.cs" />
     <Compile Include="Model\Notificator\BookUseNotificator.cs" />
     <Compile Include="Model\Common\BindableBase.cs" />

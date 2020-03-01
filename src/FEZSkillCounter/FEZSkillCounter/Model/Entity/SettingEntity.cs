@@ -25,7 +25,7 @@ namespace FEZSkillCounter.Model.Entity
         private TimeSpan? _enchantSpellNotifyTimeSpan = TimeSpan.FromSeconds(10);
 
         public bool IsAllwaysOnTop { get { return _isAllwaysOnTop; } set { SetProperty(ref _isAllwaysOnTop, value); } }
-        private bool _isAllwaysOnTop = true;
+        private bool _isAllwaysOnTop = false;
 
         public bool IsDebugModeEnabled { get { return _isDebugModeEnabled; } set { SetProperty(ref _isDebugModeEnabled, value); } }
         private bool _isDebugModeEnabled = false;
